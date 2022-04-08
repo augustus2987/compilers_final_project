@@ -1,0 +1,211 @@
+compiler:: base tree:
+compiler::	Assign([AssName('x', 'OP_ASSIGN')], List([Const(1), Const(2), UnarySub(Const(5)), UnarySub(Const(5)), Name('True')]))
+compiler::	Printnl([Name('x')], None)
+explicate:: Explicated Tree:
+Module(None, Stmt([Assign([AssName('x', 'OP_ASSIGN')], List([Const(1), Const(2), UnarySub(Const(5)), UnarySub(Const(5)), Bool(True)])), Let(Name('expl_0'), Name('x'), IfExp(InjectFrom(bool, Compare(Const(0), [('==', GetTag(Name('expl_0')))])), Printnl([ProjectTo(int, Name('expl_0'))], None), IfExp(InjectFrom(bool, Compare(Const(1), [('==', GetTag(Name('expl_0')))])), PrintBool(Name('expl_0')), IfExp(InjectFrom(bool, Compare(Const(3), [('==', GetTag(Name('expl_0')))])), PrintBig(Name('expl_0')), CallFunc(Name('call_error'), [], None, None)))))]))
+Flatten:: Flattened AST tree:
+Flatten:: 	Assign([AssName('var_1', 'OP-ASSIGN')], UnarySub(Const(5)))
+Flatten:: 	Assign([AssName('var_3', 'OP-ASSIGN')], UnarySub(Const(5)))
+Flatten:: 	Assign([AssName('var_0', 'OP-ASSIGN')], List([Const(1), Const(2), Name('var_1'), Name('var_3'), Bool(True)]))
+Flatten:: 	Assign([AssName('user_x', 'OP_ASSIGN')], Name('var_0'))
+Flatten:: 	Let(Name('expl_0'), Name('user_x'), Stmt([Assign([AssName('var_23', 'OP-ASSIGN')], GetTag(Name('expl_0'))), Assign([AssName('var_22', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_23'))])), Assign([AssName('var_21', 'OP-ASSIGN')], InjectFrom(bool, Name('var_22'))), Assign([AssName('var_26', 'OP-ASSIGN')], GetTag(Name('var_21'))), Assign([AssName('var_26', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_26'))])), IfExp(Name('var_26'), Stmt([Assign([AssName('var_21', 'OP-ASSIGN')], ProjectTo(int, Name('var_21')))]), Stmt([Assign([AssName('var_21', 'OP-ASSIGN')], ProjectTo(bool, Name('var_21')))])), IfExp(Name('var_21'), Stmt([Assign([AssName('var_5', 'OP-ASSIGN')], ProjectTo(int, Name('expl_0'))), Printnl([Name('var_5')], None)]), Stmt([Assign([AssName('var_16', 'OP-ASSIGN')], GetTag(Name('expl_0'))), Assign([AssName('var_15', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_16'))])), Assign([AssName('var_14', 'OP-ASSIGN')], InjectFrom(bool, Name('var_15'))), Assign([AssName('var_19', 'OP-ASSIGN')], GetTag(Name('var_14'))), Assign([AssName('var_19', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_19'))])), IfExp(Name('var_19'), Stmt([Assign([AssName('var_14', 'OP-ASSIGN')], ProjectTo(int, Name('var_14')))]), Stmt([Assign([AssName('var_14', 'OP-ASSIGN')], ProjectTo(bool, Name('var_14')))])), IfExp(Name('var_14'), Stmt([PrintBool(Name('expl_0'))]), Stmt([Assign([AssName('var_9', 'OP-ASSIGN')], GetTag(Name('expl_0'))), Assign([AssName('var_8', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_9'))])), Assign([AssName('var_7', 'OP-ASSIGN')], InjectFrom(bool, Name('var_8'))), Assign([AssName('var_12', 'OP-ASSIGN')], GetTag(Name('var_7'))), Assign([AssName('var_12', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_12'))])), IfExp(Name('var_12'), Stmt([Assign([AssName('var_7', 'OP-ASSIGN')], ProjectTo(int, Name('var_7')))]), Stmt([Assign([AssName('var_7', 'OP-ASSIGN')], ProjectTo(bool, Name('var_7')))])), IfExp(Name('var_7'), Stmt([PrintBig(Name('expl_0'))]), Stmt([Assign([AssName('var_6', 'OP-ASSIGN')], CallFunc(Name('call_error'), [], None, None)), Assign([AssName('var_6', 'OP-ASSIGN')], Name('var_6')), Assign([AssName('var_6', 'OP-ASSIGN')], Name('var_6'))]))]))]))]))
+x86IR::  Intermediate representation:
+x86IR::  	movl $5 ir0
+x86IR::  	negl ir0
+x86IR::  	pushl ir0
+x86IR::  	call inject_int
+x86IR::  	movl eax var_1
+x86IR::  	movl $5 ir1
+x86IR::  	negl ir1
+x86IR::  	pushl ir1
+x86IR::  	call inject_int
+x86IR::  	movl eax var_3
+x86IR::  	pushl $5
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	call create_list
+x86IR::  	pushl eax
+x86IR::  	call inject_big
+x86IR::  	movl eax var_0
+x86IR::  	pushl $0
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $1
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	pushl $1
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $2
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	pushl $2
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl var_1
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	pushl $3
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl var_3
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	pushl $4
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $1
+x86IR::  	call inject_bool
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	movl var_0 user_x
+x86IR::  	movl user_x expl_0
+x86IR::  	pushl expl_0
+x86IR::  	call tag
+x86IR::  	movl eax var_23
+x86IR::  	cmpl $0 var_23
+x86IR::  	je ir_tag0_cmp
+x86IR::  	movl $0 var_22
+x86IR::  	jmp ir_tag0_cmpend
+x86IR::  	ir_tag0_cmp:
+x86IR::  	movl $1 var_22
+x86IR::  	ir_tag0_cmpend:
+x86IR::  	pushl var_22
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_21
+x86IR::  	pushl var_21
+x86IR::  	call tag
+x86IR::  	movl eax var_26
+x86IR::  	cmpl $0 var_26
+x86IR::  	je ir_tag1_cmp
+x86IR::  	movl $0 var_26
+x86IR::  	jmp ir_tag1_cmpend
+x86IR::  	ir_tag1_cmp:
+x86IR::  	movl $1 var_26
+x86IR::  	ir_tag1_cmpend:
+x86IR::  	cmpl $0 var_26
+x86IR::  	je ir_tag_else_2
+x86IR::  	pushl var_21
+x86IR::  	call project_int
+x86IR::  	movl eax var_21
+x86IR::  	jmp ir_tag_end_2
+x86IR::  	ir_tag_else_2:
+x86IR::  	pushl var_21
+x86IR::  	call project_bool
+x86IR::  	movl eax var_21
+x86IR::  	jmp ir_tag_end_2
+x86IR::  	ir_tag_end_2:
+x86IR::  	cmpl $0 var_21
+x86IR::  	je ir_tag_else_3
+x86IR::  	pushl expl_0
+x86IR::  	call project_int
+x86IR::  	movl eax var_5
+x86IR::  	pushl var_5
+x86IR::  	call print_int_nl
+x86IR::  	jmp ir_tag_end_3
+x86IR::  	ir_tag_else_3:
+x86IR::  	pushl expl_0
+x86IR::  	call tag
+x86IR::  	movl eax var_16
+x86IR::  	cmpl $1 var_16
+x86IR::  	je ir_tag4_cmp
+x86IR::  	movl $0 var_15
+x86IR::  	jmp ir_tag4_cmpend
+x86IR::  	ir_tag4_cmp:
+x86IR::  	movl $1 var_15
+x86IR::  	ir_tag4_cmpend:
+x86IR::  	pushl var_15
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_14
+x86IR::  	pushl var_14
+x86IR::  	call tag
+x86IR::  	movl eax var_19
+x86IR::  	cmpl $0 var_19
+x86IR::  	je ir_tag5_cmp
+x86IR::  	movl $0 var_19
+x86IR::  	jmp ir_tag5_cmpend
+x86IR::  	ir_tag5_cmp:
+x86IR::  	movl $1 var_19
+x86IR::  	ir_tag5_cmpend:
+x86IR::  	cmpl $0 var_19
+x86IR::  	je ir_tag_else_6
+x86IR::  	pushl var_14
+x86IR::  	call project_int
+x86IR::  	movl eax var_14
+x86IR::  	jmp ir_tag_end_6
+x86IR::  	ir_tag_else_6:
+x86IR::  	pushl var_14
+x86IR::  	call project_bool
+x86IR::  	movl eax var_14
+x86IR::  	jmp ir_tag_end_6
+x86IR::  	ir_tag_end_6:
+x86IR::  	cmpl $0 var_14
+x86IR::  	je ir_tag_else_7
+x86IR::  	pushl expl_0
+x86IR::  	call print_any
+x86IR::  	jmp ir_tag_end_7
+x86IR::  	ir_tag_else_7:
+x86IR::  	pushl expl_0
+x86IR::  	call tag
+x86IR::  	movl eax var_9
+x86IR::  	cmpl $3 var_9
+x86IR::  	je ir_tag8_cmp
+x86IR::  	movl $0 var_8
+x86IR::  	jmp ir_tag8_cmpend
+x86IR::  	ir_tag8_cmp:
+x86IR::  	movl $1 var_8
+x86IR::  	ir_tag8_cmpend:
+x86IR::  	pushl var_8
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_7
+x86IR::  	pushl var_7
+x86IR::  	call tag
+x86IR::  	movl eax var_12
+x86IR::  	cmpl $0 var_12
+x86IR::  	je ir_tag9_cmp
+x86IR::  	movl $0 var_12
+x86IR::  	jmp ir_tag9_cmpend
+x86IR::  	ir_tag9_cmp:
+x86IR::  	movl $1 var_12
+x86IR::  	ir_tag9_cmpend:
+x86IR::  	cmpl $0 var_12
+x86IR::  	je ir_tag_else_10
+x86IR::  	pushl var_7
+x86IR::  	call project_int
+x86IR::  	movl eax var_7
+x86IR::  	jmp ir_tag_end_10
+x86IR::  	ir_tag_else_10:
+x86IR::  	pushl var_7
+x86IR::  	call project_bool
+x86IR::  	movl eax var_7
+x86IR::  	jmp ir_tag_end_10
+x86IR::  	ir_tag_end_10:
+x86IR::  	cmpl $0 var_7
+x86IR::  	je ir_tag_else_11
+x86IR::  	pushl expl_0
+x86IR::  	call print_any
+x86IR::  	jmp ir_tag_end_11
+x86IR::  	ir_tag_else_11:
+x86IR::  	call call_error
+x86IR::  	pushl eax
+x86IR::  	call inject_int
+x86IR::  	movl eax var_6
+x86IR::  	movl var_6 var_6
+x86IR::  	movl var_6 var_6
+x86IR::  	jmp ir_tag_end_11
+x86IR::  	ir_tag_end_11:
+x86IR::  	jmp ir_tag_end_7
+x86IR::  	ir_tag_end_7:
+x86IR::  	jmp ir_tag_end_3
+x86IR::  	ir_tag_end_3:
+VariableGraph::  # of variables: 23

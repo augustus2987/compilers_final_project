@@ -1,0 +1,2408 @@
+Running test pranav-ange_list-concat.py
+compiler:: base tree:
+compiler::	Assign([AssName('l', 'OP_ASSIGN')], List([Const(1), Const(2), Const(3)]))
+compiler::	Assign([AssName('r', 'OP_ASSIGN')], List([Const(4), Const(5), Const(6)]))
+compiler::	Printnl([Add((Name('l'), Name('r')))], None)
+compiler::	Assign([AssName('t', 'OP_ASSIGN')], Add((Name('l'), Name('r'))))
+compiler::	Assign([AssName('d', 'OP_ASSIGN')], Dict([(Const(1), Const(2)), (Const(3), Const(4))]))
+compiler::	Assign([Subscript(Name('d'), 'OP_ASSIGN', [Const(7)])], Add((Name('l'), List([Subscript(Name('r'), 'OP_APPLY', [Const(2)])]))))
+compiler::	Printnl([Name('d')], None)
+explicate:: Explicated Tree:
+explicate:: Assign(
+explicate:: | AssName(
+explicate:: | | l
+explicate:: | | OP_ASSIGN
+explicate:: | )
+explicate:: | List(
+explicate:: | | Const(
+explicate:: | | | 1
+explicate:: | | )
+explicate:: | | Const(
+explicate:: | | | 2
+explicate:: | | )
+explicate:: | | Const(
+explicate:: | | | 3
+explicate:: | | )
+explicate:: | )
+explicate:: )
+explicate:: Assign(
+explicate:: | AssName(
+explicate:: | | r
+explicate:: | | OP_ASSIGN
+explicate:: | )
+explicate:: | List(
+explicate:: | | Const(
+explicate:: | | | 4
+explicate:: | | )
+explicate:: | | Const(
+explicate:: | | | 5
+explicate:: | | )
+explicate:: | | Const(
+explicate:: | | | 6
+explicate:: | | )
+explicate:: | )
+explicate:: )
+explicate:: Let(
+explicate:: | Name(
+explicate:: | | expl_3
+explicate:: | )
+explicate:: | Let(
+explicate:: | | Name(
+explicate:: | | | expl_1
+explicate:: | | )
+explicate:: | | Name(
+explicate:: | | | l
+explicate:: | | )
+explicate:: | | Let(
+explicate:: | | | Name(
+explicate:: | | | | expl_2
+explicate:: | | | )
+explicate:: | | | Name(
+explicate:: | | | | r
+explicate:: | | | )
+explicate:: | | | IfExp(
+explicate:: | | | | InjectFrom(
+explicate:: | | | | | bool
+explicate:: | | | | | And(
+explicate:: | | | | | | Or(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 0
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_1
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 1
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_1
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | | Or(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 0
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_2
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 1
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_2
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | Assign(
+explicate:: | | | | | Name(
+explicate:: | | | | | | expl_0
+explicate:: | | | | | )
+explicate:: | | | | | InjectFrom(
+explicate:: | | | | | | int
+explicate:: | | | | | | Add(
+explicate:: | | | | | | | IfExp(
+explicate:: | | | | | | | | InjectFrom(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Compare(
+explicate:: | | | | | | | | | | Const(
+explicate:: | | | | | | | | | | | 0
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | | ==
+explicate:: | | | | | | | | | | GetTag(
+explicate:: | | | | | | | | | | | Name(
+explicate:: | | | | | | | | | | | | expl_1
+explicate:: | | | | | | | | | | | )
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | int
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_1
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_1
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | IfExp(
+explicate:: | | | | | | | | InjectFrom(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Compare(
+explicate:: | | | | | | | | | | Const(
+explicate:: | | | | | | | | | | | 0
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | | ==
+explicate:: | | | | | | | | | | GetTag(
+explicate:: | | | | | | | | | | | Name(
+explicate:: | | | | | | | | | | | | expl_2
+explicate:: | | | | | | | | | | | )
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | int
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_2
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_2
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | IfExp(
+explicate:: | | | | | InjectFrom(
+explicate:: | | | | | | bool
+explicate:: | | | | | | And(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 3
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_1
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 3
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_2
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | | Assign(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | expl_0
+explicate:: | | | | | | )
+explicate:: | | | | | | InjectFrom(
+explicate:: | | | | | | | big
+explicate:: | | | | | | | CallBigAdd(
+explicate:: | | | | | | | | big
+explicate:: | | | | | | | | Name(
+explicate:: | | | | | | | | | expl_1
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | big
+explicate:: | | | | | | | | Name(
+explicate:: | | | | | | | | | expl_2
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | | CallFunc(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | call_error
+explicate:: | | | | | | )
+explicate:: | | | | | | None
+explicate:: | | | | | | None
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | expl_0
+explicate:: | | )
+explicate:: | | expl_0
+explicate:: | )
+explicate:: | IfExp(
+explicate:: | | InjectFrom(
+explicate:: | | | bool
+explicate:: | | | Compare(
+explicate:: | | | | Const(
+explicate:: | | | | | 0
+explicate:: | | | | )
+explicate:: | | | | ==
+explicate:: | | | | GetTag(
+explicate:: | | | | | Name(
+explicate:: | | | | | | expl_3
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | )
+explicate:: | | Printnl(
+explicate:: | | | ProjectTo(
+explicate:: | | | | int
+explicate:: | | | | Name(
+explicate:: | | | | | expl_3
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | None
+explicate:: | | )
+explicate:: | | IfExp(
+explicate:: | | | InjectFrom(
+explicate:: | | | | bool
+explicate:: | | | | Compare(
+explicate:: | | | | | Const(
+explicate:: | | | | | | 1
+explicate:: | | | | | )
+explicate:: | | | | | ==
+explicate:: | | | | | GetTag(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | expl_3
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | PrintBool(
+explicate:: | | | | Name(
+explicate:: | | | | | expl_3
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | IfExp(
+explicate:: | | | | InjectFrom(
+explicate:: | | | | | bool
+explicate:: | | | | | Compare(
+explicate:: | | | | | | Const(
+explicate:: | | | | | | | 3
+explicate:: | | | | | | )
+explicate:: | | | | | | ==
+explicate:: | | | | | | GetTag(
+explicate:: | | | | | | | Name(
+explicate:: | | | | | | | | expl_3
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | PrintBig(
+explicate:: | | | | | Name(
+explicate:: | | | | | | expl_3
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | CallFunc(
+explicate:: | | | | | Name(
+explicate:: | | | | | | call_error
+explicate:: | | | | | )
+explicate:: | | | | | None
+explicate:: | | | | | None
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | )
+explicate:: | )
+explicate:: | None
+explicate:: )
+explicate:: Assign(
+explicate:: | AssName(
+explicate:: | | t
+explicate:: | | OP_ASSIGN
+explicate:: | )
+explicate:: | Let(
+explicate:: | | Name(
+explicate:: | | | expl_5
+explicate:: | | )
+explicate:: | | Name(
+explicate:: | | | l
+explicate:: | | )
+explicate:: | | Let(
+explicate:: | | | Name(
+explicate:: | | | | expl_6
+explicate:: | | | )
+explicate:: | | | Name(
+explicate:: | | | | r
+explicate:: | | | )
+explicate:: | | | IfExp(
+explicate:: | | | | InjectFrom(
+explicate:: | | | | | bool
+explicate:: | | | | | And(
+explicate:: | | | | | | Or(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 0
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_5
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 1
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_5
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | | Or(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 0
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_6
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 1
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_6
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | Assign(
+explicate:: | | | | | Name(
+explicate:: | | | | | | expl_4
+explicate:: | | | | | )
+explicate:: | | | | | InjectFrom(
+explicate:: | | | | | | int
+explicate:: | | | | | | Add(
+explicate:: | | | | | | | IfExp(
+explicate:: | | | | | | | | InjectFrom(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Compare(
+explicate:: | | | | | | | | | | Const(
+explicate:: | | | | | | | | | | | 0
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | | ==
+explicate:: | | | | | | | | | | GetTag(
+explicate:: | | | | | | | | | | | Name(
+explicate:: | | | | | | | | | | | | expl_5
+explicate:: | | | | | | | | | | | )
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | int
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_5
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_5
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | IfExp(
+explicate:: | | | | | | | | InjectFrom(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Compare(
+explicate:: | | | | | | | | | | Const(
+explicate:: | | | | | | | | | | | 0
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | | ==
+explicate:: | | | | | | | | | | GetTag(
+explicate:: | | | | | | | | | | | Name(
+explicate:: | | | | | | | | | | | | expl_6
+explicate:: | | | | | | | | | | | )
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | int
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_6
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_6
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | IfExp(
+explicate:: | | | | | InjectFrom(
+explicate:: | | | | | | bool
+explicate:: | | | | | | And(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 3
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_5
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 3
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_6
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | | Assign(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | expl_4
+explicate:: | | | | | | )
+explicate:: | | | | | | InjectFrom(
+explicate:: | | | | | | | big
+explicate:: | | | | | | | CallBigAdd(
+explicate:: | | | | | | | | big
+explicate:: | | | | | | | | Name(
+explicate:: | | | | | | | | | expl_5
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | big
+explicate:: | | | | | | | | Name(
+explicate:: | | | | | | | | | expl_6
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | | CallFunc(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | call_error
+explicate:: | | | | | | )
+explicate:: | | | | | | None
+explicate:: | | | | | | None
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | expl_4
+explicate:: | | )
+explicate:: | | expl_4
+explicate:: | )
+explicate:: )
+explicate:: Assign(
+explicate:: | AssName(
+explicate:: | | d
+explicate:: | | OP_ASSIGN
+explicate:: | )
+explicate:: | Dict(
+explicate:: | | Const(
+explicate:: | | | 1
+explicate:: | | )
+explicate:: | | Const(
+explicate:: | | | 2
+explicate:: | | )
+explicate:: | | Const(
+explicate:: | | | 3
+explicate:: | | )
+explicate:: | | Const(
+explicate:: | | | 4
+explicate:: | | )
+explicate:: | )
+explicate:: )
+explicate:: Assign(
+explicate:: | Subscript(
+explicate:: | | Name(
+explicate:: | | | d
+explicate:: | | )
+explicate:: | | OP_ASSIGN
+explicate:: | | Const(
+explicate:: | | | 7
+explicate:: | | )
+explicate:: | )
+explicate:: | Let(
+explicate:: | | Name(
+explicate:: | | | expl_8
+explicate:: | | )
+explicate:: | | Name(
+explicate:: | | | l
+explicate:: | | )
+explicate:: | | Let(
+explicate:: | | | Name(
+explicate:: | | | | expl_9
+explicate:: | | | )
+explicate:: | | | List(
+explicate:: | | | | Subscript(
+explicate:: | | | | | Name(
+explicate:: | | | | | | r
+explicate:: | | | | | )
+explicate:: | | | | | OP_APPLY
+explicate:: | | | | | Const(
+explicate:: | | | | | | 2
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | IfExp(
+explicate:: | | | | InjectFrom(
+explicate:: | | | | | bool
+explicate:: | | | | | And(
+explicate:: | | | | | | Or(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 0
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_8
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 1
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_8
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | | Or(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 0
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_9
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 1
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_9
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | Assign(
+explicate:: | | | | | Name(
+explicate:: | | | | | | expl_7
+explicate:: | | | | | )
+explicate:: | | | | | InjectFrom(
+explicate:: | | | | | | int
+explicate:: | | | | | | Add(
+explicate:: | | | | | | | IfExp(
+explicate:: | | | | | | | | InjectFrom(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Compare(
+explicate:: | | | | | | | | | | Const(
+explicate:: | | | | | | | | | | | 0
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | | ==
+explicate:: | | | | | | | | | | GetTag(
+explicate:: | | | | | | | | | | | Name(
+explicate:: | | | | | | | | | | | | expl_8
+explicate:: | | | | | | | | | | | )
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | int
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_8
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_8
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | IfExp(
+explicate:: | | | | | | | | InjectFrom(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Compare(
+explicate:: | | | | | | | | | | Const(
+explicate:: | | | | | | | | | | | 0
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | | ==
+explicate:: | | | | | | | | | | GetTag(
+explicate:: | | | | | | | | | | | Name(
+explicate:: | | | | | | | | | | | | expl_9
+explicate:: | | | | | | | | | | | )
+explicate:: | | | | | | | | | | )
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | int
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_9
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ProjectTo(
+explicate:: | | | | | | | | | bool
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_9
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | IfExp(
+explicate:: | | | | | InjectFrom(
+explicate:: | | | | | | bool
+explicate:: | | | | | | And(
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 3
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_8
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | | Compare(
+explicate:: | | | | | | | | Const(
+explicate:: | | | | | | | | | 3
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | ==
+explicate:: | | | | | | | | GetTag(
+explicate:: | | | | | | | | | Name(
+explicate:: | | | | | | | | | | expl_9
+explicate:: | | | | | | | | | )
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | | Assign(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | expl_7
+explicate:: | | | | | | )
+explicate:: | | | | | | InjectFrom(
+explicate:: | | | | | | | big
+explicate:: | | | | | | | CallBigAdd(
+explicate:: | | | | | | | | big
+explicate:: | | | | | | | | Name(
+explicate:: | | | | | | | | | expl_8
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | | big
+explicate:: | | | | | | | | Name(
+explicate:: | | | | | | | | | expl_9
+explicate:: | | | | | | | | )
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | | CallFunc(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | call_error
+explicate:: | | | | | | )
+explicate:: | | | | | | None
+explicate:: | | | | | | None
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | expl_7
+explicate:: | | )
+explicate:: | | expl_7
+explicate:: | )
+explicate:: )
+explicate:: Let(
+explicate:: | Name(
+explicate:: | | expl_10
+explicate:: | )
+explicate:: | Name(
+explicate:: | | d
+explicate:: | )
+explicate:: | IfExp(
+explicate:: | | InjectFrom(
+explicate:: | | | bool
+explicate:: | | | Compare(
+explicate:: | | | | Const(
+explicate:: | | | | | 0
+explicate:: | | | | )
+explicate:: | | | | ==
+explicate:: | | | | GetTag(
+explicate:: | | | | | Name(
+explicate:: | | | | | | expl_10
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | )
+explicate:: | | Printnl(
+explicate:: | | | ProjectTo(
+explicate:: | | | | int
+explicate:: | | | | Name(
+explicate:: | | | | | expl_10
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | None
+explicate:: | | )
+explicate:: | | IfExp(
+explicate:: | | | InjectFrom(
+explicate:: | | | | bool
+explicate:: | | | | Compare(
+explicate:: | | | | | Const(
+explicate:: | | | | | | 1
+explicate:: | | | | | )
+explicate:: | | | | | ==
+explicate:: | | | | | GetTag(
+explicate:: | | | | | | Name(
+explicate:: | | | | | | | expl_10
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | PrintBool(
+explicate:: | | | | Name(
+explicate:: | | | | | expl_10
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | | IfExp(
+explicate:: | | | | InjectFrom(
+explicate:: | | | | | bool
+explicate:: | | | | | Compare(
+explicate:: | | | | | | Const(
+explicate:: | | | | | | | 3
+explicate:: | | | | | | )
+explicate:: | | | | | | ==
+explicate:: | | | | | | GetTag(
+explicate:: | | | | | | | Name(
+explicate:: | | | | | | | | expl_10
+explicate:: | | | | | | | )
+explicate:: | | | | | | )
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | PrintBig(
+explicate:: | | | | | Name(
+explicate:: | | | | | | expl_10
+explicate:: | | | | | )
+explicate:: | | | | )
+explicate:: | | | | CallFunc(
+explicate:: | | | | | Name(
+explicate:: | | | | | | call_error
+explicate:: | | | | | )
+explicate:: | | | | | None
+explicate:: | | | | | None
+explicate:: | | | | )
+explicate:: | | | )
+explicate:: | | )
+explicate:: | )
+explicate:: | None
+explicate:: )
+Flatten:: Flattened AST tree:
+Flatten::   Assign([AssName('var_0', 'OP-ASSIGN')], List([Const(1), Const(2), Const(3)]))
+Flatten::   Assign([AssName('user_l', 'OP_ASSIGN')], Name('var_0'))
+Flatten::   Assign([AssName('var_1', 'OP-ASSIGN')], List([Const(4), Const(5), Const(6)]))
+Flatten::   Assign([AssName('user_r', 'OP_ASSIGN')], Name('var_1'))
+Flatten::   Let(Name('expl_1'), Name('user_l')
+Flatten::     Let(Name('expl_2'), Name('user_r')
+Flatten::       Assign([AssName('var_49', 'OP-ASSIGN')], GetTag(Name('expl_1')))
+Flatten::       Assign([AssName('var_48', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_49'))]))
+Flatten::       Assign([AssName('var_52', 'OP-ASSIGN')], GetTag(Name('expl_1')))
+Flatten::       Assign([AssName('var_51', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_52'))]))
+Flatten::       Assign([AssName('var_47', 'OP-ASSIGN')], Or([Name('var_48'), Name('var_51')]))
+Flatten::       Assign([AssName('var_57', 'OP-ASSIGN')], GetTag(Name('expl_2')))
+Flatten::       Assign([AssName('var_56', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_57'))]))
+Flatten::       Assign([AssName('var_60', 'OP-ASSIGN')], GetTag(Name('expl_2')))
+Flatten::       Assign([AssName('var_59', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_60'))]))
+Flatten::       Assign([AssName('var_55', 'OP-ASSIGN')], Or([Name('var_56'), Name('var_59')]))
+Flatten::       Assign([AssName('var_46', 'OP-ASSIGN')], And([Name('var_47'), Name('var_55')]))
+Flatten::       Assign([AssName('var_45', 'OP-ASSIGN')], InjectFrom(bool, Name('var_46')))
+Flatten::       Assign([AssName('var_65', 'OP-ASSIGN')], GetTag(Name('var_45')))
+Flatten::       Assign([AssName('var_65', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_65'))]))
+Flatten::       IfExp(Name('var_65')
+Flatten::         Assign([AssName('var_45', 'OP-ASSIGN')], ProjectTo(int, Name('var_45')))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_45', 'OP-ASSIGN')], ProjectTo(bool, Name('var_45')))
+Flatten::       )
+Flatten::       IfExp(Name('var_45')
+Flatten::         Assign([AssName('var_9', 'OP-ASSIGN')], GetTag(Name('expl_1')))
+Flatten::         Assign([AssName('var_8', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_9'))]))
+Flatten::         Assign([AssName('var_7', 'OP-ASSIGN')], InjectFrom(bool, Name('var_8')))
+Flatten::         Assign([AssName('var_12', 'OP-ASSIGN')], GetTag(Name('var_7')))
+Flatten::         Assign([AssName('var_12', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_12'))]))
+Flatten::         IfExp(Name('var_12')
+Flatten::           Assign([AssName('var_7', 'OP-ASSIGN')], ProjectTo(int, Name('var_7')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_7', 'OP-ASSIGN')], ProjectTo(bool, Name('var_7')))
+Flatten::         )
+Flatten::         IfExp(Name('var_7')
+Flatten::           Assign([AssName('var_4', 'OP-ASSIGN')], ProjectTo(int, Name('expl_1')))
+Flatten::           Assign([AssName('var_4', 'OP-ASSIGN')], Name('var_4'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_5', 'OP-ASSIGN')], ProjectTo(bool, Name('expl_1')))
+Flatten::           Assign([AssName('var_4', 'OP-ASSIGN')], Name('var_5'))
+Flatten::         )
+Flatten::         Assign([AssName('var_19', 'OP-ASSIGN')], GetTag(Name('expl_2')))
+Flatten::         Assign([AssName('var_18', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_19'))]))
+Flatten::         Assign([AssName('var_17', 'OP-ASSIGN')], InjectFrom(bool, Name('var_18')))
+Flatten::         Assign([AssName('var_22', 'OP-ASSIGN')], GetTag(Name('var_17')))
+Flatten::         Assign([AssName('var_22', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_22'))]))
+Flatten::         IfExp(Name('var_22')
+Flatten::           Assign([AssName('var_17', 'OP-ASSIGN')], ProjectTo(int, Name('var_17')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_17', 'OP-ASSIGN')], ProjectTo(bool, Name('var_17')))
+Flatten::         )
+Flatten::         IfExp(Name('var_17')
+Flatten::           Assign([AssName('var_14', 'OP-ASSIGN')], ProjectTo(int, Name('expl_2')))
+Flatten::           Assign([AssName('var_14', 'OP-ASSIGN')], Name('var_14'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_15', 'OP-ASSIGN')], ProjectTo(bool, Name('expl_2')))
+Flatten::           Assign([AssName('var_14', 'OP-ASSIGN')], Name('var_15'))
+Flatten::         )
+Flatten::         Assign([AssName('var_3', 'OP-ASSIGN')], Add((Name('var_4'), Name('var_14'))))
+Flatten::         Assign([AssName('var_2', 'OP-ASSIGN')], InjectFrom(int, Name('var_3')))
+Flatten::         Assign([Name('expl_0')], Name('var_2'))
+Flatten::         Assign([AssName('var_2', 'OP-ASSIGN')], Name('expl_0'))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_36', 'OP-ASSIGN')], GetTag(Name('expl_1')))
+Flatten::         Assign([AssName('var_35', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_36'))]))
+Flatten::         Assign([AssName('var_39', 'OP-ASSIGN')], GetTag(Name('expl_2')))
+Flatten::         Assign([AssName('var_38', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_39'))]))
+Flatten::         Assign([AssName('var_34', 'OP-ASSIGN')], And([Name('var_35'), Name('var_38')]))
+Flatten::         Assign([AssName('var_33', 'OP-ASSIGN')], InjectFrom(bool, Name('var_34')))
+Flatten::         Assign([AssName('var_43', 'OP-ASSIGN')], GetTag(Name('var_33')))
+Flatten::         Assign([AssName('var_43', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_43'))]))
+Flatten::         IfExp(Name('var_43')
+Flatten::           Assign([AssName('var_33', 'OP-ASSIGN')], ProjectTo(int, Name('var_33')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_33', 'OP-ASSIGN')], ProjectTo(bool, Name('var_33')))
+Flatten::         )
+Flatten::         IfExp(Name('var_33')
+Flatten::           Assign([AssName('var_27', 'OP-ASSIGN')], ProjectTo(big, Name('expl_1')))
+Flatten::           Assign([AssName('var_29', 'OP-ASSIGN')], ProjectTo(big, Name('expl_2')))
+Flatten::           Assign([AssName('var_26', 'OP-ASSIGN')], CallBigAdd(Name('var_27'), Name('var_29')))
+Flatten::           Assign([AssName('var_25', 'OP-ASSIGN')], InjectFrom(big, Name('var_26')))
+Flatten::           Assign([Name('expl_0')], Name('var_25'))
+Flatten::           Assign([AssName('var_25', 'OP-ASSIGN')], Name('expl_0'))
+Flatten::           Assign([AssName('var_2', 'OP-ASSIGN')], Name('var_25'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_32', 'OP-ASSIGN')], CallFunc(Name('call_error'), [], None, None))
+Flatten::           Assign([AssName('var_25', 'OP-ASSIGN')], Name('var_32'))
+Flatten::           Assign([AssName('var_2', 'OP-ASSIGN')], Name('var_25'))
+Flatten::         )
+Flatten::       )
+Flatten::       Result: expl_0
+Flatten::     )
+Flatten::     Assign([AssName('var_2', 'OP-ASSIGN')], Name('expl_0'))
+Flatten::     Result: expl_0
+Flatten::   )
+Flatten::   Assign([AssName('var_2', 'OP-ASSIGN')], Name('expl_0'))
+Flatten::   Let(Name('expl_3'), Name('var_2')
+Flatten::     Assign([AssName('var_85', 'OP-ASSIGN')], GetTag(Name('expl_3')))
+Flatten::     Assign([AssName('var_84', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_85'))]))
+Flatten::     Assign([AssName('var_83', 'OP-ASSIGN')], InjectFrom(bool, Name('var_84')))
+Flatten::     Assign([AssName('var_88', 'OP-ASSIGN')], GetTag(Name('var_83')))
+Flatten::     Assign([AssName('var_88', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_88'))]))
+Flatten::     IfExp(Name('var_88')
+Flatten::       Assign([AssName('var_83', 'OP-ASSIGN')], ProjectTo(int, Name('var_83')))
+Flatten::     Else(
+Flatten::       Assign([AssName('var_83', 'OP-ASSIGN')], ProjectTo(bool, Name('var_83')))
+Flatten::     )
+Flatten::     IfExp(Name('var_83')
+Flatten::       Assign([AssName('var_67', 'OP-ASSIGN')], ProjectTo(int, Name('expl_3')))
+Flatten::       Printnl([Name('var_67')], None)
+Flatten::     Else(
+Flatten::       Assign([AssName('var_78', 'OP-ASSIGN')], GetTag(Name('expl_3')))
+Flatten::       Assign([AssName('var_77', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_78'))]))
+Flatten::       Assign([AssName('var_76', 'OP-ASSIGN')], InjectFrom(bool, Name('var_77')))
+Flatten::       Assign([AssName('var_81', 'OP-ASSIGN')], GetTag(Name('var_76')))
+Flatten::       Assign([AssName('var_81', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_81'))]))
+Flatten::       IfExp(Name('var_81')
+Flatten::         Assign([AssName('var_76', 'OP-ASSIGN')], ProjectTo(int, Name('var_76')))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_76', 'OP-ASSIGN')], ProjectTo(bool, Name('var_76')))
+Flatten::       )
+Flatten::       IfExp(Name('var_76')
+Flatten::         PrintBool(Name('expl_3'))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_71', 'OP-ASSIGN')], GetTag(Name('expl_3')))
+Flatten::         Assign([AssName('var_70', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_71'))]))
+Flatten::         Assign([AssName('var_69', 'OP-ASSIGN')], InjectFrom(bool, Name('var_70')))
+Flatten::         Assign([AssName('var_74', 'OP-ASSIGN')], GetTag(Name('var_69')))
+Flatten::         Assign([AssName('var_74', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_74'))]))
+Flatten::         IfExp(Name('var_74')
+Flatten::           Assign([AssName('var_69', 'OP-ASSIGN')], ProjectTo(int, Name('var_69')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_69', 'OP-ASSIGN')], ProjectTo(bool, Name('var_69')))
+Flatten::         )
+Flatten::         IfExp(Name('var_69')
+Flatten::           PrintBig(Name('expl_3'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_68', 'OP-ASSIGN')], CallFunc(Name('call_error'), [], None, None))
+Flatten::           Assign([AssName('var_68', 'OP-ASSIGN')], Name('var_68'))
+Flatten::           Assign([AssName('var_68', 'OP-ASSIGN')], Name('var_68'))
+Flatten::         )
+Flatten::       )
+Flatten::     )
+Flatten::     Result: None
+Flatten::   )
+Flatten::   Let(Name('expl_5'), Name('user_l')
+Flatten::     Let(Name('expl_6'), Name('user_r')
+Flatten::       Assign([AssName('var_136', 'OP-ASSIGN')], GetTag(Name('expl_5')))
+Flatten::       Assign([AssName('var_135', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_136'))]))
+Flatten::       Assign([AssName('var_139', 'OP-ASSIGN')], GetTag(Name('expl_5')))
+Flatten::       Assign([AssName('var_138', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_139'))]))
+Flatten::       Assign([AssName('var_134', 'OP-ASSIGN')], Or([Name('var_135'), Name('var_138')]))
+Flatten::       Assign([AssName('var_144', 'OP-ASSIGN')], GetTag(Name('expl_6')))
+Flatten::       Assign([AssName('var_143', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_144'))]))
+Flatten::       Assign([AssName('var_147', 'OP-ASSIGN')], GetTag(Name('expl_6')))
+Flatten::       Assign([AssName('var_146', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_147'))]))
+Flatten::       Assign([AssName('var_142', 'OP-ASSIGN')], Or([Name('var_143'), Name('var_146')]))
+Flatten::       Assign([AssName('var_133', 'OP-ASSIGN')], And([Name('var_134'), Name('var_142')]))
+Flatten::       Assign([AssName('var_132', 'OP-ASSIGN')], InjectFrom(bool, Name('var_133')))
+Flatten::       Assign([AssName('var_152', 'OP-ASSIGN')], GetTag(Name('var_132')))
+Flatten::       Assign([AssName('var_152', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_152'))]))
+Flatten::       IfExp(Name('var_152')
+Flatten::         Assign([AssName('var_132', 'OP-ASSIGN')], ProjectTo(int, Name('var_132')))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_132', 'OP-ASSIGN')], ProjectTo(bool, Name('var_132')))
+Flatten::       )
+Flatten::       IfExp(Name('var_132')
+Flatten::         Assign([AssName('var_96', 'OP-ASSIGN')], GetTag(Name('expl_5')))
+Flatten::         Assign([AssName('var_95', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_96'))]))
+Flatten::         Assign([AssName('var_94', 'OP-ASSIGN')], InjectFrom(bool, Name('var_95')))
+Flatten::         Assign([AssName('var_99', 'OP-ASSIGN')], GetTag(Name('var_94')))
+Flatten::         Assign([AssName('var_99', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_99'))]))
+Flatten::         IfExp(Name('var_99')
+Flatten::           Assign([AssName('var_94', 'OP-ASSIGN')], ProjectTo(int, Name('var_94')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_94', 'OP-ASSIGN')], ProjectTo(bool, Name('var_94')))
+Flatten::         )
+Flatten::         IfExp(Name('var_94')
+Flatten::           Assign([AssName('var_91', 'OP-ASSIGN')], ProjectTo(int, Name('expl_5')))
+Flatten::           Assign([AssName('var_91', 'OP-ASSIGN')], Name('var_91'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_92', 'OP-ASSIGN')], ProjectTo(bool, Name('expl_5')))
+Flatten::           Assign([AssName('var_91', 'OP-ASSIGN')], Name('var_92'))
+Flatten::         )
+Flatten::         Assign([AssName('var_106', 'OP-ASSIGN')], GetTag(Name('expl_6')))
+Flatten::         Assign([AssName('var_105', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_106'))]))
+Flatten::         Assign([AssName('var_104', 'OP-ASSIGN')], InjectFrom(bool, Name('var_105')))
+Flatten::         Assign([AssName('var_109', 'OP-ASSIGN')], GetTag(Name('var_104')))
+Flatten::         Assign([AssName('var_109', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_109'))]))
+Flatten::         IfExp(Name('var_109')
+Flatten::           Assign([AssName('var_104', 'OP-ASSIGN')], ProjectTo(int, Name('var_104')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_104', 'OP-ASSIGN')], ProjectTo(bool, Name('var_104')))
+Flatten::         )
+Flatten::         IfExp(Name('var_104')
+Flatten::           Assign([AssName('var_101', 'OP-ASSIGN')], ProjectTo(int, Name('expl_6')))
+Flatten::           Assign([AssName('var_101', 'OP-ASSIGN')], Name('var_101'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_102', 'OP-ASSIGN')], ProjectTo(bool, Name('expl_6')))
+Flatten::           Assign([AssName('var_101', 'OP-ASSIGN')], Name('var_102'))
+Flatten::         )
+Flatten::         Assign([AssName('var_90', 'OP-ASSIGN')], Add((Name('var_91'), Name('var_101'))))
+Flatten::         Assign([AssName('var_89', 'OP-ASSIGN')], InjectFrom(int, Name('var_90')))
+Flatten::         Assign([Name('expl_4')], Name('var_89'))
+Flatten::         Assign([AssName('var_89', 'OP-ASSIGN')], Name('expl_4'))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_123', 'OP-ASSIGN')], GetTag(Name('expl_5')))
+Flatten::         Assign([AssName('var_122', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_123'))]))
+Flatten::         Assign([AssName('var_126', 'OP-ASSIGN')], GetTag(Name('expl_6')))
+Flatten::         Assign([AssName('var_125', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_126'))]))
+Flatten::         Assign([AssName('var_121', 'OP-ASSIGN')], And([Name('var_122'), Name('var_125')]))
+Flatten::         Assign([AssName('var_120', 'OP-ASSIGN')], InjectFrom(bool, Name('var_121')))
+Flatten::         Assign([AssName('var_130', 'OP-ASSIGN')], GetTag(Name('var_120')))
+Flatten::         Assign([AssName('var_130', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_130'))]))
+Flatten::         IfExp(Name('var_130')
+Flatten::           Assign([AssName('var_120', 'OP-ASSIGN')], ProjectTo(int, Name('var_120')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_120', 'OP-ASSIGN')], ProjectTo(bool, Name('var_120')))
+Flatten::         )
+Flatten::         IfExp(Name('var_120')
+Flatten::           Assign([AssName('var_114', 'OP-ASSIGN')], ProjectTo(big, Name('expl_5')))
+Flatten::           Assign([AssName('var_116', 'OP-ASSIGN')], ProjectTo(big, Name('expl_6')))
+Flatten::           Assign([AssName('var_113', 'OP-ASSIGN')], CallBigAdd(Name('var_114'), Name('var_116')))
+Flatten::           Assign([AssName('var_112', 'OP-ASSIGN')], InjectFrom(big, Name('var_113')))
+Flatten::           Assign([Name('expl_4')], Name('var_112'))
+Flatten::           Assign([AssName('var_112', 'OP-ASSIGN')], Name('expl_4'))
+Flatten::           Assign([AssName('var_89', 'OP-ASSIGN')], Name('var_112'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_119', 'OP-ASSIGN')], CallFunc(Name('call_error'), [], None, None))
+Flatten::           Assign([AssName('var_112', 'OP-ASSIGN')], Name('var_119'))
+Flatten::           Assign([AssName('var_89', 'OP-ASSIGN')], Name('var_112'))
+Flatten::         )
+Flatten::       )
+Flatten::       Result: expl_4
+Flatten::     )
+Flatten::     Assign([AssName('var_89', 'OP-ASSIGN')], Name('expl_4'))
+Flatten::     Result: expl_4
+Flatten::   )
+Flatten::   Assign([AssName('var_89', 'OP-ASSIGN')], Name('expl_4'))
+Flatten::   Assign([AssName('user_t', 'OP_ASSIGN')], Name('var_89'))
+Flatten::   Assign([AssName('var_153', 'OP-ASSIGN')], Dict([(Const(1), Const(2)), (Const(3), Const(4))]))
+Flatten::   Assign([AssName('user_d', 'OP_ASSIGN')], Name('var_153'))
+Flatten::   Let(Name('expl_8'), Name('user_l')
+Flatten::     Assign([AssName('var_155', 'OP-ASSIGN')], Subscript(Name('user_r'), 'OP_APPLY', [Const(2)]))
+Flatten::     Assign([AssName('var_154', 'OP-ASSIGN')], List([Name('var_155')]))
+Flatten::     Let(Name('expl_9'), Name('var_154')
+Flatten::       Assign([AssName('var_205', 'OP-ASSIGN')], GetTag(Name('expl_8')))
+Flatten::       Assign([AssName('var_204', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_205'))]))
+Flatten::       Assign([AssName('var_208', 'OP-ASSIGN')], GetTag(Name('expl_8')))
+Flatten::       Assign([AssName('var_207', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_208'))]))
+Flatten::       Assign([AssName('var_203', 'OP-ASSIGN')], Or([Name('var_204'), Name('var_207')]))
+Flatten::       Assign([AssName('var_213', 'OP-ASSIGN')], GetTag(Name('expl_9')))
+Flatten::       Assign([AssName('var_212', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_213'))]))
+Flatten::       Assign([AssName('var_216', 'OP-ASSIGN')], GetTag(Name('expl_9')))
+Flatten::       Assign([AssName('var_215', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_216'))]))
+Flatten::       Assign([AssName('var_211', 'OP-ASSIGN')], Or([Name('var_212'), Name('var_215')]))
+Flatten::       Assign([AssName('var_202', 'OP-ASSIGN')], And([Name('var_203'), Name('var_211')]))
+Flatten::       Assign([AssName('var_201', 'OP-ASSIGN')], InjectFrom(bool, Name('var_202')))
+Flatten::       Assign([AssName('var_221', 'OP-ASSIGN')], GetTag(Name('var_201')))
+Flatten::       Assign([AssName('var_221', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_221'))]))
+Flatten::       IfExp(Name('var_221')
+Flatten::         Assign([AssName('var_201', 'OP-ASSIGN')], ProjectTo(int, Name('var_201')))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_201', 'OP-ASSIGN')], ProjectTo(bool, Name('var_201')))
+Flatten::       )
+Flatten::       IfExp(Name('var_201')
+Flatten::         Assign([AssName('var_165', 'OP-ASSIGN')], GetTag(Name('expl_8')))
+Flatten::         Assign([AssName('var_164', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_165'))]))
+Flatten::         Assign([AssName('var_163', 'OP-ASSIGN')], InjectFrom(bool, Name('var_164')))
+Flatten::         Assign([AssName('var_168', 'OP-ASSIGN')], GetTag(Name('var_163')))
+Flatten::         Assign([AssName('var_168', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_168'))]))
+Flatten::         IfExp(Name('var_168')
+Flatten::           Assign([AssName('var_163', 'OP-ASSIGN')], ProjectTo(int, Name('var_163')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_163', 'OP-ASSIGN')], ProjectTo(bool, Name('var_163')))
+Flatten::         )
+Flatten::         IfExp(Name('var_163')
+Flatten::           Assign([AssName('var_160', 'OP-ASSIGN')], ProjectTo(int, Name('expl_8')))
+Flatten::           Assign([AssName('var_160', 'OP-ASSIGN')], Name('var_160'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_161', 'OP-ASSIGN')], ProjectTo(bool, Name('expl_8')))
+Flatten::           Assign([AssName('var_160', 'OP-ASSIGN')], Name('var_161'))
+Flatten::         )
+Flatten::         Assign([AssName('var_175', 'OP-ASSIGN')], GetTag(Name('expl_9')))
+Flatten::         Assign([AssName('var_174', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_175'))]))
+Flatten::         Assign([AssName('var_173', 'OP-ASSIGN')], InjectFrom(bool, Name('var_174')))
+Flatten::         Assign([AssName('var_178', 'OP-ASSIGN')], GetTag(Name('var_173')))
+Flatten::         Assign([AssName('var_178', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_178'))]))
+Flatten::         IfExp(Name('var_178')
+Flatten::           Assign([AssName('var_173', 'OP-ASSIGN')], ProjectTo(int, Name('var_173')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_173', 'OP-ASSIGN')], ProjectTo(bool, Name('var_173')))
+Flatten::         )
+Flatten::         IfExp(Name('var_173')
+Flatten::           Assign([AssName('var_170', 'OP-ASSIGN')], ProjectTo(int, Name('expl_9')))
+Flatten::           Assign([AssName('var_170', 'OP-ASSIGN')], Name('var_170'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_171', 'OP-ASSIGN')], ProjectTo(bool, Name('expl_9')))
+Flatten::           Assign([AssName('var_170', 'OP-ASSIGN')], Name('var_171'))
+Flatten::         )
+Flatten::         Assign([AssName('var_159', 'OP-ASSIGN')], Add((Name('var_160'), Name('var_170'))))
+Flatten::         Assign([AssName('var_158', 'OP-ASSIGN')], InjectFrom(int, Name('var_159')))
+Flatten::         Assign([Name('expl_7')], Name('var_158'))
+Flatten::         Assign([AssName('var_158', 'OP-ASSIGN')], Name('expl_7'))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_192', 'OP-ASSIGN')], GetTag(Name('expl_8')))
+Flatten::         Assign([AssName('var_191', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_192'))]))
+Flatten::         Assign([AssName('var_195', 'OP-ASSIGN')], GetTag(Name('expl_9')))
+Flatten::         Assign([AssName('var_194', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_195'))]))
+Flatten::         Assign([AssName('var_190', 'OP-ASSIGN')], And([Name('var_191'), Name('var_194')]))
+Flatten::         Assign([AssName('var_189', 'OP-ASSIGN')], InjectFrom(bool, Name('var_190')))
+Flatten::         Assign([AssName('var_199', 'OP-ASSIGN')], GetTag(Name('var_189')))
+Flatten::         Assign([AssName('var_199', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_199'))]))
+Flatten::         IfExp(Name('var_199')
+Flatten::           Assign([AssName('var_189', 'OP-ASSIGN')], ProjectTo(int, Name('var_189')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_189', 'OP-ASSIGN')], ProjectTo(bool, Name('var_189')))
+Flatten::         )
+Flatten::         IfExp(Name('var_189')
+Flatten::           Assign([AssName('var_183', 'OP-ASSIGN')], ProjectTo(big, Name('expl_8')))
+Flatten::           Assign([AssName('var_185', 'OP-ASSIGN')], ProjectTo(big, Name('expl_9')))
+Flatten::           Assign([AssName('var_182', 'OP-ASSIGN')], CallBigAdd(Name('var_183'), Name('var_185')))
+Flatten::           Assign([AssName('var_181', 'OP-ASSIGN')], InjectFrom(big, Name('var_182')))
+Flatten::           Assign([Name('expl_7')], Name('var_181'))
+Flatten::           Assign([AssName('var_181', 'OP-ASSIGN')], Name('expl_7'))
+Flatten::           Assign([AssName('var_158', 'OP-ASSIGN')], Name('var_181'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_188', 'OP-ASSIGN')], CallFunc(Name('call_error'), [], None, None))
+Flatten::           Assign([AssName('var_181', 'OP-ASSIGN')], Name('var_188'))
+Flatten::           Assign([AssName('var_158', 'OP-ASSIGN')], Name('var_181'))
+Flatten::         )
+Flatten::       )
+Flatten::       Result: expl_7
+Flatten::     )
+Flatten::     Assign([AssName('var_154', 'OP-ASSIGN')], Name('expl_7'))
+Flatten::     Result: expl_7
+Flatten::   )
+Flatten::   Assign([AssName('var_154', 'OP-ASSIGN')], Name('expl_7'))
+Flatten::   Assign([Subscript(Name('user_d'), 'OP_ASSIGN', [Const(7)])], Name('var_154'))
+Flatten::   Let(Name('expl_10'), Name('user_d')
+Flatten::     Assign([AssName('var_240', 'OP-ASSIGN')], GetTag(Name('expl_10')))
+Flatten::     Assign([AssName('var_239', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_240'))]))
+Flatten::     Assign([AssName('var_238', 'OP-ASSIGN')], InjectFrom(bool, Name('var_239')))
+Flatten::     Assign([AssName('var_243', 'OP-ASSIGN')], GetTag(Name('var_238')))
+Flatten::     Assign([AssName('var_243', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_243'))]))
+Flatten::     IfExp(Name('var_243')
+Flatten::       Assign([AssName('var_238', 'OP-ASSIGN')], ProjectTo(int, Name('var_238')))
+Flatten::     Else(
+Flatten::       Assign([AssName('var_238', 'OP-ASSIGN')], ProjectTo(bool, Name('var_238')))
+Flatten::     )
+Flatten::     IfExp(Name('var_238')
+Flatten::       Assign([AssName('var_222', 'OP-ASSIGN')], ProjectTo(int, Name('expl_10')))
+Flatten::       Printnl([Name('var_222')], None)
+Flatten::     Else(
+Flatten::       Assign([AssName('var_233', 'OP-ASSIGN')], GetTag(Name('expl_10')))
+Flatten::       Assign([AssName('var_232', 'OP-ASSIGN')], Compare(Const(1), [('==', Name('var_233'))]))
+Flatten::       Assign([AssName('var_231', 'OP-ASSIGN')], InjectFrom(bool, Name('var_232')))
+Flatten::       Assign([AssName('var_236', 'OP-ASSIGN')], GetTag(Name('var_231')))
+Flatten::       Assign([AssName('var_236', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_236'))]))
+Flatten::       IfExp(Name('var_236')
+Flatten::         Assign([AssName('var_231', 'OP-ASSIGN')], ProjectTo(int, Name('var_231')))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_231', 'OP-ASSIGN')], ProjectTo(bool, Name('var_231')))
+Flatten::       )
+Flatten::       IfExp(Name('var_231')
+Flatten::         PrintBool(Name('expl_10'))
+Flatten::       Else(
+Flatten::         Assign([AssName('var_226', 'OP-ASSIGN')], GetTag(Name('expl_10')))
+Flatten::         Assign([AssName('var_225', 'OP-ASSIGN')], Compare(Const(3), [('==', Name('var_226'))]))
+Flatten::         Assign([AssName('var_224', 'OP-ASSIGN')], InjectFrom(bool, Name('var_225')))
+Flatten::         Assign([AssName('var_229', 'OP-ASSIGN')], GetTag(Name('var_224')))
+Flatten::         Assign([AssName('var_229', 'OP-ASSIGN')], Compare(Const(0), [('==', Name('var_229'))]))
+Flatten::         IfExp(Name('var_229')
+Flatten::           Assign([AssName('var_224', 'OP-ASSIGN')], ProjectTo(int, Name('var_224')))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_224', 'OP-ASSIGN')], ProjectTo(bool, Name('var_224')))
+Flatten::         )
+Flatten::         IfExp(Name('var_224')
+Flatten::           PrintBig(Name('expl_10'))
+Flatten::         Else(
+Flatten::           Assign([AssName('var_223', 'OP-ASSIGN')], CallFunc(Name('call_error'), [], None, None))
+Flatten::           Assign([AssName('var_223', 'OP-ASSIGN')], Name('var_223'))
+Flatten::           Assign([AssName('var_223', 'OP-ASSIGN')], Name('var_223'))
+Flatten::         )
+Flatten::       )
+Flatten::     )
+Flatten::     Result: None
+Flatten::   )
+x86IR::  Intermediate representation:
+x86IR::  	pushl $3
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	call create_list
+x86IR::  	pushl eax
+x86IR::  	call inject_big
+x86IR::  	movl eax var_0
+x86IR::  	pushl $0
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $1
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	pushl $1
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $2
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	pushl $2
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $3
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_0
+x86IR::  	call set_subscript
+x86IR::  	movl var_0 user_l
+x86IR::  	pushl $3
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	call create_list
+x86IR::  	pushl eax
+x86IR::  	call inject_big
+x86IR::  	movl eax var_1
+x86IR::  	pushl $0
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $4
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_1
+x86IR::  	call set_subscript
+x86IR::  	pushl $1
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $5
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_1
+x86IR::  	call set_subscript
+x86IR::  	pushl $2
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $6
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_1
+x86IR::  	call set_subscript
+x86IR::  	movl var_1 user_r
+x86IR::  	movl user_l expl_1
+x86IR::  	movl user_r expl_2
+x86IR::  	pushl expl_1
+x86IR::  	call tag
+x86IR::  	movl eax var_49
+x86IR::  	cmpl $0 var_49
+x86IR::  	je ir_tag0_cmp
+x86IR::  	movl $0 var_48
+x86IR::  	jmp ir_tag0_cmpend
+x86IR::  	ir_tag0_cmp:
+x86IR::  	movl $1 var_48
+x86IR::  	ir_tag0_cmpend:
+x86IR::  	pushl expl_1
+x86IR::  	call tag
+x86IR::  	movl eax var_52
+x86IR::  	cmpl $1 var_52
+x86IR::  	je ir_tag1_cmp
+x86IR::  	movl $0 var_51
+x86IR::  	jmp ir_tag1_cmpend
+x86IR::  	ir_tag1_cmp:
+x86IR::  	movl $1 var_51
+x86IR::  	ir_tag1_cmpend:
+x86IR::  	movl var_48 var_47
+x86IR::  	orl var_51 var_47
+x86IR::  	pushl expl_2
+x86IR::  	call tag
+x86IR::  	movl eax var_57
+x86IR::  	cmpl $0 var_57
+x86IR::  	je ir_tag2_cmp
+x86IR::  	movl $0 var_56
+x86IR::  	jmp ir_tag2_cmpend
+x86IR::  	ir_tag2_cmp:
+x86IR::  	movl $1 var_56
+x86IR::  	ir_tag2_cmpend:
+x86IR::  	pushl expl_2
+x86IR::  	call tag
+x86IR::  	movl eax var_60
+x86IR::  	cmpl $1 var_60
+x86IR::  	je ir_tag3_cmp
+x86IR::  	movl $0 var_59
+x86IR::  	jmp ir_tag3_cmpend
+x86IR::  	ir_tag3_cmp:
+x86IR::  	movl $1 var_59
+x86IR::  	ir_tag3_cmpend:
+x86IR::  	movl var_56 var_55
+x86IR::  	orl var_59 var_55
+x86IR::  	movl var_47 var_46
+x86IR::  	andl var_55 var_46
+x86IR::  	pushl var_46
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_45
+x86IR::  	pushl var_45
+x86IR::  	call tag
+x86IR::  	movl eax var_65
+x86IR::  	cmpl $0 var_65
+x86IR::  	je ir_tag4_cmp
+x86IR::  	movl $0 var_65
+x86IR::  	jmp ir_tag4_cmpend
+x86IR::  	ir_tag4_cmp:
+x86IR::  	movl $1 var_65
+x86IR::  	ir_tag4_cmpend:
+x86IR::  	cmpl $0 var_65
+x86IR::  	je ir_tag_else_5
+x86IR::  	pushl var_45
+x86IR::  	call project_int
+x86IR::  	movl eax var_45
+x86IR::  	jmp ir_tag_end_5
+x86IR::  	ir_tag_else_5:
+x86IR::  	pushl var_45
+x86IR::  	call project_bool
+x86IR::  	movl eax var_45
+x86IR::  	jmp ir_tag_end_5
+x86IR::  	ir_tag_end_5:
+x86IR::  	cmpl $0 var_45
+x86IR::  	je ir_tag_else_6
+x86IR::  	pushl expl_1
+x86IR::  	call tag
+x86IR::  	movl eax var_9
+x86IR::  	cmpl $0 var_9
+x86IR::  	je ir_tag7_cmp
+x86IR::  	movl $0 var_8
+x86IR::  	jmp ir_tag7_cmpend
+x86IR::  	ir_tag7_cmp:
+x86IR::  	movl $1 var_8
+x86IR::  	ir_tag7_cmpend:
+x86IR::  	pushl var_8
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_7
+x86IR::  	pushl var_7
+x86IR::  	call tag
+x86IR::  	movl eax var_12
+x86IR::  	cmpl $0 var_12
+x86IR::  	je ir_tag8_cmp
+x86IR::  	movl $0 var_12
+x86IR::  	jmp ir_tag8_cmpend
+x86IR::  	ir_tag8_cmp:
+x86IR::  	movl $1 var_12
+x86IR::  	ir_tag8_cmpend:
+x86IR::  	cmpl $0 var_12
+x86IR::  	je ir_tag_else_9
+x86IR::  	pushl var_7
+x86IR::  	call project_int
+x86IR::  	movl eax var_7
+x86IR::  	jmp ir_tag_end_9
+x86IR::  	ir_tag_else_9:
+x86IR::  	pushl var_7
+x86IR::  	call project_bool
+x86IR::  	movl eax var_7
+x86IR::  	jmp ir_tag_end_9
+x86IR::  	ir_tag_end_9:
+x86IR::  	cmpl $0 var_7
+x86IR::  	je ir_tag_else_10
+x86IR::  	pushl expl_1
+x86IR::  	call project_int
+x86IR::  	movl eax var_4
+x86IR::  	movl var_4 var_4
+x86IR::  	jmp ir_tag_end_10
+x86IR::  	ir_tag_else_10:
+x86IR::  	pushl expl_1
+x86IR::  	call project_bool
+x86IR::  	movl eax var_5
+x86IR::  	movl var_5 var_4
+x86IR::  	jmp ir_tag_end_10
+x86IR::  	ir_tag_end_10:
+x86IR::  	pushl expl_2
+x86IR::  	call tag
+x86IR::  	movl eax var_19
+x86IR::  	cmpl $0 var_19
+x86IR::  	je ir_tag11_cmp
+x86IR::  	movl $0 var_18
+x86IR::  	jmp ir_tag11_cmpend
+x86IR::  	ir_tag11_cmp:
+x86IR::  	movl $1 var_18
+x86IR::  	ir_tag11_cmpend:
+x86IR::  	pushl var_18
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_17
+x86IR::  	pushl var_17
+x86IR::  	call tag
+x86IR::  	movl eax var_22
+x86IR::  	cmpl $0 var_22
+x86IR::  	je ir_tag12_cmp
+x86IR::  	movl $0 var_22
+x86IR::  	jmp ir_tag12_cmpend
+x86IR::  	ir_tag12_cmp:
+x86IR::  	movl $1 var_22
+x86IR::  	ir_tag12_cmpend:
+x86IR::  	cmpl $0 var_22
+x86IR::  	je ir_tag_else_13
+x86IR::  	pushl var_17
+x86IR::  	call project_int
+x86IR::  	movl eax var_17
+x86IR::  	jmp ir_tag_end_13
+x86IR::  	ir_tag_else_13:
+x86IR::  	pushl var_17
+x86IR::  	call project_bool
+x86IR::  	movl eax var_17
+x86IR::  	jmp ir_tag_end_13
+x86IR::  	ir_tag_end_13:
+x86IR::  	cmpl $0 var_17
+x86IR::  	je ir_tag_else_14
+x86IR::  	pushl expl_2
+x86IR::  	call project_int
+x86IR::  	movl eax var_14
+x86IR::  	movl var_14 var_14
+x86IR::  	jmp ir_tag_end_14
+x86IR::  	ir_tag_else_14:
+x86IR::  	pushl expl_2
+x86IR::  	call project_bool
+x86IR::  	movl eax var_15
+x86IR::  	movl var_15 var_14
+x86IR::  	jmp ir_tag_end_14
+x86IR::  	ir_tag_end_14:
+x86IR::  	movl var_4 var_3
+x86IR::  	addl var_14 var_3
+x86IR::  	pushl var_3
+x86IR::  	call inject_int
+x86IR::  	movl eax var_2
+x86IR::  	movl var_2 expl_0
+x86IR::  	movl expl_0 var_2
+x86IR::  	jmp ir_tag_end_6
+x86IR::  	ir_tag_else_6:
+x86IR::  	pushl expl_1
+x86IR::  	call tag
+x86IR::  	movl eax var_36
+x86IR::  	cmpl $3 var_36
+x86IR::  	je ir_tag15_cmp
+x86IR::  	movl $0 var_35
+x86IR::  	jmp ir_tag15_cmpend
+x86IR::  	ir_tag15_cmp:
+x86IR::  	movl $1 var_35
+x86IR::  	ir_tag15_cmpend:
+x86IR::  	pushl expl_2
+x86IR::  	call tag
+x86IR::  	movl eax var_39
+x86IR::  	cmpl $3 var_39
+x86IR::  	je ir_tag16_cmp
+x86IR::  	movl $0 var_38
+x86IR::  	jmp ir_tag16_cmpend
+x86IR::  	ir_tag16_cmp:
+x86IR::  	movl $1 var_38
+x86IR::  	ir_tag16_cmpend:
+x86IR::  	movl var_35 var_34
+x86IR::  	andl var_38 var_34
+x86IR::  	pushl var_34
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_33
+x86IR::  	pushl var_33
+x86IR::  	call tag
+x86IR::  	movl eax var_43
+x86IR::  	cmpl $0 var_43
+x86IR::  	je ir_tag17_cmp
+x86IR::  	movl $0 var_43
+x86IR::  	jmp ir_tag17_cmpend
+x86IR::  	ir_tag17_cmp:
+x86IR::  	movl $1 var_43
+x86IR::  	ir_tag17_cmpend:
+x86IR::  	cmpl $0 var_43
+x86IR::  	je ir_tag_else_18
+x86IR::  	pushl var_33
+x86IR::  	call project_int
+x86IR::  	movl eax var_33
+x86IR::  	jmp ir_tag_end_18
+x86IR::  	ir_tag_else_18:
+x86IR::  	pushl var_33
+x86IR::  	call project_bool
+x86IR::  	movl eax var_33
+x86IR::  	jmp ir_tag_end_18
+x86IR::  	ir_tag_end_18:
+x86IR::  	cmpl $0 var_33
+x86IR::  	je ir_tag_else_19
+x86IR::  	pushl expl_1
+x86IR::  	call project_big
+x86IR::  	movl eax var_27
+x86IR::  	pushl expl_2
+x86IR::  	call project_big
+x86IR::  	movl eax var_29
+x86IR::  	pushl var_29
+x86IR::  	pushl var_27
+x86IR::  	call add
+x86IR::  	movl eax var_26
+x86IR::  	pushl var_26
+x86IR::  	call inject_big
+x86IR::  	movl eax var_25
+x86IR::  	movl var_25 expl_0
+x86IR::  	movl expl_0 var_25
+x86IR::  	movl var_25 var_2
+x86IR::  	jmp ir_tag_end_19
+x86IR::  	ir_tag_else_19:
+x86IR::  	call call_error
+x86IR::  	pushl eax
+x86IR::  	call inject_int
+x86IR::  	movl eax var_32
+x86IR::  	movl var_32 var_25
+x86IR::  	movl var_25 var_2
+x86IR::  	jmp ir_tag_end_19
+x86IR::  	ir_tag_end_19:
+x86IR::  	jmp ir_tag_end_6
+x86IR::  	ir_tag_end_6:
+x86IR::  	movl expl_0 var_2
+x86IR::  	movl expl_0 var_2
+x86IR::  	movl var_2 expl_3
+x86IR::  	pushl expl_3
+x86IR::  	call tag
+x86IR::  	movl eax var_85
+x86IR::  	cmpl $0 var_85
+x86IR::  	je ir_tag20_cmp
+x86IR::  	movl $0 var_84
+x86IR::  	jmp ir_tag20_cmpend
+x86IR::  	ir_tag20_cmp:
+x86IR::  	movl $1 var_84
+x86IR::  	ir_tag20_cmpend:
+x86IR::  	pushl var_84
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_83
+x86IR::  	pushl var_83
+x86IR::  	call tag
+x86IR::  	movl eax var_88
+x86IR::  	cmpl $0 var_88
+x86IR::  	je ir_tag21_cmp
+x86IR::  	movl $0 var_88
+x86IR::  	jmp ir_tag21_cmpend
+x86IR::  	ir_tag21_cmp:
+x86IR::  	movl $1 var_88
+x86IR::  	ir_tag21_cmpend:
+x86IR::  	cmpl $0 var_88
+x86IR::  	je ir_tag_else_22
+x86IR::  	pushl var_83
+x86IR::  	call project_int
+x86IR::  	movl eax var_83
+x86IR::  	jmp ir_tag_end_22
+x86IR::  	ir_tag_else_22:
+x86IR::  	pushl var_83
+x86IR::  	call project_bool
+x86IR::  	movl eax var_83
+x86IR::  	jmp ir_tag_end_22
+x86IR::  	ir_tag_end_22:
+x86IR::  	cmpl $0 var_83
+x86IR::  	je ir_tag_else_23
+x86IR::  	pushl expl_3
+x86IR::  	call project_int
+x86IR::  	movl eax var_67
+x86IR::  	pushl var_67
+x86IR::  	call print_int_nl
+x86IR::  	jmp ir_tag_end_23
+x86IR::  	ir_tag_else_23:
+x86IR::  	pushl expl_3
+x86IR::  	call tag
+x86IR::  	movl eax var_78
+x86IR::  	cmpl $1 var_78
+x86IR::  	je ir_tag24_cmp
+x86IR::  	movl $0 var_77
+x86IR::  	jmp ir_tag24_cmpend
+x86IR::  	ir_tag24_cmp:
+x86IR::  	movl $1 var_77
+x86IR::  	ir_tag24_cmpend:
+x86IR::  	pushl var_77
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_76
+x86IR::  	pushl var_76
+x86IR::  	call tag
+x86IR::  	movl eax var_81
+x86IR::  	cmpl $0 var_81
+x86IR::  	je ir_tag25_cmp
+x86IR::  	movl $0 var_81
+x86IR::  	jmp ir_tag25_cmpend
+x86IR::  	ir_tag25_cmp:
+x86IR::  	movl $1 var_81
+x86IR::  	ir_tag25_cmpend:
+x86IR::  	cmpl $0 var_81
+x86IR::  	je ir_tag_else_26
+x86IR::  	pushl var_76
+x86IR::  	call project_int
+x86IR::  	movl eax var_76
+x86IR::  	jmp ir_tag_end_26
+x86IR::  	ir_tag_else_26:
+x86IR::  	pushl var_76
+x86IR::  	call project_bool
+x86IR::  	movl eax var_76
+x86IR::  	jmp ir_tag_end_26
+x86IR::  	ir_tag_end_26:
+x86IR::  	cmpl $0 var_76
+x86IR::  	je ir_tag_else_27
+x86IR::  	pushl expl_3
+x86IR::  	call print_any
+x86IR::  	jmp ir_tag_end_27
+x86IR::  	ir_tag_else_27:
+x86IR::  	pushl expl_3
+x86IR::  	call tag
+x86IR::  	movl eax var_71
+x86IR::  	cmpl $3 var_71
+x86IR::  	je ir_tag28_cmp
+x86IR::  	movl $0 var_70
+x86IR::  	jmp ir_tag28_cmpend
+x86IR::  	ir_tag28_cmp:
+x86IR::  	movl $1 var_70
+x86IR::  	ir_tag28_cmpend:
+x86IR::  	pushl var_70
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_69
+x86IR::  	pushl var_69
+x86IR::  	call tag
+x86IR::  	movl eax var_74
+x86IR::  	cmpl $0 var_74
+x86IR::  	je ir_tag29_cmp
+x86IR::  	movl $0 var_74
+x86IR::  	jmp ir_tag29_cmpend
+x86IR::  	ir_tag29_cmp:
+x86IR::  	movl $1 var_74
+x86IR::  	ir_tag29_cmpend:
+x86IR::  	cmpl $0 var_74
+x86IR::  	je ir_tag_else_30
+x86IR::  	pushl var_69
+x86IR::  	call project_int
+x86IR::  	movl eax var_69
+x86IR::  	jmp ir_tag_end_30
+x86IR::  	ir_tag_else_30:
+x86IR::  	pushl var_69
+x86IR::  	call project_bool
+x86IR::  	movl eax var_69
+x86IR::  	jmp ir_tag_end_30
+x86IR::  	ir_tag_end_30:
+x86IR::  	cmpl $0 var_69
+x86IR::  	je ir_tag_else_31
+x86IR::  	pushl expl_3
+x86IR::  	call print_any
+x86IR::  	jmp ir_tag_end_31
+x86IR::  	ir_tag_else_31:
+x86IR::  	call call_error
+x86IR::  	pushl eax
+x86IR::  	call inject_int
+x86IR::  	movl eax var_68
+x86IR::  	movl var_68 var_68
+x86IR::  	movl var_68 var_68
+x86IR::  	jmp ir_tag_end_31
+x86IR::  	ir_tag_end_31:
+x86IR::  	jmp ir_tag_end_27
+x86IR::  	ir_tag_end_27:
+x86IR::  	jmp ir_tag_end_23
+x86IR::  	ir_tag_end_23:
+x86IR::  	movl user_l expl_5
+x86IR::  	movl user_r expl_6
+x86IR::  	pushl expl_5
+x86IR::  	call tag
+x86IR::  	movl eax var_136
+x86IR::  	cmpl $0 var_136
+x86IR::  	je ir_tag32_cmp
+x86IR::  	movl $0 var_135
+x86IR::  	jmp ir_tag32_cmpend
+x86IR::  	ir_tag32_cmp:
+x86IR::  	movl $1 var_135
+x86IR::  	ir_tag32_cmpend:
+x86IR::  	pushl expl_5
+x86IR::  	call tag
+x86IR::  	movl eax var_139
+x86IR::  	cmpl $1 var_139
+x86IR::  	je ir_tag33_cmp
+x86IR::  	movl $0 var_138
+x86IR::  	jmp ir_tag33_cmpend
+x86IR::  	ir_tag33_cmp:
+x86IR::  	movl $1 var_138
+x86IR::  	ir_tag33_cmpend:
+x86IR::  	movl var_135 var_134
+x86IR::  	orl var_138 var_134
+x86IR::  	pushl expl_6
+x86IR::  	call tag
+x86IR::  	movl eax var_144
+x86IR::  	cmpl $0 var_144
+x86IR::  	je ir_tag34_cmp
+x86IR::  	movl $0 var_143
+x86IR::  	jmp ir_tag34_cmpend
+x86IR::  	ir_tag34_cmp:
+x86IR::  	movl $1 var_143
+x86IR::  	ir_tag34_cmpend:
+x86IR::  	pushl expl_6
+x86IR::  	call tag
+x86IR::  	movl eax var_147
+x86IR::  	cmpl $1 var_147
+x86IR::  	je ir_tag35_cmp
+x86IR::  	movl $0 var_146
+x86IR::  	jmp ir_tag35_cmpend
+x86IR::  	ir_tag35_cmp:
+x86IR::  	movl $1 var_146
+x86IR::  	ir_tag35_cmpend:
+x86IR::  	movl var_143 var_142
+x86IR::  	orl var_146 var_142
+x86IR::  	movl var_134 var_133
+x86IR::  	andl var_142 var_133
+x86IR::  	pushl var_133
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_132
+x86IR::  	pushl var_132
+x86IR::  	call tag
+x86IR::  	movl eax var_152
+x86IR::  	cmpl $0 var_152
+x86IR::  	je ir_tag36_cmp
+x86IR::  	movl $0 var_152
+x86IR::  	jmp ir_tag36_cmpend
+x86IR::  	ir_tag36_cmp:
+x86IR::  	movl $1 var_152
+x86IR::  	ir_tag36_cmpend:
+x86IR::  	cmpl $0 var_152
+x86IR::  	je ir_tag_else_37
+x86IR::  	pushl var_132
+x86IR::  	call project_int
+x86IR::  	movl eax var_132
+x86IR::  	jmp ir_tag_end_37
+x86IR::  	ir_tag_else_37:
+x86IR::  	pushl var_132
+x86IR::  	call project_bool
+x86IR::  	movl eax var_132
+x86IR::  	jmp ir_tag_end_37
+x86IR::  	ir_tag_end_37:
+x86IR::  	cmpl $0 var_132
+x86IR::  	je ir_tag_else_38
+x86IR::  	pushl expl_5
+x86IR::  	call tag
+x86IR::  	movl eax var_96
+x86IR::  	cmpl $0 var_96
+x86IR::  	je ir_tag39_cmp
+x86IR::  	movl $0 var_95
+x86IR::  	jmp ir_tag39_cmpend
+x86IR::  	ir_tag39_cmp:
+x86IR::  	movl $1 var_95
+x86IR::  	ir_tag39_cmpend:
+x86IR::  	pushl var_95
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_94
+x86IR::  	pushl var_94
+x86IR::  	call tag
+x86IR::  	movl eax var_99
+x86IR::  	cmpl $0 var_99
+x86IR::  	je ir_tag40_cmp
+x86IR::  	movl $0 var_99
+x86IR::  	jmp ir_tag40_cmpend
+x86IR::  	ir_tag40_cmp:
+x86IR::  	movl $1 var_99
+x86IR::  	ir_tag40_cmpend:
+x86IR::  	cmpl $0 var_99
+x86IR::  	je ir_tag_else_41
+x86IR::  	pushl var_94
+x86IR::  	call project_int
+x86IR::  	movl eax var_94
+x86IR::  	jmp ir_tag_end_41
+x86IR::  	ir_tag_else_41:
+x86IR::  	pushl var_94
+x86IR::  	call project_bool
+x86IR::  	movl eax var_94
+x86IR::  	jmp ir_tag_end_41
+x86IR::  	ir_tag_end_41:
+x86IR::  	cmpl $0 var_94
+x86IR::  	je ir_tag_else_42
+x86IR::  	pushl expl_5
+x86IR::  	call project_int
+x86IR::  	movl eax var_91
+x86IR::  	movl var_91 var_91
+x86IR::  	jmp ir_tag_end_42
+x86IR::  	ir_tag_else_42:
+x86IR::  	pushl expl_5
+x86IR::  	call project_bool
+x86IR::  	movl eax var_92
+x86IR::  	movl var_92 var_91
+x86IR::  	jmp ir_tag_end_42
+x86IR::  	ir_tag_end_42:
+x86IR::  	pushl expl_6
+x86IR::  	call tag
+x86IR::  	movl eax var_106
+x86IR::  	cmpl $0 var_106
+x86IR::  	je ir_tag43_cmp
+x86IR::  	movl $0 var_105
+x86IR::  	jmp ir_tag43_cmpend
+x86IR::  	ir_tag43_cmp:
+x86IR::  	movl $1 var_105
+x86IR::  	ir_tag43_cmpend:
+x86IR::  	pushl var_105
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_104
+x86IR::  	pushl var_104
+x86IR::  	call tag
+x86IR::  	movl eax var_109
+x86IR::  	cmpl $0 var_109
+x86IR::  	je ir_tag44_cmp
+x86IR::  	movl $0 var_109
+x86IR::  	jmp ir_tag44_cmpend
+x86IR::  	ir_tag44_cmp:
+x86IR::  	movl $1 var_109
+x86IR::  	ir_tag44_cmpend:
+x86IR::  	cmpl $0 var_109
+x86IR::  	je ir_tag_else_45
+x86IR::  	pushl var_104
+x86IR::  	call project_int
+x86IR::  	movl eax var_104
+x86IR::  	jmp ir_tag_end_45
+x86IR::  	ir_tag_else_45:
+x86IR::  	pushl var_104
+x86IR::  	call project_bool
+x86IR::  	movl eax var_104
+x86IR::  	jmp ir_tag_end_45
+x86IR::  	ir_tag_end_45:
+x86IR::  	cmpl $0 var_104
+x86IR::  	je ir_tag_else_46
+x86IR::  	pushl expl_6
+x86IR::  	call project_int
+x86IR::  	movl eax var_101
+x86IR::  	movl var_101 var_101
+x86IR::  	jmp ir_tag_end_46
+x86IR::  	ir_tag_else_46:
+x86IR::  	pushl expl_6
+x86IR::  	call project_bool
+x86IR::  	movl eax var_102
+x86IR::  	movl var_102 var_101
+x86IR::  	jmp ir_tag_end_46
+x86IR::  	ir_tag_end_46:
+x86IR::  	movl var_91 var_90
+x86IR::  	addl var_101 var_90
+x86IR::  	pushl var_90
+x86IR::  	call inject_int
+x86IR::  	movl eax var_89
+x86IR::  	movl var_89 expl_4
+x86IR::  	movl expl_4 var_89
+x86IR::  	jmp ir_tag_end_38
+x86IR::  	ir_tag_else_38:
+x86IR::  	pushl expl_5
+x86IR::  	call tag
+x86IR::  	movl eax var_123
+x86IR::  	cmpl $3 var_123
+x86IR::  	je ir_tag47_cmp
+x86IR::  	movl $0 var_122
+x86IR::  	jmp ir_tag47_cmpend
+x86IR::  	ir_tag47_cmp:
+x86IR::  	movl $1 var_122
+x86IR::  	ir_tag47_cmpend:
+x86IR::  	pushl expl_6
+x86IR::  	call tag
+x86IR::  	movl eax var_126
+x86IR::  	cmpl $3 var_126
+x86IR::  	je ir_tag48_cmp
+x86IR::  	movl $0 var_125
+x86IR::  	jmp ir_tag48_cmpend
+x86IR::  	ir_tag48_cmp:
+x86IR::  	movl $1 var_125
+x86IR::  	ir_tag48_cmpend:
+x86IR::  	movl var_122 var_121
+x86IR::  	andl var_125 var_121
+x86IR::  	pushl var_121
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_120
+x86IR::  	pushl var_120
+x86IR::  	call tag
+x86IR::  	movl eax var_130
+x86IR::  	cmpl $0 var_130
+x86IR::  	je ir_tag49_cmp
+x86IR::  	movl $0 var_130
+x86IR::  	jmp ir_tag49_cmpend
+x86IR::  	ir_tag49_cmp:
+x86IR::  	movl $1 var_130
+x86IR::  	ir_tag49_cmpend:
+x86IR::  	cmpl $0 var_130
+x86IR::  	je ir_tag_else_50
+x86IR::  	pushl var_120
+x86IR::  	call project_int
+x86IR::  	movl eax var_120
+x86IR::  	jmp ir_tag_end_50
+x86IR::  	ir_tag_else_50:
+x86IR::  	pushl var_120
+x86IR::  	call project_bool
+x86IR::  	movl eax var_120
+x86IR::  	jmp ir_tag_end_50
+x86IR::  	ir_tag_end_50:
+x86IR::  	cmpl $0 var_120
+x86IR::  	je ir_tag_else_51
+x86IR::  	pushl expl_5
+x86IR::  	call project_big
+x86IR::  	movl eax var_114
+x86IR::  	pushl expl_6
+x86IR::  	call project_big
+x86IR::  	movl eax var_116
+x86IR::  	pushl var_116
+x86IR::  	pushl var_114
+x86IR::  	call add
+x86IR::  	movl eax var_113
+x86IR::  	pushl var_113
+x86IR::  	call inject_big
+x86IR::  	movl eax var_112
+x86IR::  	movl var_112 expl_4
+x86IR::  	movl expl_4 var_112
+x86IR::  	movl var_112 var_89
+x86IR::  	jmp ir_tag_end_51
+x86IR::  	ir_tag_else_51:
+x86IR::  	call call_error
+x86IR::  	pushl eax
+x86IR::  	call inject_int
+x86IR::  	movl eax var_119
+x86IR::  	movl var_119 var_112
+x86IR::  	movl var_112 var_89
+x86IR::  	jmp ir_tag_end_51
+x86IR::  	ir_tag_end_51:
+x86IR::  	jmp ir_tag_end_38
+x86IR::  	ir_tag_end_38:
+x86IR::  	movl expl_4 var_89
+x86IR::  	movl expl_4 var_89
+x86IR::  	movl var_89 user_t
+x86IR::  	call create_dict
+x86IR::  	pushl eax
+x86IR::  	call inject_big
+x86IR::  	movl eax var_153
+x86IR::  	pushl $1
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $2
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_153
+x86IR::  	call set_subscript
+x86IR::  	pushl $3
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl $4
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl ebx
+x86IR::  	pushl var_153
+x86IR::  	call set_subscript
+x86IR::  	movl var_153 user_d
+x86IR::  	movl user_l expl_8
+x86IR::  	pushl $2
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	pushl user_r
+x86IR::  	call get_subscript
+x86IR::  	movl eax var_155
+x86IR::  	pushl $1
+x86IR::  	call inject_int
+x86IR::  	pushl eax
+x86IR::  	call create_list
+x86IR::  	pushl eax
+x86IR::  	call inject_big
+x86IR::  	movl eax var_154
+x86IR::  	pushl $0
+x86IR::  	call inject_int
+x86IR::  	movl eax ebx
+x86IR::  	pushl var_155
+x86IR::  	pushl ebx
+x86IR::  	pushl var_154
+x86IR::  	call set_subscript
+x86IR::  	movl var_154 expl_9
+x86IR::  	pushl expl_8
+x86IR::  	call tag
+x86IR::  	movl eax var_205
+x86IR::  	cmpl $0 var_205
+x86IR::  	je ir_tag52_cmp
+x86IR::  	movl $0 var_204
+x86IR::  	jmp ir_tag52_cmpend
+x86IR::  	ir_tag52_cmp:
+x86IR::  	movl $1 var_204
+x86IR::  	ir_tag52_cmpend:
+x86IR::  	pushl expl_8
+x86IR::  	call tag
+x86IR::  	movl eax var_208
+x86IR::  	cmpl $1 var_208
+x86IR::  	je ir_tag53_cmp
+x86IR::  	movl $0 var_207
+x86IR::  	jmp ir_tag53_cmpend
+x86IR::  	ir_tag53_cmp:
+x86IR::  	movl $1 var_207
+x86IR::  	ir_tag53_cmpend:
+x86IR::  	movl var_204 var_203
+x86IR::  	orl var_207 var_203
+x86IR::  	pushl expl_9
+x86IR::  	call tag
+x86IR::  	movl eax var_213
+x86IR::  	cmpl $0 var_213
+x86IR::  	je ir_tag54_cmp
+x86IR::  	movl $0 var_212
+x86IR::  	jmp ir_tag54_cmpend
+x86IR::  	ir_tag54_cmp:
+x86IR::  	movl $1 var_212
+x86IR::  	ir_tag54_cmpend:
+x86IR::  	pushl expl_9
+x86IR::  	call tag
+x86IR::  	movl eax var_216
+x86IR::  	cmpl $1 var_216
+x86IR::  	je ir_tag55_cmp
+x86IR::  	movl $0 var_215
+x86IR::  	jmp ir_tag55_cmpend
+x86IR::  	ir_tag55_cmp:
+x86IR::  	movl $1 var_215
+x86IR::  	ir_tag55_cmpend:
+x86IR::  	movl var_212 var_211
+x86IR::  	orl var_215 var_211
+x86IR::  	movl var_203 var_202
+x86IR::  	andl var_211 var_202
+x86IR::  	pushl var_202
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_201
+x86IR::  	pushl var_201
+x86IR::  	call tag
+x86IR::  	movl eax var_221
+x86IR::  	cmpl $0 var_221
+x86IR::  	je ir_tag56_cmp
+x86IR::  	movl $0 var_221
+x86IR::  	jmp ir_tag56_cmpend
+x86IR::  	ir_tag56_cmp:
+x86IR::  	movl $1 var_221
+x86IR::  	ir_tag56_cmpend:
+x86IR::  	cmpl $0 var_221
+x86IR::  	je ir_tag_else_57
+x86IR::  	pushl var_201
+x86IR::  	call project_int
+x86IR::  	movl eax var_201
+x86IR::  	jmp ir_tag_end_57
+x86IR::  	ir_tag_else_57:
+x86IR::  	pushl var_201
+x86IR::  	call project_bool
+x86IR::  	movl eax var_201
+x86IR::  	jmp ir_tag_end_57
+x86IR::  	ir_tag_end_57:
+x86IR::  	cmpl $0 var_201
+x86IR::  	je ir_tag_else_58
+x86IR::  	pushl expl_8
+x86IR::  	call tag
+x86IR::  	movl eax var_165
+x86IR::  	cmpl $0 var_165
+x86IR::  	je ir_tag59_cmp
+x86IR::  	movl $0 var_164
+x86IR::  	jmp ir_tag59_cmpend
+x86IR::  	ir_tag59_cmp:
+x86IR::  	movl $1 var_164
+x86IR::  	ir_tag59_cmpend:
+x86IR::  	pushl var_164
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_163
+x86IR::  	pushl var_163
+x86IR::  	call tag
+x86IR::  	movl eax var_168
+x86IR::  	cmpl $0 var_168
+x86IR::  	je ir_tag60_cmp
+x86IR::  	movl $0 var_168
+x86IR::  	jmp ir_tag60_cmpend
+x86IR::  	ir_tag60_cmp:
+x86IR::  	movl $1 var_168
+x86IR::  	ir_tag60_cmpend:
+x86IR::  	cmpl $0 var_168
+x86IR::  	je ir_tag_else_61
+x86IR::  	pushl var_163
+x86IR::  	call project_int
+x86IR::  	movl eax var_163
+x86IR::  	jmp ir_tag_end_61
+x86IR::  	ir_tag_else_61:
+x86IR::  	pushl var_163
+x86IR::  	call project_bool
+x86IR::  	movl eax var_163
+x86IR::  	jmp ir_tag_end_61
+x86IR::  	ir_tag_end_61:
+x86IR::  	cmpl $0 var_163
+x86IR::  	je ir_tag_else_62
+x86IR::  	pushl expl_8
+x86IR::  	call project_int
+x86IR::  	movl eax var_160
+x86IR::  	movl var_160 var_160
+x86IR::  	jmp ir_tag_end_62
+x86IR::  	ir_tag_else_62:
+x86IR::  	pushl expl_8
+x86IR::  	call project_bool
+x86IR::  	movl eax var_161
+x86IR::  	movl var_161 var_160
+x86IR::  	jmp ir_tag_end_62
+x86IR::  	ir_tag_end_62:
+x86IR::  	pushl expl_9
+x86IR::  	call tag
+x86IR::  	movl eax var_175
+x86IR::  	cmpl $0 var_175
+x86IR::  	je ir_tag63_cmp
+x86IR::  	movl $0 var_174
+x86IR::  	jmp ir_tag63_cmpend
+x86IR::  	ir_tag63_cmp:
+x86IR::  	movl $1 var_174
+x86IR::  	ir_tag63_cmpend:
+x86IR::  	pushl var_174
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_173
+x86IR::  	pushl var_173
+x86IR::  	call tag
+x86IR::  	movl eax var_178
+x86IR::  	cmpl $0 var_178
+x86IR::  	je ir_tag64_cmp
+x86IR::  	movl $0 var_178
+x86IR::  	jmp ir_tag64_cmpend
+x86IR::  	ir_tag64_cmp:
+x86IR::  	movl $1 var_178
+x86IR::  	ir_tag64_cmpend:
+x86IR::  	cmpl $0 var_178
+x86IR::  	je ir_tag_else_65
+x86IR::  	pushl var_173
+x86IR::  	call project_int
+x86IR::  	movl eax var_173
+x86IR::  	jmp ir_tag_end_65
+x86IR::  	ir_tag_else_65:
+x86IR::  	pushl var_173
+x86IR::  	call project_bool
+x86IR::  	movl eax var_173
+x86IR::  	jmp ir_tag_end_65
+x86IR::  	ir_tag_end_65:
+x86IR::  	cmpl $0 var_173
+x86IR::  	je ir_tag_else_66
+x86IR::  	pushl expl_9
+x86IR::  	call project_int
+x86IR::  	movl eax var_170
+x86IR::  	movl var_170 var_170
+x86IR::  	jmp ir_tag_end_66
+x86IR::  	ir_tag_else_66:
+x86IR::  	pushl expl_9
+x86IR::  	call project_bool
+x86IR::  	movl eax var_171
+x86IR::  	movl var_171 var_170
+x86IR::  	jmp ir_tag_end_66
+x86IR::  	ir_tag_end_66:
+x86IR::  	movl var_160 var_159
+x86IR::  	addl var_170 var_159
+x86IR::  	pushl var_159
+x86IR::  	call inject_int
+x86IR::  	movl eax var_158
+x86IR::  	movl var_158 expl_7
+x86IR::  	movl expl_7 var_158
+x86IR::  	jmp ir_tag_end_58
+x86IR::  	ir_tag_else_58:
+x86IR::  	pushl expl_8
+x86IR::  	call tag
+x86IR::  	movl eax var_192
+x86IR::  	cmpl $3 var_192
+x86IR::  	je ir_tag67_cmp
+x86IR::  	movl $0 var_191
+x86IR::  	jmp ir_tag67_cmpend
+x86IR::  	ir_tag67_cmp:
+x86IR::  	movl $1 var_191
+x86IR::  	ir_tag67_cmpend:
+x86IR::  	pushl expl_9
+x86IR::  	call tag
+x86IR::  	movl eax var_195
+x86IR::  	cmpl $3 var_195
+x86IR::  	je ir_tag68_cmp
+x86IR::  	movl $0 var_194
+x86IR::  	jmp ir_tag68_cmpend
+x86IR::  	ir_tag68_cmp:
+x86IR::  	movl $1 var_194
+x86IR::  	ir_tag68_cmpend:
+x86IR::  	movl var_191 var_190
+x86IR::  	andl var_194 var_190
+x86IR::  	pushl var_190
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_189
+x86IR::  	pushl var_189
+x86IR::  	call tag
+x86IR::  	movl eax var_199
+x86IR::  	cmpl $0 var_199
+x86IR::  	je ir_tag69_cmp
+x86IR::  	movl $0 var_199
+x86IR::  	jmp ir_tag69_cmpend
+x86IR::  	ir_tag69_cmp:
+x86IR::  	movl $1 var_199
+x86IR::  	ir_tag69_cmpend:
+x86IR::  	cmpl $0 var_199
+x86IR::  	je ir_tag_else_70
+x86IR::  	pushl var_189
+x86IR::  	call project_int
+x86IR::  	movl eax var_189
+x86IR::  	jmp ir_tag_end_70
+x86IR::  	ir_tag_else_70:
+x86IR::  	pushl var_189
+x86IR::  	call project_bool
+x86IR::  	movl eax var_189
+x86IR::  	jmp ir_tag_end_70
+x86IR::  	ir_tag_end_70:
+x86IR::  	cmpl $0 var_189
+x86IR::  	je ir_tag_else_71
+x86IR::  	pushl expl_8
+x86IR::  	call project_big
+x86IR::  	movl eax var_183
+x86IR::  	pushl expl_9
+x86IR::  	call project_big
+x86IR::  	movl eax var_185
+x86IR::  	pushl var_185
+x86IR::  	pushl var_183
+x86IR::  	call add
+x86IR::  	movl eax var_182
+x86IR::  	pushl var_182
+x86IR::  	call inject_big
+x86IR::  	movl eax var_181
+x86IR::  	movl var_181 expl_7
+x86IR::  	movl expl_7 var_181
+x86IR::  	movl var_181 var_158
+x86IR::  	jmp ir_tag_end_71
+x86IR::  	ir_tag_else_71:
+x86IR::  	call call_error
+x86IR::  	pushl eax
+x86IR::  	call inject_int
+x86IR::  	movl eax var_188
+x86IR::  	movl var_188 var_181
+x86IR::  	movl var_181 var_158
+x86IR::  	jmp ir_tag_end_71
+x86IR::  	ir_tag_end_71:
+x86IR::  	jmp ir_tag_end_58
+x86IR::  	ir_tag_end_58:
+x86IR::  	movl expl_7 var_154
+x86IR::  	movl expl_7 var_154
+x86IR::  	movl var_154 edx
+x86IR::  	pushl $7
+x86IR::  	call inject_int
+x86IR::  	pushl edx
+x86IR::  	pushl eax
+x86IR::  	pushl user_d
+x86IR::  	call set_subscript
+x86IR::  	movl user_d expl_10
+x86IR::  	pushl expl_10
+x86IR::  	call tag
+x86IR::  	movl eax var_240
+x86IR::  	cmpl $0 var_240
+x86IR::  	je ir_tag72_cmp
+x86IR::  	movl $0 var_239
+x86IR::  	jmp ir_tag72_cmpend
+x86IR::  	ir_tag72_cmp:
+x86IR::  	movl $1 var_239
+x86IR::  	ir_tag72_cmpend:
+x86IR::  	pushl var_239
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_238
+x86IR::  	pushl var_238
+x86IR::  	call tag
+x86IR::  	movl eax var_243
+x86IR::  	cmpl $0 var_243
+x86IR::  	je ir_tag73_cmp
+x86IR::  	movl $0 var_243
+x86IR::  	jmp ir_tag73_cmpend
+x86IR::  	ir_tag73_cmp:
+x86IR::  	movl $1 var_243
+x86IR::  	ir_tag73_cmpend:
+x86IR::  	cmpl $0 var_243
+x86IR::  	je ir_tag_else_74
+x86IR::  	pushl var_238
+x86IR::  	call project_int
+x86IR::  	movl eax var_238
+x86IR::  	jmp ir_tag_end_74
+x86IR::  	ir_tag_else_74:
+x86IR::  	pushl var_238
+x86IR::  	call project_bool
+x86IR::  	movl eax var_238
+x86IR::  	jmp ir_tag_end_74
+x86IR::  	ir_tag_end_74:
+x86IR::  	cmpl $0 var_238
+x86IR::  	je ir_tag_else_75
+x86IR::  	pushl expl_10
+x86IR::  	call project_int
+x86IR::  	movl eax var_222
+x86IR::  	pushl var_222
+x86IR::  	call print_int_nl
+x86IR::  	jmp ir_tag_end_75
+x86IR::  	ir_tag_else_75:
+x86IR::  	pushl expl_10
+x86IR::  	call tag
+x86IR::  	movl eax var_233
+x86IR::  	cmpl $1 var_233
+x86IR::  	je ir_tag76_cmp
+x86IR::  	movl $0 var_232
+x86IR::  	jmp ir_tag76_cmpend
+x86IR::  	ir_tag76_cmp:
+x86IR::  	movl $1 var_232
+x86IR::  	ir_tag76_cmpend:
+x86IR::  	pushl var_232
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_231
+x86IR::  	pushl var_231
+x86IR::  	call tag
+x86IR::  	movl eax var_236
+x86IR::  	cmpl $0 var_236
+x86IR::  	je ir_tag77_cmp
+x86IR::  	movl $0 var_236
+x86IR::  	jmp ir_tag77_cmpend
+x86IR::  	ir_tag77_cmp:
+x86IR::  	movl $1 var_236
+x86IR::  	ir_tag77_cmpend:
+x86IR::  	cmpl $0 var_236
+x86IR::  	je ir_tag_else_78
+x86IR::  	pushl var_231
+x86IR::  	call project_int
+x86IR::  	movl eax var_231
+x86IR::  	jmp ir_tag_end_78
+x86IR::  	ir_tag_else_78:
+x86IR::  	pushl var_231
+x86IR::  	call project_bool
+x86IR::  	movl eax var_231
+x86IR::  	jmp ir_tag_end_78
+x86IR::  	ir_tag_end_78:
+x86IR::  	cmpl $0 var_231
+x86IR::  	je ir_tag_else_79
+x86IR::  	pushl expl_10
+x86IR::  	call print_any
+x86IR::  	jmp ir_tag_end_79
+x86IR::  	ir_tag_else_79:
+x86IR::  	pushl expl_10
+x86IR::  	call tag
+x86IR::  	movl eax var_226
+x86IR::  	cmpl $3 var_226
+x86IR::  	je ir_tag80_cmp
+x86IR::  	movl $0 var_225
+x86IR::  	jmp ir_tag80_cmpend
+x86IR::  	ir_tag80_cmp:
+x86IR::  	movl $1 var_225
+x86IR::  	ir_tag80_cmpend:
+x86IR::  	pushl var_225
+x86IR::  	call inject_bool
+x86IR::  	movl eax var_224
+x86IR::  	pushl var_224
+x86IR::  	call tag
+x86IR::  	movl eax var_229
+x86IR::  	cmpl $0 var_229
+x86IR::  	je ir_tag81_cmp
+x86IR::  	movl $0 var_229
+x86IR::  	jmp ir_tag81_cmpend
+x86IR::  	ir_tag81_cmp:
+x86IR::  	movl $1 var_229
+x86IR::  	ir_tag81_cmpend:
+x86IR::  	cmpl $0 var_229
+x86IR::  	je ir_tag_else_82
+x86IR::  	pushl var_224
+x86IR::  	call project_int
+x86IR::  	movl eax var_224
+x86IR::  	jmp ir_tag_end_82
+x86IR::  	ir_tag_else_82:
+x86IR::  	pushl var_224
+x86IR::  	call project_bool
+x86IR::  	movl eax var_224
+x86IR::  	jmp ir_tag_end_82
+x86IR::  	ir_tag_end_82:
+x86IR::  	cmpl $0 var_224
+x86IR::  	je ir_tag_else_83
+x86IR::  	pushl expl_10
+x86IR::  	call print_any
+x86IR::  	jmp ir_tag_end_83
+x86IR::  	ir_tag_else_83:
+x86IR::  	call call_error
+x86IR::  	pushl eax
+x86IR::  	call inject_int
+x86IR::  	movl eax var_223
+x86IR::  	movl var_223 var_223
+x86IR::  	movl var_223 var_223
+x86IR::  	jmp ir_tag_end_83
+x86IR::  	ir_tag_end_83:
+x86IR::  	jmp ir_tag_end_79
+x86IR::  	ir_tag_end_79:
+x86IR::  	jmp ir_tag_end_75
+x86IR::  	ir_tag_end_75:
+VariableGraph::  # of variables: 167
+[1, 2, 3, 4, 5, 6]
+{3: 4, 7: [1, 2, 3, 6], 1: 2}
