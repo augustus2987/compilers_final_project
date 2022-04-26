@@ -10,7 +10,7 @@ main:
 	call create_list
 	pushl %eax
 	call inject_big
-	movl %eax, %edi
+	movl %eax, %esi
 	pushl $0
 	call inject_int
 	movl %eax, %ebx
@@ -18,7 +18,7 @@ main:
 	call inject_int
 	pushl %eax
 	pushl %ebx
-	pushl %edi
+	pushl %esi
 	call set_subscript
 	pushl $1
 	call inject_int
@@ -26,7 +26,7 @@ main:
 	call create_list
 	pushl %eax
 	call inject_big
-	movl %eax, %esi
+	movl %eax, %edi
 	pushl $0
 	call inject_int
 	movl %eax, %ebx
@@ -34,7 +34,7 @@ main:
 	call inject_int
 	pushl %eax
 	pushl %ebx
-	pushl %esi
+	pushl %edi
 	call set_subscript
 	pushl $2
 	call inject_int
@@ -46,7 +46,7 @@ main:
 	pushl $0
 	call inject_int
 	movl %eax, %ebx
-	pushl %edi
+	pushl %esi
 	pushl %ebx
 	movl -4(%ebp), %eax
 	pushl %eax
@@ -54,7 +54,7 @@ main:
 	pushl $1
 	call inject_int
 	movl %eax, %ebx
-	pushl %esi
+	pushl %edi
 	pushl %ebx
 	movl -4(%ebp), %eax
 	pushl %eax
@@ -84,7 +84,7 @@ main:
 	pushl %ebx
 	pushl %esi
 	call set_subscript
-	movl %esi, -8(%ebp)
+	movl %esi, %esi
 	pushl %edi
 	call tag
 	movl %eax, %eax
@@ -105,21 +105,19 @@ main:
 	ir_tag1_cmp:
 	movl $1, %eax
 	ir_tag1_cmpend:
-	movl %ebx, %ebx
-	orl %eax, %ebx
-	movl -8(%ebp), %eax
-	pushl %eax
+	movl %ebx, -8(%ebp)
+	orl %eax, -8(%ebp)
+	pushl %esi
 	call tag
 	movl %eax, %eax
 	cmpl $0, %eax
 	je ir_tag2_cmp
-	movl $0, %esi
+	movl $0, %ebx
 	jmp ir_tag2_cmpend
 	ir_tag2_cmp:
-	movl $1, %esi
+	movl $1, %ebx
 	ir_tag2_cmpend:
-	movl -8(%ebp), %eax
-	pushl %eax
+	pushl %esi
 	call tag
 	movl %eax, %eax
 	cmpl $1, %eax
@@ -129,9 +127,10 @@ main:
 	ir_tag3_cmp:
 	movl $1, %eax
 	ir_tag3_cmpend:
-	movl %esi, %ecx
+	movl %ebx, %ecx
 	orl %eax, %ecx
-	movl %ebx, %eax
+	movl -8(%ebp), %eax
+	movl %eax, %eax
 	andl %ecx, %eax
 	pushl %eax
 	call inject_bool
@@ -199,18 +198,17 @@ main:
 	je ir_tag_else_10
 	pushl %edi
 	call project_int
-	movl %eax, %esi
-	movl %esi, %esi
+	movl %eax, %ebx
+	movl %ebx, %ebx
 	jmp ir_tag_end_10
 	ir_tag_else_10:
 	pushl %edi
 	call project_bool
 	movl %eax, %eax
-	movl %eax, %esi
+	movl %eax, %ebx
 	jmp ir_tag_end_10
 	ir_tag_end_10:
-	movl -8(%ebp), %eax
-	pushl %eax
+	pushl %esi
 	call tag
 	movl %eax, %eax
 	cmpl $0, %eax
@@ -222,8 +220,9 @@ main:
 	ir_tag11_cmpend:
 	pushl %eax
 	call inject_bool
-	movl %eax, %ebx
-	pushl %ebx
+	movl %eax, -12(%ebp)
+	movl -12(%ebp), %eax
+	pushl %eax
 	call tag
 	movl %eax, %eax
 	cmpl $0, %eax
@@ -235,33 +234,33 @@ main:
 	ir_tag12_cmpend:
 	cmpl $0, %eax
 	je ir_tag_else_13
-	pushl %ebx
+	movl -12(%ebp), %eax
+	pushl %eax
 	call project_int
-	movl %eax, %ebx
+	movl %eax, -12(%ebp)
 	jmp ir_tag_end_13
 	ir_tag_else_13:
-	pushl %ebx
+	movl -12(%ebp), %eax
+	pushl %eax
 	call project_bool
-	movl %eax, %ebx
+	movl %eax, -12(%ebp)
 	jmp ir_tag_end_13
 	ir_tag_end_13:
-	cmpl $0, %ebx
+	cmpl $0, -12(%ebp)
 	je ir_tag_else_14
-	movl -8(%ebp), %eax
-	pushl %eax
+	pushl %esi
 	call project_int
 	movl %eax, %eax
 	movl %eax, %eax
 	jmp ir_tag_end_14
 	ir_tag_else_14:
-	movl -8(%ebp), %eax
-	pushl %eax
+	pushl %esi
 	call project_bool
 	movl %eax, %eax
 	movl %eax, %eax
 	jmp ir_tag_end_14
 	ir_tag_end_14:
-	movl %esi, %ecx
+	movl %ebx, %ecx
 	addl %eax, %ecx
 	pushl %ecx
 	call inject_int
@@ -280,8 +279,7 @@ main:
 	ir_tag15_cmp:
 	movl $1, %ebx
 	ir_tag15_cmpend:
-	movl -8(%ebp), %eax
-	pushl %eax
+	pushl %esi
 	call tag
 	movl %eax, %eax
 	cmpl $3, %eax
@@ -323,8 +321,7 @@ main:
 	pushl %edi
 	call project_big
 	movl %eax, %ebx
-	movl -8(%ebp), %eax
-	pushl %eax
+	pushl %esi
 	call project_big
 	movl %eax, %eax
 	pushl %eax

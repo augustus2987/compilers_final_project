@@ -28,20 +28,22 @@ if __name__ == "__main__":
 
     # get AST 
 #     tree = get_ast(str(sys.argv[1])) 
-    tree = compiler.parseFile(str(sys.argv[1]))     
-    print("compiler:: base tree:")
-    for n in tree.node.nodes:
-        print("compiler::\t" + str(n))
+    tree = compiler.parseFile(str(sys.argv[1]))   
+    if printParse:
+        print("compiler:: base tree:")
+        for n in tree.node.nodes:
+            print("compiler::\t" + str(n))
         
     
     #explicate pass   
     t = explicate_pass(tree) 
     # print_explicated(t)
-    print("explicate:: Explicated Tree:")
-    if "--pprint" in sys.argv:
-        pprint(t, "explicate:: ")
-    else:
-        print(t)
+    if printExplicate:
+        print("explicate:: Explicated Tree:")
+        if "--pprint" in sys.argv:
+            pprint(t, "explicate:: ")
+        else:
+            print(t)
         
     check_all_supported(t)
     # flatten AST
@@ -49,13 +51,15 @@ if __name__ == "__main__":
     flattened_tree = unqiueify_names(flattened_tree)
     
     # print flattened ast tree
-    if "--pprint" in sys.argv:
-        print_flattened_pretty(flattened_tree)
-    else:
-        print_flattened(flattened_tree)
+    if printFlatten:
+        if "--pprint" in sys.argv:
+            print_flattened_pretty(flattened_tree)
+        else:
+            print_flattened(flattened_tree)
 
     ir = x86IR(flattened_tree)
-    ir.print_intermediate()
+    if printx86IR:
+        ir.print_intermediate()
     ir.liveness_analysis()
     # ir.print_live_and_ir()
     
@@ -70,7 +74,8 @@ if __name__ == "__main__":
         tries += 1
         if tries >= 100:
             print("Too many tries, last variable assignments:")
-            graph.print_variable_assignments()
+            if printVariableAssignment:
+                graph.print_variable_assignments()
             raise Exception("Too many tries to color, probably in inf loop")
     # graph.print_variable_assignments()
     # graph.print_all_edges()

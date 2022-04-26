@@ -1,6 +1,12 @@
 from compiler.ast import * 
 from extra_nodes import *
 
+printParse = True
+printExplicate = False
+printFlatten = False
+printx86IR = False
+printVariableAssignment = False
+
 supported_nodes = [Module,
     Stmt,
     Printnl,

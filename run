@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# THIS_DIR is bound to the directory that this script file is in.
+# Use as needed.
+THIS_DIR=$(cd $(dirname $0) && pwd)
+
+# make the runtime system
+make -C runtime
+make
+
+# similar to pyyc
+python2 ${THIS_DIR}/src/pyyc/compile.py $*.py
+
+# gcc -m32 -g mytests/test1.s runtime/libpyyruntime.a -lm -o mytests/test1
+gcc -m32 -g $*.s runtime/libpyyruntime.a -lm -o $*
+
+# Run the Program
+# cat mytests/test1.in | mytests/test1 > mytests/test1.out
+# echo "TEST"
+# cd tests/mytests
+# ls
+# cd ../..
+cat $*.in | $* > $*.out
+
+
+# Generate the expected output using the python2 interpreter
+# cat mytests/test1.in | python2 mytests/test1.py > mytests/test1.expected
+cat $*.in | python2 $*.py > $*.expected
+
+# Diff your result with the expected output
+# diff -w -B -u mytests/test1.expected mytests/test1.out
+diff -w -B -u $*.expected $*.out
+
