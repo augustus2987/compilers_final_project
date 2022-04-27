@@ -7,78 +7,85 @@ Rule 1     statement -> PRINT expression
 Rule 2     statement -> expression
 Rule 3     vartype -> INTTYPE
 Rule 4     vartype -> BOOLTYPE
-Rule 5     typedef -> vartype VARNAME
-Rule 6     statement -> typedef ASSIGN expression
-Rule 7     statement -> VARNAME ASSIGN expression
-Rule 8     expression -> VARNAME
-Rule 9     expression -> CONST
-Rule 10    expression -> UNARYSUB expression
-Rule 11    expression -> expression PLUS expression
-Rule 12    expression -> LPAREN expression RPAREN
-Rule 13    expression -> INPUT LPAREN RPAREN
-Rule 14    key_datum -> expression COLON expression
-Rule 15    subscription -> expression LSBRACK expression RSBRACK
-Rule 16    expression -> TRUE
-Rule 17    expression -> FALSE
-Rule 18    expression -> NOT expression
-Rule 19    expression -> expression AND expression
-Rule 20    expression -> expression OR expression
-Rule 21    expression -> expression EQEQ expression
-Rule 22    expression -> expression NOTEQ expression
-Rule 23    expression -> expression IF expression ELSE expression
-Rule 24    expression -> LSBRACK expr_list RSBRACK
-Rule 25    expression -> LCBRACK key_datum_list RCBRACK
-Rule 26    expression -> subscription
-Rule 27    expression -> expression IS expression
-Rule 28    expr_list -> expression
-Rule 29    expr_list -> expression COMMA expr_list
-Rule 30    key_datum_list -> key_datum
-Rule 31    key_datum_list -> key_datum COMMA key_datum_list
-Rule 32    target -> subscription
-Rule 33    statement -> target ASSIGN expression
+Rule 5     vartype -> LISTTYPE
+Rule 6     vartype -> DICTTYPE
+Rule 7     typedef -> vartype VARNAME
+Rule 8     typedef -> vartype VARNAME LSBRACK vartype RSBRACK
+Rule 9     typedef -> vartype VARNAME LSBRACK vartype COMMA vartype RSBRACK
+Rule 10    statement -> typedef
+Rule 11    statement -> typedef ASSIGN expression
+Rule 12    statement -> VARNAME ASSIGN expression
+Rule 13    expression -> VARNAME
+Rule 14    expression -> CONST
+Rule 15    expression -> UNARYSUB expression
+Rule 16    expression -> expression PLUS expression
+Rule 17    expression -> LPAREN expression RPAREN
+Rule 18    expression -> INPUT LPAREN RPAREN
+Rule 19    key_datum -> expression COLON expression
+Rule 20    subscription -> expression LSBRACK expression RSBRACK
+Rule 21    expression -> TRUE
+Rule 22    expression -> FALSE
+Rule 23    expression -> NOT expression
+Rule 24    expression -> expression AND expression
+Rule 25    expression -> expression OR expression
+Rule 26    expression -> expression EQEQ expression
+Rule 27    expression -> expression NOTEQ expression
+Rule 28    expression -> expression IF expression ELSE expression
+Rule 29    expression -> LSBRACK expr_list RSBRACK
+Rule 30    expression -> LCBRACK key_datum_list RCBRACK
+Rule 31    expression -> subscription
+Rule 32    expression -> expression IS expression
+Rule 33    expr_list -> expression
+Rule 34    expr_list -> expression COMMA expr_list
+Rule 35    key_datum_list -> key_datum
+Rule 36    key_datum_list -> key_datum COMMA key_datum_list
+Rule 37    target -> subscription
+Rule 38    statement -> target ASSIGN expression
 
 Terminals, with rules where they appear
 
-AND                  : 19
-ASSIGN               : 6 7 33
+AND                  : 24
+ASSIGN               : 11 12 38
 BOOLTYPE             : 4
-COLON                : 14
-COMMA                : 29 31
-CONST                : 9
-ELSE                 : 23
-EQEQ                 : 21
-FALSE                : 17
-IF                   : 23
-INPUT                : 13
+COLON                : 19
+COMMA                : 9 34 36
+CONST                : 14
+DICTTYPE             : 6
+ELSE                 : 28
+EQEQ                 : 26
+FALSE                : 22
+IF                   : 28
+INPUT                : 18
 INTTYPE              : 3
-IS                   : 27
-LCBRACK              : 25
-LPAREN               : 12 13
-LSBRACK              : 15 24
-NOT                  : 18
-NOTEQ                : 22
-OR                   : 20
-PLUS                 : 11
+IS                   : 32
+LCBRACK              : 30
+LISTTYPE             : 5
+LPAREN               : 17 18
+LSBRACK              : 8 9 20 29
+NOT                  : 23
+NOTEQ                : 27
+OR                   : 25
+PLUS                 : 16
 PRINT                : 1
-RCBRACK              : 25
-RPAREN               : 12 13
-RSBRACK              : 15 24
-TRUE                 : 16
-UNARYSUB             : 10
-VARNAME              : 5 7 8
+RCBRACK              : 30
+RPAREN               : 17 18
+RSBRACK              : 8 9 20 29
+TRUE                 : 21
+UNARYSUB             : 15
+VARNAME              : 7 8 9 12 13
 error                : 
 
 Nonterminals, with rules where they appear
 
-expr_list            : 24 29
-expression           : 1 2 6 7 10 11 11 12 14 14 15 15 18 19 19 20 20 21 21 22 22 23 23 23 27 27 28 29 33
-key_datum            : 30 31
-key_datum_list       : 25 31
+expr_list            : 29 34
+expression           : 1 2 11 12 15 16 16 17 19 19 20 20 23 24 24 25 25 26 26 27 27 28 28 28 32 32 33 34 38
+key_datum            : 35 36
+key_datum_list       : 30 36
 statement            : 0
-subscription         : 26 32
-target               : 33
-typedef              : 6
-vartype              : 5
+subscription         : 31 37
+target               : 38
+typedef              : 10 11
+vartype              : 7 8 8 9 9 9
 
 Parsing method: LALR
 
@@ -87,1770 +94,1543 @@ state 0
     (0) S' -> . statement
     (1) statement -> . PRINT expression
     (2) statement -> . expression
-    (6) statement -> . typedef ASSIGN expression
-    (7) statement -> . VARNAME ASSIGN expression
-    (33) statement -> . target ASSIGN expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (5) typedef -> . vartype VARNAME
-    (32) target -> . subscription
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (10) statement -> . typedef
+    (11) statement -> . typedef ASSIGN expression
+    (12) statement -> . VARNAME ASSIGN expression
+    (38) statement -> . target ASSIGN expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (7) typedef -> . vartype VARNAME
+    (8) typedef -> . vartype VARNAME LSBRACK vartype RSBRACK
+    (9) typedef -> . vartype VARNAME LSBRACK vartype COMMA vartype RSBRACK
+    (37) target -> . subscription
+    (20) subscription -> . expression LSBRACK expression RSBRACK
     (3) vartype -> . INTTYPE
     (4) vartype -> . BOOLTYPE
+    (5) vartype -> . LISTTYPE
+    (6) vartype -> . DICTTYPE
 
-    PRINT           shift and go to state 6
-    VARNAME         shift and go to state 2
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
-    INTTYPE         shift and go to state 15
-    BOOLTYPE        shift and go to state 11
+    PRINT           shift and go to state 7
+    VARNAME         shift and go to state 3
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
+    INTTYPE         shift and go to state 17
+    BOOLTYPE        shift and go to state 12
+    LISTTYPE        shift and go to state 15
+    DICTTYPE        shift and go to state 1
 
-    typedef                        shift and go to state 8
-    target                         shift and go to state 17
-    vartype                        shift and go to state 4
-    statement                      shift and go to state 9
-    expression                     shift and go to state 19
-    subscription                   shift and go to state 10
+    typedef                        shift and go to state 9
+    target                         shift and go to state 19
+    vartype                        shift and go to state 5
+    statement                      shift and go to state 10
+    expression                     shift and go to state 21
+    subscription                   shift and go to state 11
 
 state 1
 
-    (9) expression -> CONST .
+    (6) vartype -> DICTTYPE .
 
-    PLUS            reduce using rule 9 (expression -> CONST .)
-    AND             reduce using rule 9 (expression -> CONST .)
-    OR              reduce using rule 9 (expression -> CONST .)
-    EQEQ            reduce using rule 9 (expression -> CONST .)
-    NOTEQ           reduce using rule 9 (expression -> CONST .)
-    IF              reduce using rule 9 (expression -> CONST .)
-    IS              reduce using rule 9 (expression -> CONST .)
-    LSBRACK         reduce using rule 9 (expression -> CONST .)
-    $end            reduce using rule 9 (expression -> CONST .)
-    COMMA           reduce using rule 9 (expression -> CONST .)
-    RSBRACK         reduce using rule 9 (expression -> CONST .)
-    COLON           reduce using rule 9 (expression -> CONST .)
-    RPAREN          reduce using rule 9 (expression -> CONST .)
-    ELSE            reduce using rule 9 (expression -> CONST .)
-    RCBRACK         reduce using rule 9 (expression -> CONST .)
+    VARNAME         reduce using rule 6 (vartype -> DICTTYPE .)
+    RSBRACK         reduce using rule 6 (vartype -> DICTTYPE .)
+    COMMA           reduce using rule 6 (vartype -> DICTTYPE .)
 
 
 state 2
 
-    (7) statement -> VARNAME . ASSIGN expression
-    (8) expression -> VARNAME .
+    (14) expression -> CONST .
 
-    ASSIGN          shift and go to state 20
-    PLUS            reduce using rule 8 (expression -> VARNAME .)
-    AND             reduce using rule 8 (expression -> VARNAME .)
-    OR              reduce using rule 8 (expression -> VARNAME .)
-    EQEQ            reduce using rule 8 (expression -> VARNAME .)
-    NOTEQ           reduce using rule 8 (expression -> VARNAME .)
-    IF              reduce using rule 8 (expression -> VARNAME .)
-    IS              reduce using rule 8 (expression -> VARNAME .)
-    LSBRACK         reduce using rule 8 (expression -> VARNAME .)
-    $end            reduce using rule 8 (expression -> VARNAME .)
+    COLON           reduce using rule 14 (expression -> CONST .)
+    PLUS            reduce using rule 14 (expression -> CONST .)
+    AND             reduce using rule 14 (expression -> CONST .)
+    OR              reduce using rule 14 (expression -> CONST .)
+    EQEQ            reduce using rule 14 (expression -> CONST .)
+    NOTEQ           reduce using rule 14 (expression -> CONST .)
+    IF              reduce using rule 14 (expression -> CONST .)
+    IS              reduce using rule 14 (expression -> CONST .)
+    LSBRACK         reduce using rule 14 (expression -> CONST .)
+    $end            reduce using rule 14 (expression -> CONST .)
+    COMMA           reduce using rule 14 (expression -> CONST .)
+    RSBRACK         reduce using rule 14 (expression -> CONST .)
+    RPAREN          reduce using rule 14 (expression -> CONST .)
+    ELSE            reduce using rule 14 (expression -> CONST .)
+    RCBRACK         reduce using rule 14 (expression -> CONST .)
 
 
 state 3
 
-    (24) expression -> LSBRACK . expr_list RSBRACK
-    (28) expr_list -> . expression
-    (29) expr_list -> . expression COMMA expr_list
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (12) statement -> VARNAME . ASSIGN expression
+    (13) expression -> VARNAME .
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    ASSIGN          shift and go to state 22
+    PLUS            reduce using rule 13 (expression -> VARNAME .)
+    AND             reduce using rule 13 (expression -> VARNAME .)
+    OR              reduce using rule 13 (expression -> VARNAME .)
+    EQEQ            reduce using rule 13 (expression -> VARNAME .)
+    NOTEQ           reduce using rule 13 (expression -> VARNAME .)
+    IF              reduce using rule 13 (expression -> VARNAME .)
+    IS              reduce using rule 13 (expression -> VARNAME .)
+    LSBRACK         reduce using rule 13 (expression -> VARNAME .)
+    $end            reduce using rule 13 (expression -> VARNAME .)
 
-    expr_list                      shift and go to state 22
-    expression                     shift and go to state 24
-    subscription                   shift and go to state 23
 
 state 4
 
-    (5) typedef -> vartype . VARNAME
+    (29) expression -> LSBRACK . expr_list RSBRACK
+    (33) expr_list -> . expression
+    (34) expr_list -> . expression COMMA expr_list
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 25
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expr_list                      shift and go to state 24
+    expression                     shift and go to state 26
+    subscription                   shift and go to state 25
 
 state 5
 
-    (10) expression -> UNARYSUB . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (7) typedef -> vartype . VARNAME
+    (8) typedef -> vartype . VARNAME LSBRACK vartype RSBRACK
+    (9) typedef -> vartype . VARNAME LSBRACK vartype COMMA vartype RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 27
 
-    expression                     shift and go to state 26
-    subscription                   shift and go to state 23
 
 state 6
 
-    (1) statement -> PRINT . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (15) expression -> UNARYSUB . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 27
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 28
+    subscription                   shift and go to state 25
 
 state 7
 
-    (16) expression -> TRUE .
+    (1) statement -> PRINT . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 16 (expression -> TRUE .)
-    AND             reduce using rule 16 (expression -> TRUE .)
-    OR              reduce using rule 16 (expression -> TRUE .)
-    EQEQ            reduce using rule 16 (expression -> TRUE .)
-    NOTEQ           reduce using rule 16 (expression -> TRUE .)
-    IF              reduce using rule 16 (expression -> TRUE .)
-    IS              reduce using rule 16 (expression -> TRUE .)
-    LSBRACK         reduce using rule 16 (expression -> TRUE .)
-    $end            reduce using rule 16 (expression -> TRUE .)
-    COMMA           reduce using rule 16 (expression -> TRUE .)
-    RSBRACK         reduce using rule 16 (expression -> TRUE .)
-    COLON           reduce using rule 16 (expression -> TRUE .)
-    RPAREN          reduce using rule 16 (expression -> TRUE .)
-    ELSE            reduce using rule 16 (expression -> TRUE .)
-    RCBRACK         reduce using rule 16 (expression -> TRUE .)
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expression                     shift and go to state 29
+    subscription                   shift and go to state 25
 
 state 8
 
-    (6) statement -> typedef . ASSIGN expression
+    (21) expression -> TRUE .
 
-    ASSIGN          shift and go to state 28
+    COLON           reduce using rule 21 (expression -> TRUE .)
+    PLUS            reduce using rule 21 (expression -> TRUE .)
+    AND             reduce using rule 21 (expression -> TRUE .)
+    OR              reduce using rule 21 (expression -> TRUE .)
+    EQEQ            reduce using rule 21 (expression -> TRUE .)
+    NOTEQ           reduce using rule 21 (expression -> TRUE .)
+    IF              reduce using rule 21 (expression -> TRUE .)
+    IS              reduce using rule 21 (expression -> TRUE .)
+    LSBRACK         reduce using rule 21 (expression -> TRUE .)
+    $end            reduce using rule 21 (expression -> TRUE .)
+    COMMA           reduce using rule 21 (expression -> TRUE .)
+    RSBRACK         reduce using rule 21 (expression -> TRUE .)
+    RPAREN          reduce using rule 21 (expression -> TRUE .)
+    ELSE            reduce using rule 21 (expression -> TRUE .)
+    RCBRACK         reduce using rule 21 (expression -> TRUE .)
 
 
 state 9
+
+    (10) statement -> typedef .
+    (11) statement -> typedef . ASSIGN expression
+
+    $end            reduce using rule 10 (statement -> typedef .)
+    ASSIGN          shift and go to state 30
+
+
+state 10
 
     (0) S' -> statement .
 
 
 
-state 10
-
-    (26) expression -> subscription .
-    (32) target -> subscription .
-
-    PLUS            reduce using rule 26 (expression -> subscription .)
-    AND             reduce using rule 26 (expression -> subscription .)
-    OR              reduce using rule 26 (expression -> subscription .)
-    EQEQ            reduce using rule 26 (expression -> subscription .)
-    NOTEQ           reduce using rule 26 (expression -> subscription .)
-    IF              reduce using rule 26 (expression -> subscription .)
-    IS              reduce using rule 26 (expression -> subscription .)
-    LSBRACK         reduce using rule 26 (expression -> subscription .)
-    $end            reduce using rule 26 (expression -> subscription .)
-    ASSIGN          reduce using rule 32 (target -> subscription .)
-
-
 state 11
 
-    (4) vartype -> BOOLTYPE .
+    (31) expression -> subscription .
+    (37) target -> subscription .
 
-    VARNAME         reduce using rule 4 (vartype -> BOOLTYPE .)
+    PLUS            reduce using rule 31 (expression -> subscription .)
+    AND             reduce using rule 31 (expression -> subscription .)
+    OR              reduce using rule 31 (expression -> subscription .)
+    EQEQ            reduce using rule 31 (expression -> subscription .)
+    NOTEQ           reduce using rule 31 (expression -> subscription .)
+    IF              reduce using rule 31 (expression -> subscription .)
+    IS              reduce using rule 31 (expression -> subscription .)
+    LSBRACK         reduce using rule 31 (expression -> subscription .)
+    $end            reduce using rule 31 (expression -> subscription .)
+    ASSIGN          reduce using rule 37 (target -> subscription .)
 
 
 state 12
 
-    (25) expression -> LCBRACK . key_datum_list RCBRACK
-    (30) key_datum_list -> . key_datum
-    (31) key_datum_list -> . key_datum COMMA key_datum_list
-    (14) key_datum -> . expression COLON expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (4) vartype -> BOOLTYPE .
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         reduce using rule 4 (vartype -> BOOLTYPE .)
+    RSBRACK         reduce using rule 4 (vartype -> BOOLTYPE .)
+    COMMA           reduce using rule 4 (vartype -> BOOLTYPE .)
 
-    key_datum                      shift and go to state 29
-    key_datum_list                 shift and go to state 30
-    expression                     shift and go to state 31
-    subscription                   shift and go to state 23
 
 state 13
 
-    (12) expression -> LPAREN . expression RPAREN
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (30) expression -> LCBRACK . key_datum_list RCBRACK
+    (35) key_datum_list -> . key_datum
+    (36) key_datum_list -> . key_datum COMMA key_datum_list
+    (19) key_datum -> . expression COLON expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 32
-    subscription                   shift and go to state 23
+    key_datum                      shift and go to state 31
+    key_datum_list                 shift and go to state 32
+    expression                     shift and go to state 33
+    subscription                   shift and go to state 25
 
 state 14
 
-    (13) expression -> INPUT . LPAREN RPAREN
+    (17) expression -> LPAREN . expression RPAREN
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    LPAREN          shift and go to state 33
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expression                     shift and go to state 34
+    subscription                   shift and go to state 25
 
 state 15
 
-    (3) vartype -> INTTYPE .
+    (5) vartype -> LISTTYPE .
 
-    VARNAME         reduce using rule 3 (vartype -> INTTYPE .)
+    VARNAME         reduce using rule 5 (vartype -> LISTTYPE .)
+    RSBRACK         reduce using rule 5 (vartype -> LISTTYPE .)
+    COMMA           reduce using rule 5 (vartype -> LISTTYPE .)
 
 
 state 16
 
-    (17) expression -> FALSE .
+    (18) expression -> INPUT . LPAREN RPAREN
 
-    PLUS            reduce using rule 17 (expression -> FALSE .)
-    AND             reduce using rule 17 (expression -> FALSE .)
-    OR              reduce using rule 17 (expression -> FALSE .)
-    EQEQ            reduce using rule 17 (expression -> FALSE .)
-    NOTEQ           reduce using rule 17 (expression -> FALSE .)
-    IF              reduce using rule 17 (expression -> FALSE .)
-    IS              reduce using rule 17 (expression -> FALSE .)
-    LSBRACK         reduce using rule 17 (expression -> FALSE .)
-    $end            reduce using rule 17 (expression -> FALSE .)
-    COMMA           reduce using rule 17 (expression -> FALSE .)
-    RSBRACK         reduce using rule 17 (expression -> FALSE .)
-    COLON           reduce using rule 17 (expression -> FALSE .)
-    RPAREN          reduce using rule 17 (expression -> FALSE .)
-    ELSE            reduce using rule 17 (expression -> FALSE .)
-    RCBRACK         reduce using rule 17 (expression -> FALSE .)
+    LPAREN          shift and go to state 35
 
 
 state 17
 
-    (33) statement -> target . ASSIGN expression
+    (3) vartype -> INTTYPE .
 
-    ASSIGN          shift and go to state 34
+    VARNAME         reduce using rule 3 (vartype -> INTTYPE .)
+    RSBRACK         reduce using rule 3 (vartype -> INTTYPE .)
+    COMMA           reduce using rule 3 (vartype -> INTTYPE .)
 
 
 state 18
 
-    (18) expression -> NOT . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (22) expression -> FALSE .
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    COLON           reduce using rule 22 (expression -> FALSE .)
+    PLUS            reduce using rule 22 (expression -> FALSE .)
+    AND             reduce using rule 22 (expression -> FALSE .)
+    OR              reduce using rule 22 (expression -> FALSE .)
+    EQEQ            reduce using rule 22 (expression -> FALSE .)
+    NOTEQ           reduce using rule 22 (expression -> FALSE .)
+    IF              reduce using rule 22 (expression -> FALSE .)
+    IS              reduce using rule 22 (expression -> FALSE .)
+    LSBRACK         reduce using rule 22 (expression -> FALSE .)
+    $end            reduce using rule 22 (expression -> FALSE .)
+    COMMA           reduce using rule 22 (expression -> FALSE .)
+    RSBRACK         reduce using rule 22 (expression -> FALSE .)
+    RPAREN          reduce using rule 22 (expression -> FALSE .)
+    ELSE            reduce using rule 22 (expression -> FALSE .)
+    RCBRACK         reduce using rule 22 (expression -> FALSE .)
 
-    expression                     shift and go to state 35
-    subscription                   shift and go to state 23
 
 state 19
 
-    (2) statement -> expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (38) statement -> target . ASSIGN expression
 
-    $end            reduce using rule 2 (statement -> expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    ASSIGN          shift and go to state 36
 
 
 state 20
 
-    (7) statement -> VARNAME ASSIGN . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (23) expression -> NOT . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 44
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 37
+    subscription                   shift and go to state 25
 
 state 21
 
-    (8) expression -> VARNAME .
+    (2) statement -> expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 8 (expression -> VARNAME .)
-    AND             reduce using rule 8 (expression -> VARNAME .)
-    OR              reduce using rule 8 (expression -> VARNAME .)
-    EQEQ            reduce using rule 8 (expression -> VARNAME .)
-    NOTEQ           reduce using rule 8 (expression -> VARNAME .)
-    IF              reduce using rule 8 (expression -> VARNAME .)
-    IS              reduce using rule 8 (expression -> VARNAME .)
-    LSBRACK         reduce using rule 8 (expression -> VARNAME .)
-    $end            reduce using rule 8 (expression -> VARNAME .)
-    COMMA           reduce using rule 8 (expression -> VARNAME .)
-    RSBRACK         reduce using rule 8 (expression -> VARNAME .)
-    COLON           reduce using rule 8 (expression -> VARNAME .)
-    RPAREN          reduce using rule 8 (expression -> VARNAME .)
-    ELSE            reduce using rule 8 (expression -> VARNAME .)
-    RCBRACK         reduce using rule 8 (expression -> VARNAME .)
+    $end            reduce using rule 2 (statement -> expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
 
 state 22
 
-    (24) expression -> LSBRACK expr_list . RSBRACK
+    (12) statement -> VARNAME ASSIGN . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    RSBRACK         shift and go to state 45
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expression                     shift and go to state 46
+    subscription                   shift and go to state 25
 
 state 23
 
-    (26) expression -> subscription .
+    (13) expression -> VARNAME .
 
-    PLUS            reduce using rule 26 (expression -> subscription .)
-    AND             reduce using rule 26 (expression -> subscription .)
-    OR              reduce using rule 26 (expression -> subscription .)
-    EQEQ            reduce using rule 26 (expression -> subscription .)
-    NOTEQ           reduce using rule 26 (expression -> subscription .)
-    IF              reduce using rule 26 (expression -> subscription .)
-    IS              reduce using rule 26 (expression -> subscription .)
-    LSBRACK         reduce using rule 26 (expression -> subscription .)
-    $end            reduce using rule 26 (expression -> subscription .)
-    COMMA           reduce using rule 26 (expression -> subscription .)
-    RSBRACK         reduce using rule 26 (expression -> subscription .)
-    COLON           reduce using rule 26 (expression -> subscription .)
-    RPAREN          reduce using rule 26 (expression -> subscription .)
-    ELSE            reduce using rule 26 (expression -> subscription .)
-    RCBRACK         reduce using rule 26 (expression -> subscription .)
+    COLON           reduce using rule 13 (expression -> VARNAME .)
+    PLUS            reduce using rule 13 (expression -> VARNAME .)
+    AND             reduce using rule 13 (expression -> VARNAME .)
+    OR              reduce using rule 13 (expression -> VARNAME .)
+    EQEQ            reduce using rule 13 (expression -> VARNAME .)
+    NOTEQ           reduce using rule 13 (expression -> VARNAME .)
+    IF              reduce using rule 13 (expression -> VARNAME .)
+    IS              reduce using rule 13 (expression -> VARNAME .)
+    LSBRACK         reduce using rule 13 (expression -> VARNAME .)
+    $end            reduce using rule 13 (expression -> VARNAME .)
+    COMMA           reduce using rule 13 (expression -> VARNAME .)
+    RSBRACK         reduce using rule 13 (expression -> VARNAME .)
+    RPAREN          reduce using rule 13 (expression -> VARNAME .)
+    ELSE            reduce using rule 13 (expression -> VARNAME .)
+    RCBRACK         reduce using rule 13 (expression -> VARNAME .)
 
 
 state 24
 
-    (28) expr_list -> expression .
-    (29) expr_list -> expression . COMMA expr_list
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (29) expression -> LSBRACK expr_list . RSBRACK
 
-    RSBRACK         reduce using rule 28 (expr_list -> expression .)
-    COMMA           shift and go to state 46
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    RSBRACK         shift and go to state 47
 
 
 state 25
 
-    (5) typedef -> vartype VARNAME .
+    (31) expression -> subscription .
 
-    ASSIGN          reduce using rule 5 (typedef -> vartype VARNAME .)
+    COLON           reduce using rule 31 (expression -> subscription .)
+    PLUS            reduce using rule 31 (expression -> subscription .)
+    AND             reduce using rule 31 (expression -> subscription .)
+    OR              reduce using rule 31 (expression -> subscription .)
+    EQEQ            reduce using rule 31 (expression -> subscription .)
+    NOTEQ           reduce using rule 31 (expression -> subscription .)
+    IF              reduce using rule 31 (expression -> subscription .)
+    IS              reduce using rule 31 (expression -> subscription .)
+    LSBRACK         reduce using rule 31 (expression -> subscription .)
+    $end            reduce using rule 31 (expression -> subscription .)
+    COMMA           reduce using rule 31 (expression -> subscription .)
+    RSBRACK         reduce using rule 31 (expression -> subscription .)
+    RPAREN          reduce using rule 31 (expression -> subscription .)
+    ELSE            reduce using rule 31 (expression -> subscription .)
+    RCBRACK         reduce using rule 31 (expression -> subscription .)
 
 
 state 26
 
-    (10) expression -> UNARYSUB expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (33) expr_list -> expression .
+    (34) expr_list -> expression . COMMA expr_list
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 10 (expression -> UNARYSUB expression .)
-    AND             reduce using rule 10 (expression -> UNARYSUB expression .)
-    OR              reduce using rule 10 (expression -> UNARYSUB expression .)
-    EQEQ            reduce using rule 10 (expression -> UNARYSUB expression .)
-    NOTEQ           reduce using rule 10 (expression -> UNARYSUB expression .)
-    IF              reduce using rule 10 (expression -> UNARYSUB expression .)
-    IS              reduce using rule 10 (expression -> UNARYSUB expression .)
-    LSBRACK         reduce using rule 10 (expression -> UNARYSUB expression .)
-    $end            reduce using rule 10 (expression -> UNARYSUB expression .)
-    COMMA           reduce using rule 10 (expression -> UNARYSUB expression .)
-    RSBRACK         reduce using rule 10 (expression -> UNARYSUB expression .)
-    COLON           reduce using rule 10 (expression -> UNARYSUB expression .)
-    RPAREN          reduce using rule 10 (expression -> UNARYSUB expression .)
-    ELSE            reduce using rule 10 (expression -> UNARYSUB expression .)
-    RCBRACK         reduce using rule 10 (expression -> UNARYSUB expression .)
-
-  ! PLUS            [ shift and go to state 41 ]
-  ! AND             [ shift and go to state 36 ]
-  ! OR              [ shift and go to state 42 ]
-  ! EQEQ            [ shift and go to state 38 ]
-  ! NOTEQ           [ shift and go to state 40 ]
-  ! IF              [ shift and go to state 43 ]
-  ! IS              [ shift and go to state 39 ]
-  ! LSBRACK         [ shift and go to state 37 ]
+    RSBRACK         reduce using rule 33 (expr_list -> expression .)
+    COMMA           shift and go to state 48
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
 
 state 27
 
-    (1) statement -> PRINT expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (7) typedef -> vartype VARNAME .
+    (8) typedef -> vartype VARNAME . LSBRACK vartype RSBRACK
+    (9) typedef -> vartype VARNAME . LSBRACK vartype COMMA vartype RSBRACK
 
-    $end            reduce using rule 1 (statement -> PRINT expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    ASSIGN          reduce using rule 7 (typedef -> vartype VARNAME .)
+    $end            reduce using rule 7 (typedef -> vartype VARNAME .)
+    LSBRACK         shift and go to state 49
 
 
 state 28
 
-    (6) statement -> typedef ASSIGN . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (15) expression -> UNARYSUB expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    COLON           reduce using rule 15 (expression -> UNARYSUB expression .)
+    PLUS            reduce using rule 15 (expression -> UNARYSUB expression .)
+    AND             reduce using rule 15 (expression -> UNARYSUB expression .)
+    OR              reduce using rule 15 (expression -> UNARYSUB expression .)
+    EQEQ            reduce using rule 15 (expression -> UNARYSUB expression .)
+    NOTEQ           reduce using rule 15 (expression -> UNARYSUB expression .)
+    IF              reduce using rule 15 (expression -> UNARYSUB expression .)
+    IS              reduce using rule 15 (expression -> UNARYSUB expression .)
+    LSBRACK         reduce using rule 15 (expression -> UNARYSUB expression .)
+    $end            reduce using rule 15 (expression -> UNARYSUB expression .)
+    COMMA           reduce using rule 15 (expression -> UNARYSUB expression .)
+    RSBRACK         reduce using rule 15 (expression -> UNARYSUB expression .)
+    RPAREN          reduce using rule 15 (expression -> UNARYSUB expression .)
+    ELSE            reduce using rule 15 (expression -> UNARYSUB expression .)
+    RCBRACK         reduce using rule 15 (expression -> UNARYSUB expression .)
 
-    expression                     shift and go to state 47
-    subscription                   shift and go to state 23
+  ! PLUS            [ shift and go to state 43 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 44 ]
+  ! EQEQ            [ shift and go to state 40 ]
+  ! NOTEQ           [ shift and go to state 42 ]
+  ! IF              [ shift and go to state 45 ]
+  ! IS              [ shift and go to state 41 ]
+  ! LSBRACK         [ shift and go to state 39 ]
+
 
 state 29
 
-    (30) key_datum_list -> key_datum .
-    (31) key_datum_list -> key_datum . COMMA key_datum_list
+    (1) statement -> PRINT expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    RCBRACK         reduce using rule 30 (key_datum_list -> key_datum .)
-    COMMA           shift and go to state 48
+    $end            reduce using rule 1 (statement -> PRINT expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
 
 state 30
 
-    (25) expression -> LCBRACK key_datum_list . RCBRACK
+    (11) statement -> typedef ASSIGN . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    RCBRACK         shift and go to state 49
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expression                     shift and go to state 50
+    subscription                   shift and go to state 25
 
 state 31
 
-    (14) key_datum -> expression . COLON expression
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (35) key_datum_list -> key_datum .
+    (36) key_datum_list -> key_datum . COMMA key_datum_list
 
-    COLON           shift and go to state 50
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    RCBRACK         reduce using rule 35 (key_datum_list -> key_datum .)
+    COMMA           shift and go to state 51
 
 
 state 32
 
-    (12) expression -> LPAREN expression . RPAREN
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (30) expression -> LCBRACK key_datum_list . RCBRACK
 
-    RPAREN          shift and go to state 51
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    RCBRACK         shift and go to state 52
 
 
 state 33
 
-    (13) expression -> INPUT LPAREN . RPAREN
+    (19) key_datum -> expression . COLON expression
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    RPAREN          shift and go to state 52
+    COLON           shift and go to state 53
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
 
 state 34
 
-    (33) statement -> target ASSIGN . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (17) expression -> LPAREN expression . RPAREN
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    RPAREN          shift and go to state 54
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
-    expression                     shift and go to state 53
-    subscription                   shift and go to state 23
 
 state 35
 
-    (18) expression -> NOT expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (18) expression -> INPUT LPAREN . RPAREN
 
-    PLUS            reduce using rule 18 (expression -> NOT expression .)
-    AND             reduce using rule 18 (expression -> NOT expression .)
-    OR              reduce using rule 18 (expression -> NOT expression .)
-    EQEQ            reduce using rule 18 (expression -> NOT expression .)
-    NOTEQ           reduce using rule 18 (expression -> NOT expression .)
-    IF              reduce using rule 18 (expression -> NOT expression .)
-    IS              reduce using rule 18 (expression -> NOT expression .)
-    LSBRACK         reduce using rule 18 (expression -> NOT expression .)
-    $end            reduce using rule 18 (expression -> NOT expression .)
-    COMMA           reduce using rule 18 (expression -> NOT expression .)
-    RSBRACK         reduce using rule 18 (expression -> NOT expression .)
-    COLON           reduce using rule 18 (expression -> NOT expression .)
-    RPAREN          reduce using rule 18 (expression -> NOT expression .)
-    ELSE            reduce using rule 18 (expression -> NOT expression .)
-    RCBRACK         reduce using rule 18 (expression -> NOT expression .)
-
-  ! PLUS            [ shift and go to state 41 ]
-  ! AND             [ shift and go to state 36 ]
-  ! OR              [ shift and go to state 42 ]
-  ! EQEQ            [ shift and go to state 38 ]
-  ! NOTEQ           [ shift and go to state 40 ]
-  ! IF              [ shift and go to state 43 ]
-  ! IS              [ shift and go to state 39 ]
-  ! LSBRACK         [ shift and go to state 37 ]
+    RPAREN          shift and go to state 55
 
 
 state 36
 
-    (19) expression -> expression AND . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (38) statement -> target ASSIGN . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 54
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 56
+    subscription                   shift and go to state 25
 
 state 37
 
-    (15) subscription -> expression LSBRACK . expression RSBRACK
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (23) expression -> NOT expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    COLON           reduce using rule 23 (expression -> NOT expression .)
+    PLUS            reduce using rule 23 (expression -> NOT expression .)
+    AND             reduce using rule 23 (expression -> NOT expression .)
+    OR              reduce using rule 23 (expression -> NOT expression .)
+    EQEQ            reduce using rule 23 (expression -> NOT expression .)
+    NOTEQ           reduce using rule 23 (expression -> NOT expression .)
+    IF              reduce using rule 23 (expression -> NOT expression .)
+    IS              reduce using rule 23 (expression -> NOT expression .)
+    LSBRACK         reduce using rule 23 (expression -> NOT expression .)
+    $end            reduce using rule 23 (expression -> NOT expression .)
+    COMMA           reduce using rule 23 (expression -> NOT expression .)
+    RSBRACK         reduce using rule 23 (expression -> NOT expression .)
+    RPAREN          reduce using rule 23 (expression -> NOT expression .)
+    ELSE            reduce using rule 23 (expression -> NOT expression .)
+    RCBRACK         reduce using rule 23 (expression -> NOT expression .)
 
-    expression                     shift and go to state 55
-    subscription                   shift and go to state 23
+  ! PLUS            [ shift and go to state 43 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 44 ]
+  ! EQEQ            [ shift and go to state 40 ]
+  ! NOTEQ           [ shift and go to state 42 ]
+  ! IF              [ shift and go to state 45 ]
+  ! IS              [ shift and go to state 41 ]
+  ! LSBRACK         [ shift and go to state 39 ]
+
 
 state 38
 
-    (21) expression -> expression EQEQ . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (24) expression -> expression AND . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 56
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 57
+    subscription                   shift and go to state 25
 
 state 39
 
-    (27) expression -> expression IS . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (20) subscription -> expression LSBRACK . expression RSBRACK
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 57
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 58
+    subscription                   shift and go to state 25
 
 state 40
 
-    (22) expression -> expression NOTEQ . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (26) expression -> expression EQEQ . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 58
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 59
+    subscription                   shift and go to state 25
 
 state 41
 
-    (11) expression -> expression PLUS . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (32) expression -> expression IS . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 59
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 60
+    subscription                   shift and go to state 25
 
 state 42
 
-    (20) expression -> expression OR . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (27) expression -> expression NOTEQ . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 60
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 61
+    subscription                   shift and go to state 25
 
 state 43
 
-    (23) expression -> expression IF . expression ELSE expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (16) expression -> expression PLUS . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    expression                     shift and go to state 61
-    subscription                   shift and go to state 23
+    expression                     shift and go to state 62
+    subscription                   shift and go to state 25
 
 state 44
 
-    (7) statement -> VARNAME ASSIGN expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (25) expression -> expression OR . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    $end            reduce using rule 7 (statement -> VARNAME ASSIGN expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expression                     shift and go to state 63
+    subscription                   shift and go to state 25
 
 state 45
 
-    (24) expression -> LSBRACK expr_list RSBRACK .
+    (28) expression -> expression IF . expression ELSE expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    AND             reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    OR              reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    EQEQ            reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    NOTEQ           reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    IF              reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    IS              reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    LSBRACK         reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    $end            reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    COMMA           reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    RSBRACK         reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    COLON           reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    RPAREN          reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    ELSE            reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
-    RCBRACK         reduce using rule 24 (expression -> LSBRACK expr_list RSBRACK .)
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expression                     shift and go to state 64
+    subscription                   shift and go to state 25
 
 state 46
 
-    (29) expr_list -> expression COMMA . expr_list
-    (28) expr_list -> . expression
-    (29) expr_list -> . expression COMMA expr_list
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (12) statement -> VARNAME ASSIGN expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    $end            reduce using rule 12 (statement -> VARNAME ASSIGN expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
-    expr_list                      shift and go to state 62
-    expression                     shift and go to state 24
-    subscription                   shift and go to state 23
 
 state 47
 
-    (6) statement -> typedef ASSIGN expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (29) expression -> LSBRACK expr_list RSBRACK .
 
-    $end            reduce using rule 6 (statement -> typedef ASSIGN expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    COLON           reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    PLUS            reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    AND             reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    OR              reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    EQEQ            reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    NOTEQ           reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    IF              reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    IS              reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    LSBRACK         reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    $end            reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    COMMA           reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    RSBRACK         reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    RPAREN          reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    ELSE            reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
+    RCBRACK         reduce using rule 29 (expression -> LSBRACK expr_list RSBRACK .)
 
 
 state 48
 
-    (31) key_datum_list -> key_datum COMMA . key_datum_list
-    (30) key_datum_list -> . key_datum
-    (31) key_datum_list -> . key_datum COMMA key_datum_list
-    (14) key_datum -> . expression COLON expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (34) expr_list -> expression COMMA . expr_list
+    (33) expr_list -> . expression
+    (34) expr_list -> . expression COMMA expr_list
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
-    key_datum                      shift and go to state 29
-    key_datum_list                 shift and go to state 63
-    expression                     shift and go to state 31
-    subscription                   shift and go to state 23
+    expr_list                      shift and go to state 65
+    expression                     shift and go to state 26
+    subscription                   shift and go to state 25
 
 state 49
 
-    (25) expression -> LCBRACK key_datum_list RCBRACK .
+    (8) typedef -> vartype VARNAME LSBRACK . vartype RSBRACK
+    (9) typedef -> vartype VARNAME LSBRACK . vartype COMMA vartype RSBRACK
+    (3) vartype -> . INTTYPE
+    (4) vartype -> . BOOLTYPE
+    (5) vartype -> . LISTTYPE
+    (6) vartype -> . DICTTYPE
 
-    PLUS            reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    AND             reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    OR              reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    EQEQ            reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    NOTEQ           reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    IF              reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    IS              reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    LSBRACK         reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    $end            reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    COMMA           reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    RSBRACK         reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    COLON           reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    RPAREN          reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    ELSE            reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
-    RCBRACK         reduce using rule 25 (expression -> LCBRACK key_datum_list RCBRACK .)
+    INTTYPE         shift and go to state 17
+    BOOLTYPE        shift and go to state 12
+    LISTTYPE        shift and go to state 15
+    DICTTYPE        shift and go to state 1
 
+    vartype                        shift and go to state 66
 
 state 50
 
-    (14) key_datum -> expression COLON . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
+    (11) statement -> typedef ASSIGN expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
+    $end            reduce using rule 11 (statement -> typedef ASSIGN expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
-    expression                     shift and go to state 64
-    subscription                   shift and go to state 23
 
 state 51
 
-    (12) expression -> LPAREN expression RPAREN .
+    (36) key_datum_list -> key_datum COMMA . key_datum_list
+    (35) key_datum_list -> . key_datum
+    (36) key_datum_list -> . key_datum COMMA key_datum_list
+    (19) key_datum -> . expression COLON expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    AND             reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    OR              reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    EQEQ            reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    NOTEQ           reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    IF              reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    IS              reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    LSBRACK         reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    $end            reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    COMMA           reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    RSBRACK         reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    COLON           reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    ELSE            reduce using rule 12 (expression -> LPAREN expression RPAREN .)
-    RCBRACK         reduce using rule 12 (expression -> LPAREN expression RPAREN .)
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    key_datum                      shift and go to state 31
+    key_datum_list                 shift and go to state 67
+    expression                     shift and go to state 33
+    subscription                   shift and go to state 25
 
 state 52
 
-    (13) expression -> INPUT LPAREN RPAREN .
+    (30) expression -> LCBRACK key_datum_list RCBRACK .
 
-    PLUS            reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    AND             reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    OR              reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    EQEQ            reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    NOTEQ           reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    IF              reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    IS              reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    LSBRACK         reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    $end            reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    COMMA           reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    RSBRACK         reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    COLON           reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    RPAREN          reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    ELSE            reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
-    RCBRACK         reduce using rule 13 (expression -> INPUT LPAREN RPAREN .)
+    COLON           reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    PLUS            reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    AND             reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    OR              reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    EQEQ            reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    NOTEQ           reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    IF              reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    IS              reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    LSBRACK         reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    $end            reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    COMMA           reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    RSBRACK         reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    RPAREN          reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    ELSE            reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
+    RCBRACK         reduce using rule 30 (expression -> LCBRACK key_datum_list RCBRACK .)
 
 
 state 53
 
-    (33) statement -> target ASSIGN expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (19) key_datum -> expression COLON . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
 
-    $end            reduce using rule 33 (statement -> target ASSIGN expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
 
+    expression                     shift and go to state 68
+    subscription                   shift and go to state 25
 
 state 54
 
-    (19) expression -> expression AND expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (17) expression -> LPAREN expression RPAREN .
 
-    PLUS            reduce using rule 19 (expression -> expression AND expression .)
-    AND             reduce using rule 19 (expression -> expression AND expression .)
-    OR              reduce using rule 19 (expression -> expression AND expression .)
-    EQEQ            reduce using rule 19 (expression -> expression AND expression .)
-    NOTEQ           reduce using rule 19 (expression -> expression AND expression .)
-    IF              reduce using rule 19 (expression -> expression AND expression .)
-    IS              reduce using rule 19 (expression -> expression AND expression .)
-    LSBRACK         reduce using rule 19 (expression -> expression AND expression .)
-    $end            reduce using rule 19 (expression -> expression AND expression .)
-    COMMA           reduce using rule 19 (expression -> expression AND expression .)
-    RSBRACK         reduce using rule 19 (expression -> expression AND expression .)
-    COLON           reduce using rule 19 (expression -> expression AND expression .)
-    RPAREN          reduce using rule 19 (expression -> expression AND expression .)
-    ELSE            reduce using rule 19 (expression -> expression AND expression .)
-    RCBRACK         reduce using rule 19 (expression -> expression AND expression .)
-
-  ! PLUS            [ shift and go to state 41 ]
-  ! AND             [ shift and go to state 36 ]
-  ! OR              [ shift and go to state 42 ]
-  ! EQEQ            [ shift and go to state 38 ]
-  ! NOTEQ           [ shift and go to state 40 ]
-  ! IF              [ shift and go to state 43 ]
-  ! IS              [ shift and go to state 39 ]
-  ! LSBRACK         [ shift and go to state 37 ]
+    COLON           reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    AND             reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    OR              reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    EQEQ            reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    NOTEQ           reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    IF              reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    IS              reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    LSBRACK         reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    RSBRACK         reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    ELSE            reduce using rule 17 (expression -> LPAREN expression RPAREN .)
+    RCBRACK         reduce using rule 17 (expression -> LPAREN expression RPAREN .)
 
 
 state 55
 
-    (15) subscription -> expression LSBRACK expression . RSBRACK
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (18) expression -> INPUT LPAREN RPAREN .
 
-    RSBRACK         shift and go to state 65
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    COLON           reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    PLUS            reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    AND             reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    OR              reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    EQEQ            reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    NOTEQ           reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    IF              reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    IS              reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    LSBRACK         reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    $end            reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    COMMA           reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    RSBRACK         reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    RPAREN          reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    ELSE            reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
+    RCBRACK         reduce using rule 18 (expression -> INPUT LPAREN RPAREN .)
 
 
 state 56
 
-    (21) expression -> expression EQEQ expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (38) statement -> target ASSIGN expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 21 (expression -> expression EQEQ expression .)
-    AND             reduce using rule 21 (expression -> expression EQEQ expression .)
-    OR              reduce using rule 21 (expression -> expression EQEQ expression .)
-    EQEQ            reduce using rule 21 (expression -> expression EQEQ expression .)
-    NOTEQ           reduce using rule 21 (expression -> expression EQEQ expression .)
-    IF              reduce using rule 21 (expression -> expression EQEQ expression .)
-    IS              reduce using rule 21 (expression -> expression EQEQ expression .)
-    LSBRACK         reduce using rule 21 (expression -> expression EQEQ expression .)
-    $end            reduce using rule 21 (expression -> expression EQEQ expression .)
-    COMMA           reduce using rule 21 (expression -> expression EQEQ expression .)
-    RSBRACK         reduce using rule 21 (expression -> expression EQEQ expression .)
-    COLON           reduce using rule 21 (expression -> expression EQEQ expression .)
-    RPAREN          reduce using rule 21 (expression -> expression EQEQ expression .)
-    ELSE            reduce using rule 21 (expression -> expression EQEQ expression .)
-    RCBRACK         reduce using rule 21 (expression -> expression EQEQ expression .)
-
-  ! PLUS            [ shift and go to state 41 ]
-  ! AND             [ shift and go to state 36 ]
-  ! OR              [ shift and go to state 42 ]
-  ! EQEQ            [ shift and go to state 38 ]
-  ! NOTEQ           [ shift and go to state 40 ]
-  ! IF              [ shift and go to state 43 ]
-  ! IS              [ shift and go to state 39 ]
-  ! LSBRACK         [ shift and go to state 37 ]
+    $end            reduce using rule 38 (statement -> target ASSIGN expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
 
 state 57
 
-    (27) expression -> expression IS expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (24) expression -> expression AND expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for AND resolved as shift
-  ! shift/reduce conflict for OR resolved as shift
-  ! shift/reduce conflict for EQEQ resolved as shift
-  ! shift/reduce conflict for NOTEQ resolved as shift
-  ! shift/reduce conflict for IF resolved as shift
-  ! shift/reduce conflict for IS resolved as shift
-  ! shift/reduce conflict for LSBRACK resolved as shift
-    $end            reduce using rule 27 (expression -> expression IS expression .)
-    COMMA           reduce using rule 27 (expression -> expression IS expression .)
-    RSBRACK         reduce using rule 27 (expression -> expression IS expression .)
-    COLON           reduce using rule 27 (expression -> expression IS expression .)
-    RPAREN          reduce using rule 27 (expression -> expression IS expression .)
-    ELSE            reduce using rule 27 (expression -> expression IS expression .)
-    RCBRACK         reduce using rule 27 (expression -> expression IS expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    COLON           reduce using rule 24 (expression -> expression AND expression .)
+    PLUS            reduce using rule 24 (expression -> expression AND expression .)
+    AND             reduce using rule 24 (expression -> expression AND expression .)
+    OR              reduce using rule 24 (expression -> expression AND expression .)
+    EQEQ            reduce using rule 24 (expression -> expression AND expression .)
+    NOTEQ           reduce using rule 24 (expression -> expression AND expression .)
+    IF              reduce using rule 24 (expression -> expression AND expression .)
+    IS              reduce using rule 24 (expression -> expression AND expression .)
+    LSBRACK         reduce using rule 24 (expression -> expression AND expression .)
+    $end            reduce using rule 24 (expression -> expression AND expression .)
+    COMMA           reduce using rule 24 (expression -> expression AND expression .)
+    RSBRACK         reduce using rule 24 (expression -> expression AND expression .)
+    RPAREN          reduce using rule 24 (expression -> expression AND expression .)
+    ELSE            reduce using rule 24 (expression -> expression AND expression .)
+    RCBRACK         reduce using rule 24 (expression -> expression AND expression .)
 
-  ! PLUS            [ reduce using rule 27 (expression -> expression IS expression .) ]
-  ! AND             [ reduce using rule 27 (expression -> expression IS expression .) ]
-  ! OR              [ reduce using rule 27 (expression -> expression IS expression .) ]
-  ! EQEQ            [ reduce using rule 27 (expression -> expression IS expression .) ]
-  ! NOTEQ           [ reduce using rule 27 (expression -> expression IS expression .) ]
-  ! IF              [ reduce using rule 27 (expression -> expression IS expression .) ]
-  ! IS              [ reduce using rule 27 (expression -> expression IS expression .) ]
-  ! LSBRACK         [ reduce using rule 27 (expression -> expression IS expression .) ]
+  ! PLUS            [ shift and go to state 43 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 44 ]
+  ! EQEQ            [ shift and go to state 40 ]
+  ! NOTEQ           [ shift and go to state 42 ]
+  ! IF              [ shift and go to state 45 ]
+  ! IS              [ shift and go to state 41 ]
+  ! LSBRACK         [ shift and go to state 39 ]
 
 
 state 58
 
-    (22) expression -> expression NOTEQ expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (20) subscription -> expression LSBRACK expression . RSBRACK
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 22 (expression -> expression NOTEQ expression .)
-    AND             reduce using rule 22 (expression -> expression NOTEQ expression .)
-    OR              reduce using rule 22 (expression -> expression NOTEQ expression .)
-    EQEQ            reduce using rule 22 (expression -> expression NOTEQ expression .)
-    NOTEQ           reduce using rule 22 (expression -> expression NOTEQ expression .)
-    IF              reduce using rule 22 (expression -> expression NOTEQ expression .)
-    IS              reduce using rule 22 (expression -> expression NOTEQ expression .)
-    LSBRACK         reduce using rule 22 (expression -> expression NOTEQ expression .)
-    $end            reduce using rule 22 (expression -> expression NOTEQ expression .)
-    COMMA           reduce using rule 22 (expression -> expression NOTEQ expression .)
-    RSBRACK         reduce using rule 22 (expression -> expression NOTEQ expression .)
-    COLON           reduce using rule 22 (expression -> expression NOTEQ expression .)
-    RPAREN          reduce using rule 22 (expression -> expression NOTEQ expression .)
-    ELSE            reduce using rule 22 (expression -> expression NOTEQ expression .)
-    RCBRACK         reduce using rule 22 (expression -> expression NOTEQ expression .)
-
-  ! PLUS            [ shift and go to state 41 ]
-  ! AND             [ shift and go to state 36 ]
-  ! OR              [ shift and go to state 42 ]
-  ! EQEQ            [ shift and go to state 38 ]
-  ! NOTEQ           [ shift and go to state 40 ]
-  ! IF              [ shift and go to state 43 ]
-  ! IS              [ shift and go to state 39 ]
-  ! LSBRACK         [ shift and go to state 37 ]
+    RSBRACK         shift and go to state 69
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
 
 state 59
 
-    (11) expression -> expression PLUS expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (26) expression -> expression EQEQ expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    PLUS            reduce using rule 11 (expression -> expression PLUS expression .)
-    AND             reduce using rule 11 (expression -> expression PLUS expression .)
-    OR              reduce using rule 11 (expression -> expression PLUS expression .)
-    EQEQ            reduce using rule 11 (expression -> expression PLUS expression .)
-    NOTEQ           reduce using rule 11 (expression -> expression PLUS expression .)
-    IF              reduce using rule 11 (expression -> expression PLUS expression .)
-    IS              reduce using rule 11 (expression -> expression PLUS expression .)
-    LSBRACK         reduce using rule 11 (expression -> expression PLUS expression .)
-    $end            reduce using rule 11 (expression -> expression PLUS expression .)
-    COMMA           reduce using rule 11 (expression -> expression PLUS expression .)
-    RSBRACK         reduce using rule 11 (expression -> expression PLUS expression .)
-    COLON           reduce using rule 11 (expression -> expression PLUS expression .)
-    RPAREN          reduce using rule 11 (expression -> expression PLUS expression .)
-    ELSE            reduce using rule 11 (expression -> expression PLUS expression .)
-    RCBRACK         reduce using rule 11 (expression -> expression PLUS expression .)
+    COLON           reduce using rule 26 (expression -> expression EQEQ expression .)
+    PLUS            reduce using rule 26 (expression -> expression EQEQ expression .)
+    AND             reduce using rule 26 (expression -> expression EQEQ expression .)
+    OR              reduce using rule 26 (expression -> expression EQEQ expression .)
+    EQEQ            reduce using rule 26 (expression -> expression EQEQ expression .)
+    NOTEQ           reduce using rule 26 (expression -> expression EQEQ expression .)
+    IF              reduce using rule 26 (expression -> expression EQEQ expression .)
+    IS              reduce using rule 26 (expression -> expression EQEQ expression .)
+    LSBRACK         reduce using rule 26 (expression -> expression EQEQ expression .)
+    $end            reduce using rule 26 (expression -> expression EQEQ expression .)
+    COMMA           reduce using rule 26 (expression -> expression EQEQ expression .)
+    RSBRACK         reduce using rule 26 (expression -> expression EQEQ expression .)
+    RPAREN          reduce using rule 26 (expression -> expression EQEQ expression .)
+    ELSE            reduce using rule 26 (expression -> expression EQEQ expression .)
+    RCBRACK         reduce using rule 26 (expression -> expression EQEQ expression .)
 
-  ! PLUS            [ shift and go to state 41 ]
-  ! AND             [ shift and go to state 36 ]
-  ! OR              [ shift and go to state 42 ]
-  ! EQEQ            [ shift and go to state 38 ]
-  ! NOTEQ           [ shift and go to state 40 ]
-  ! IF              [ shift and go to state 43 ]
-  ! IS              [ shift and go to state 39 ]
-  ! LSBRACK         [ shift and go to state 37 ]
+  ! PLUS            [ shift and go to state 43 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 44 ]
+  ! EQEQ            [ shift and go to state 40 ]
+  ! NOTEQ           [ shift and go to state 42 ]
+  ! IF              [ shift and go to state 45 ]
+  ! IS              [ shift and go to state 41 ]
+  ! LSBRACK         [ shift and go to state 39 ]
 
 
 state 60
 
-    (20) expression -> expression OR expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
-
-    PLUS            reduce using rule 20 (expression -> expression OR expression .)
-    AND             reduce using rule 20 (expression -> expression OR expression .)
-    OR              reduce using rule 20 (expression -> expression OR expression .)
-    EQEQ            reduce using rule 20 (expression -> expression OR expression .)
-    NOTEQ           reduce using rule 20 (expression -> expression OR expression .)
-    IF              reduce using rule 20 (expression -> expression OR expression .)
-    IS              reduce using rule 20 (expression -> expression OR expression .)
-    LSBRACK         reduce using rule 20 (expression -> expression OR expression .)
-    $end            reduce using rule 20 (expression -> expression OR expression .)
-    COMMA           reduce using rule 20 (expression -> expression OR expression .)
-    RSBRACK         reduce using rule 20 (expression -> expression OR expression .)
-    COLON           reduce using rule 20 (expression -> expression OR expression .)
-    RPAREN          reduce using rule 20 (expression -> expression OR expression .)
-    ELSE            reduce using rule 20 (expression -> expression OR expression .)
-    RCBRACK         reduce using rule 20 (expression -> expression OR expression .)
-
-  ! PLUS            [ shift and go to state 41 ]
-  ! AND             [ shift and go to state 36 ]
-  ! OR              [ shift and go to state 42 ]
-  ! EQEQ            [ shift and go to state 38 ]
-  ! NOTEQ           [ shift and go to state 40 ]
-  ! IF              [ shift and go to state 43 ]
-  ! IS              [ shift and go to state 39 ]
-  ! LSBRACK         [ shift and go to state 37 ]
-
-
-state 61
-
-    (23) expression -> expression IF expression . ELSE expression
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
-
-    ELSE            shift and go to state 66
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
-
-
-state 62
-
-    (29) expr_list -> expression COMMA expr_list .
-
-    RSBRACK         reduce using rule 29 (expr_list -> expression COMMA expr_list .)
-
-
-state 63
-
-    (31) key_datum_list -> key_datum COMMA key_datum_list .
-
-    RCBRACK         reduce using rule 31 (key_datum_list -> key_datum COMMA key_datum_list .)
-
-
-state 64
-
-    (14) key_datum -> expression COLON expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
-
-    COMMA           reduce using rule 14 (key_datum -> expression COLON expression .)
-    RCBRACK         reduce using rule 14 (key_datum -> expression COLON expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
-
-
-state 65
-
-    (15) subscription -> expression LSBRACK expression RSBRACK .
-
-    PLUS            reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    AND             reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    OR              reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    EQEQ            reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    NOTEQ           reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    IF              reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    IS              reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    LSBRACK         reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    $end            reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    COMMA           reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    RSBRACK         reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    RCBRACK         reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    COLON           reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    RPAREN          reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    ELSE            reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-    ASSIGN          reduce using rule 15 (subscription -> expression LSBRACK expression RSBRACK .)
-
-
-state 66
-
-    (23) expression -> expression IF expression ELSE . expression
-    (8) expression -> . VARNAME
-    (9) expression -> . CONST
-    (10) expression -> . UNARYSUB expression
-    (11) expression -> . expression PLUS expression
-    (12) expression -> . LPAREN expression RPAREN
-    (13) expression -> . INPUT LPAREN RPAREN
-    (16) expression -> . TRUE
-    (17) expression -> . FALSE
-    (18) expression -> . NOT expression
-    (19) expression -> . expression AND expression
-    (20) expression -> . expression OR expression
-    (21) expression -> . expression EQEQ expression
-    (22) expression -> . expression NOTEQ expression
-    (23) expression -> . expression IF expression ELSE expression
-    (24) expression -> . LSBRACK expr_list RSBRACK
-    (25) expression -> . LCBRACK key_datum_list RCBRACK
-    (26) expression -> . subscription
-    (27) expression -> . expression IS expression
-    (15) subscription -> . expression LSBRACK expression RSBRACK
-
-    VARNAME         shift and go to state 21
-    CONST           shift and go to state 1
-    UNARYSUB        shift and go to state 5
-    LPAREN          shift and go to state 13
-    INPUT           shift and go to state 14
-    TRUE            shift and go to state 7
-    FALSE           shift and go to state 16
-    NOT             shift and go to state 18
-    LSBRACK         shift and go to state 3
-    LCBRACK         shift and go to state 12
-
-    expression                     shift and go to state 67
-    subscription                   shift and go to state 23
-
-state 67
-
-    (23) expression -> expression IF expression ELSE expression .
-    (11) expression -> expression . PLUS expression
-    (19) expression -> expression . AND expression
-    (20) expression -> expression . OR expression
-    (21) expression -> expression . EQEQ expression
-    (22) expression -> expression . NOTEQ expression
-    (23) expression -> expression . IF expression ELSE expression
-    (27) expression -> expression . IS expression
-    (15) subscription -> expression . LSBRACK expression RSBRACK
+    (32) expression -> expression IS expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
 
   ! shift/reduce conflict for PLUS resolved as shift
   ! shift/reduce conflict for AND resolved as shift
@@ -1860,47 +1640,374 @@ state 67
   ! shift/reduce conflict for IF resolved as shift
   ! shift/reduce conflict for IS resolved as shift
   ! shift/reduce conflict for LSBRACK resolved as shift
-    $end            reduce using rule 23 (expression -> expression IF expression ELSE expression .)
-    COMMA           reduce using rule 23 (expression -> expression IF expression ELSE expression .)
-    RSBRACK         reduce using rule 23 (expression -> expression IF expression ELSE expression .)
-    COLON           reduce using rule 23 (expression -> expression IF expression ELSE expression .)
-    RPAREN          reduce using rule 23 (expression -> expression IF expression ELSE expression .)
-    ELSE            reduce using rule 23 (expression -> expression IF expression ELSE expression .)
-    RCBRACK         reduce using rule 23 (expression -> expression IF expression ELSE expression .)
-    PLUS            shift and go to state 41
-    AND             shift and go to state 36
-    OR              shift and go to state 42
-    EQEQ            shift and go to state 38
-    NOTEQ           shift and go to state 40
-    IF              shift and go to state 43
-    IS              shift and go to state 39
-    LSBRACK         shift and go to state 37
+    COLON           reduce using rule 32 (expression -> expression IS expression .)
+    $end            reduce using rule 32 (expression -> expression IS expression .)
+    COMMA           reduce using rule 32 (expression -> expression IS expression .)
+    RSBRACK         reduce using rule 32 (expression -> expression IS expression .)
+    RPAREN          reduce using rule 32 (expression -> expression IS expression .)
+    ELSE            reduce using rule 32 (expression -> expression IS expression .)
+    RCBRACK         reduce using rule 32 (expression -> expression IS expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
 
-  ! PLUS            [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
-  ! AND             [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
-  ! OR              [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
-  ! EQEQ            [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
-  ! NOTEQ           [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
-  ! IF              [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
-  ! IS              [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
-  ! LSBRACK         [ reduce using rule 23 (expression -> expression IF expression ELSE expression .) ]
+  ! PLUS            [ reduce using rule 32 (expression -> expression IS expression .) ]
+  ! AND             [ reduce using rule 32 (expression -> expression IS expression .) ]
+  ! OR              [ reduce using rule 32 (expression -> expression IS expression .) ]
+  ! EQEQ            [ reduce using rule 32 (expression -> expression IS expression .) ]
+  ! NOTEQ           [ reduce using rule 32 (expression -> expression IS expression .) ]
+  ! IF              [ reduce using rule 32 (expression -> expression IS expression .) ]
+  ! IS              [ reduce using rule 32 (expression -> expression IS expression .) ]
+  ! LSBRACK         [ reduce using rule 32 (expression -> expression IS expression .) ]
+
+
+state 61
+
+    (27) expression -> expression NOTEQ expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
+
+    COLON           reduce using rule 27 (expression -> expression NOTEQ expression .)
+    PLUS            reduce using rule 27 (expression -> expression NOTEQ expression .)
+    AND             reduce using rule 27 (expression -> expression NOTEQ expression .)
+    OR              reduce using rule 27 (expression -> expression NOTEQ expression .)
+    EQEQ            reduce using rule 27 (expression -> expression NOTEQ expression .)
+    NOTEQ           reduce using rule 27 (expression -> expression NOTEQ expression .)
+    IF              reduce using rule 27 (expression -> expression NOTEQ expression .)
+    IS              reduce using rule 27 (expression -> expression NOTEQ expression .)
+    LSBRACK         reduce using rule 27 (expression -> expression NOTEQ expression .)
+    $end            reduce using rule 27 (expression -> expression NOTEQ expression .)
+    COMMA           reduce using rule 27 (expression -> expression NOTEQ expression .)
+    RSBRACK         reduce using rule 27 (expression -> expression NOTEQ expression .)
+    RPAREN          reduce using rule 27 (expression -> expression NOTEQ expression .)
+    ELSE            reduce using rule 27 (expression -> expression NOTEQ expression .)
+    RCBRACK         reduce using rule 27 (expression -> expression NOTEQ expression .)
+
+  ! PLUS            [ shift and go to state 43 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 44 ]
+  ! EQEQ            [ shift and go to state 40 ]
+  ! NOTEQ           [ shift and go to state 42 ]
+  ! IF              [ shift and go to state 45 ]
+  ! IS              [ shift and go to state 41 ]
+  ! LSBRACK         [ shift and go to state 39 ]
+
+
+state 62
+
+    (16) expression -> expression PLUS expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
+
+    COLON           reduce using rule 16 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 16 (expression -> expression PLUS expression .)
+    AND             reduce using rule 16 (expression -> expression PLUS expression .)
+    OR              reduce using rule 16 (expression -> expression PLUS expression .)
+    EQEQ            reduce using rule 16 (expression -> expression PLUS expression .)
+    NOTEQ           reduce using rule 16 (expression -> expression PLUS expression .)
+    IF              reduce using rule 16 (expression -> expression PLUS expression .)
+    IS              reduce using rule 16 (expression -> expression PLUS expression .)
+    LSBRACK         reduce using rule 16 (expression -> expression PLUS expression .)
+    $end            reduce using rule 16 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 16 (expression -> expression PLUS expression .)
+    RSBRACK         reduce using rule 16 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 16 (expression -> expression PLUS expression .)
+    ELSE            reduce using rule 16 (expression -> expression PLUS expression .)
+    RCBRACK         reduce using rule 16 (expression -> expression PLUS expression .)
+
+  ! PLUS            [ shift and go to state 43 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 44 ]
+  ! EQEQ            [ shift and go to state 40 ]
+  ! NOTEQ           [ shift and go to state 42 ]
+  ! IF              [ shift and go to state 45 ]
+  ! IS              [ shift and go to state 41 ]
+  ! LSBRACK         [ shift and go to state 39 ]
+
+
+state 63
+
+    (25) expression -> expression OR expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
+
+    COLON           reduce using rule 25 (expression -> expression OR expression .)
+    PLUS            reduce using rule 25 (expression -> expression OR expression .)
+    AND             reduce using rule 25 (expression -> expression OR expression .)
+    OR              reduce using rule 25 (expression -> expression OR expression .)
+    EQEQ            reduce using rule 25 (expression -> expression OR expression .)
+    NOTEQ           reduce using rule 25 (expression -> expression OR expression .)
+    IF              reduce using rule 25 (expression -> expression OR expression .)
+    IS              reduce using rule 25 (expression -> expression OR expression .)
+    LSBRACK         reduce using rule 25 (expression -> expression OR expression .)
+    $end            reduce using rule 25 (expression -> expression OR expression .)
+    COMMA           reduce using rule 25 (expression -> expression OR expression .)
+    RSBRACK         reduce using rule 25 (expression -> expression OR expression .)
+    RPAREN          reduce using rule 25 (expression -> expression OR expression .)
+    ELSE            reduce using rule 25 (expression -> expression OR expression .)
+    RCBRACK         reduce using rule 25 (expression -> expression OR expression .)
+
+  ! PLUS            [ shift and go to state 43 ]
+  ! AND             [ shift and go to state 38 ]
+  ! OR              [ shift and go to state 44 ]
+  ! EQEQ            [ shift and go to state 40 ]
+  ! NOTEQ           [ shift and go to state 42 ]
+  ! IF              [ shift and go to state 45 ]
+  ! IS              [ shift and go to state 41 ]
+  ! LSBRACK         [ shift and go to state 39 ]
+
+
+state 64
+
+    (28) expression -> expression IF expression . ELSE expression
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
+
+    ELSE            shift and go to state 70
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
+
+
+state 65
+
+    (34) expr_list -> expression COMMA expr_list .
+
+    RSBRACK         reduce using rule 34 (expr_list -> expression COMMA expr_list .)
+
+
+state 66
+
+    (8) typedef -> vartype VARNAME LSBRACK vartype . RSBRACK
+    (9) typedef -> vartype VARNAME LSBRACK vartype . COMMA vartype RSBRACK
+
+    RSBRACK         shift and go to state 71
+    COMMA           shift and go to state 72
+
+
+state 67
+
+    (36) key_datum_list -> key_datum COMMA key_datum_list .
+
+    RCBRACK         reduce using rule 36 (key_datum_list -> key_datum COMMA key_datum_list .)
+
+
+state 68
+
+    (19) key_datum -> expression COLON expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
+
+    COMMA           reduce using rule 19 (key_datum -> expression COLON expression .)
+    RCBRACK         reduce using rule 19 (key_datum -> expression COLON expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
+
+
+state 69
+
+    (20) subscription -> expression LSBRACK expression RSBRACK .
+
+    PLUS            reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    AND             reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    OR              reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    EQEQ            reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    NOTEQ           reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    IF              reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    IS              reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    LSBRACK         reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    $end            reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    COMMA           reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    RSBRACK         reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    COLON           reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    RPAREN          reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    ELSE            reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    RCBRACK         reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+    ASSIGN          reduce using rule 20 (subscription -> expression LSBRACK expression RSBRACK .)
+
+
+state 70
+
+    (28) expression -> expression IF expression ELSE . expression
+    (13) expression -> . VARNAME
+    (14) expression -> . CONST
+    (15) expression -> . UNARYSUB expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . LPAREN expression RPAREN
+    (18) expression -> . INPUT LPAREN RPAREN
+    (21) expression -> . TRUE
+    (22) expression -> . FALSE
+    (23) expression -> . NOT expression
+    (24) expression -> . expression AND expression
+    (25) expression -> . expression OR expression
+    (26) expression -> . expression EQEQ expression
+    (27) expression -> . expression NOTEQ expression
+    (28) expression -> . expression IF expression ELSE expression
+    (29) expression -> . LSBRACK expr_list RSBRACK
+    (30) expression -> . LCBRACK key_datum_list RCBRACK
+    (31) expression -> . subscription
+    (32) expression -> . expression IS expression
+    (20) subscription -> . expression LSBRACK expression RSBRACK
+
+    VARNAME         shift and go to state 23
+    CONST           shift and go to state 2
+    UNARYSUB        shift and go to state 6
+    LPAREN          shift and go to state 14
+    INPUT           shift and go to state 16
+    TRUE            shift and go to state 8
+    FALSE           shift and go to state 18
+    NOT             shift and go to state 20
+    LSBRACK         shift and go to state 4
+    LCBRACK         shift and go to state 13
+
+    expression                     shift and go to state 73
+    subscription                   shift and go to state 25
+
+state 71
+
+    (8) typedef -> vartype VARNAME LSBRACK vartype RSBRACK .
+
+    ASSIGN          reduce using rule 8 (typedef -> vartype VARNAME LSBRACK vartype RSBRACK .)
+    $end            reduce using rule 8 (typedef -> vartype VARNAME LSBRACK vartype RSBRACK .)
+
+
+state 72
+
+    (9) typedef -> vartype VARNAME LSBRACK vartype COMMA . vartype RSBRACK
+    (3) vartype -> . INTTYPE
+    (4) vartype -> . BOOLTYPE
+    (5) vartype -> . LISTTYPE
+    (6) vartype -> . DICTTYPE
+
+    INTTYPE         shift and go to state 17
+    BOOLTYPE        shift and go to state 12
+    LISTTYPE        shift and go to state 15
+    DICTTYPE        shift and go to state 1
+
+    vartype                        shift and go to state 74
+
+state 73
+
+    (28) expression -> expression IF expression ELSE expression .
+    (16) expression -> expression . PLUS expression
+    (24) expression -> expression . AND expression
+    (25) expression -> expression . OR expression
+    (26) expression -> expression . EQEQ expression
+    (27) expression -> expression . NOTEQ expression
+    (28) expression -> expression . IF expression ELSE expression
+    (32) expression -> expression . IS expression
+    (20) subscription -> expression . LSBRACK expression RSBRACK
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for EQEQ resolved as shift
+  ! shift/reduce conflict for NOTEQ resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for IS resolved as shift
+  ! shift/reduce conflict for LSBRACK resolved as shift
+    COLON           reduce using rule 28 (expression -> expression IF expression ELSE expression .)
+    $end            reduce using rule 28 (expression -> expression IF expression ELSE expression .)
+    COMMA           reduce using rule 28 (expression -> expression IF expression ELSE expression .)
+    RSBRACK         reduce using rule 28 (expression -> expression IF expression ELSE expression .)
+    RPAREN          reduce using rule 28 (expression -> expression IF expression ELSE expression .)
+    ELSE            reduce using rule 28 (expression -> expression IF expression ELSE expression .)
+    RCBRACK         reduce using rule 28 (expression -> expression IF expression ELSE expression .)
+    PLUS            shift and go to state 43
+    AND             shift and go to state 38
+    OR              shift and go to state 44
+    EQEQ            shift and go to state 40
+    NOTEQ           shift and go to state 42
+    IF              shift and go to state 45
+    IS              shift and go to state 41
+    LSBRACK         shift and go to state 39
+
+  ! PLUS            [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+  ! AND             [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+  ! OR              [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+  ! EQEQ            [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+  ! NOTEQ           [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+  ! IF              [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+  ! IS              [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+  ! LSBRACK         [ reduce using rule 28 (expression -> expression IF expression ELSE expression .) ]
+
+
+state 74
+
+    (9) typedef -> vartype VARNAME LSBRACK vartype COMMA vartype . RSBRACK
+
+    RSBRACK         shift and go to state 75
+
+
+state 75
+
+    (9) typedef -> vartype VARNAME LSBRACK vartype COMMA vartype RSBRACK .
+
+    ASSIGN          reduce using rule 9 (typedef -> vartype VARNAME LSBRACK vartype COMMA vartype RSBRACK .)
+    $end            reduce using rule 9 (typedef -> vartype VARNAME LSBRACK vartype COMMA vartype RSBRACK .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 57 resolved as shift
-WARNING: shift/reduce conflict for AND in state 57 resolved as shift
-WARNING: shift/reduce conflict for OR in state 57 resolved as shift
-WARNING: shift/reduce conflict for EQEQ in state 57 resolved as shift
-WARNING: shift/reduce conflict for NOTEQ in state 57 resolved as shift
-WARNING: shift/reduce conflict for IF in state 57 resolved as shift
-WARNING: shift/reduce conflict for IS in state 57 resolved as shift
-WARNING: shift/reduce conflict for LSBRACK in state 57 resolved as shift
-WARNING: shift/reduce conflict for PLUS in state 67 resolved as shift
-WARNING: shift/reduce conflict for AND in state 67 resolved as shift
-WARNING: shift/reduce conflict for OR in state 67 resolved as shift
-WARNING: shift/reduce conflict for EQEQ in state 67 resolved as shift
-WARNING: shift/reduce conflict for NOTEQ in state 67 resolved as shift
-WARNING: shift/reduce conflict for IF in state 67 resolved as shift
-WARNING: shift/reduce conflict for IS in state 67 resolved as shift
-WARNING: shift/reduce conflict for LSBRACK in state 67 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 60 resolved as shift
+WARNING: shift/reduce conflict for AND in state 60 resolved as shift
+WARNING: shift/reduce conflict for OR in state 60 resolved as shift
+WARNING: shift/reduce conflict for EQEQ in state 60 resolved as shift
+WARNING: shift/reduce conflict for NOTEQ in state 60 resolved as shift
+WARNING: shift/reduce conflict for IF in state 60 resolved as shift
+WARNING: shift/reduce conflict for IS in state 60 resolved as shift
+WARNING: shift/reduce conflict for LSBRACK in state 60 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 73 resolved as shift
+WARNING: shift/reduce conflict for AND in state 73 resolved as shift
+WARNING: shift/reduce conflict for OR in state 73 resolved as shift
+WARNING: shift/reduce conflict for EQEQ in state 73 resolved as shift
+WARNING: shift/reduce conflict for NOTEQ in state 73 resolved as shift
+WARNING: shift/reduce conflict for IF in state 73 resolved as shift
+WARNING: shift/reduce conflict for IS in state 73 resolved as shift
+WARNING: shift/reduce conflict for LSBRACK in state 73 resolved as shift

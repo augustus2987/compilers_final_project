@@ -33,7 +33,9 @@ tokens = (
     'TRUE',
     'FALSE',
     'INTTYPE',
-    'BOOLTYPE'
+    'BOOLTYPE',
+    'LISTTYPE',
+    'DICTTYPE'
 )
 
 reserved = {
@@ -47,12 +49,16 @@ reserved = {
     'not': 'NOT', 
     'True': 'TRUE',
     'False': 'FALSE',
-    't_INT': 'INTTYPE',
-    't_BOOL': 'BOOLTYPE'
+    'INT': 'INTTYPE',
+    'BOOL': 'BOOLTYPE',
+    'LIST': 'LISTTYPE',
+    'DICT': 'DICTTYPE'
 }
 
-t_INTTYPE = r't_INT'
-t_BOOLTYPE= r't_BOOL'
+t_INTTYPE = r'INT'
+t_BOOLTYPE= r'BOOL'
+t_LISTTYPE = r'LIST'
+t_DICTTYPE = r'DICT'
 
 # token regex:
 t_PRINT = r'print'
@@ -111,82 +117,16 @@ t_FALSE   = r'False'
 import ply.lex as lex
 lex.lex()
 
-## PARSE 
-'''
-P0: 
-program ::= module
-module ::= simple_statement+
-simple_statement ::= 
-                    |"print" expression
-                    | varname "=" expression
-                    | expression
-expression ::= 
-            | varname
-            | decimalinteger
-            | "-" expression 
-            | expression "+" expression
-            | "(" expression ")"
-            | "input" "(" ")"
-
-P1:
-key_datum ::= expression ":" expression
-
-subscription ::= expression "[" expression "]"
-
-expression ::=
-            | "True" | "False"
-            | "not" expression
-            | expression "and" expression
-            | expression "or" expression
-            | expression "==" expression
-            | expression "!=" expression
-            | expression "if" expression "else" expression
-            | "[" expr_list "]"
-            | "{" key_datum_list "}"
-            | subscription
-            | expression "is" expression
-
-expr_list ::= 
-            | expression
-            | expression "," expr_list
-            
-key_datum_list ::= 
-            | key_datum
-            | key_datum "," key_datum_list
-            
-target ::=  
-            | identifier
-            | subscription
-            
-simple_statement ::= target "=" expression
-
-'''
 
 precedence = (
     ('nonassoc', 'PRINT', 'VARNAME'),
     ('left', 'PLUS', 'AND', 'OR', 'COLON', 'NOTEQ', 'EQEQ'),
-    ('right', 'UNARYSUB', 'NOT', 'COMMA', 'INTTYPE', 'BOOLTYPE')
-)
-
-# # grammar rule
-# def p_base_program(t):
-#     'program : module'
-#     t[0] = Module(None, t[1])
-#
-# def p_module(t):
-#     'module : statement' # how do we implement multiple statements?
-#                          # adding plus at the end (as shown in book) here causes 
-#                          # it to fail
-#     t[0] = Stmt(t[1:])
-
-
-
-    
+    ('right', 'UNARYSUB', 'NOT', 'COMMA', 'INTTYPE', 'BOOLTYPE', 'LISTTYPE', 'DICTTYPE')
+)  
     
 # ===========================
 #            P0
 # ===========================
-
 
 def p_print_statement(t):
     'statement : PRINT expression'
@@ -202,29 +142,48 @@ def p_discard_statement(t):
     
 def p_type_int(t):
     'vartype : INTTYPE'
-    t[0] = "INTTYPE"
+    t[0] = "INT_TYPE"
     
 def p_type_bool(t):
     'vartype : BOOLTYPE'
-    t[0] = "BOOLTYPE"
+    t[0] = "BOOL_TYPE"
     
-def p_typedef(t):
+def p_type_list(t):
+    'vartype : LISTTYPE'
+    t[0] = "LIST_TYPE"
+    
+def p_type_dict(t):
+    'vartype : DICTTYPE'
+    t[0] = "DICT_TYPE"
+    
+def p_typedef_int_bool(t):
     'typedef : vartype VARNAME'
-    t[0] = [t[1], t[2]]
+    t[0] = StaticName(t[2], t[1])
     
+def p_typedef_list(t):
+    'typedef : vartype VARNAME LSBRACK vartype RSBRACK'
+    t[0] = StaticName(t[2], t[1], t[4])
+    
+def p_typedef_dict(t):
+    'typedef : vartype VARNAME LSBRACK vartype COMMA vartype RSBRACK'
+    t[0] = StaticName(t[2], t[1], t[4], t[6])
+
+def p_typedef_statement(t):
+    'statement : typedef'
+    t[0] = t[1]
+       
 def p_typedef_assign(t):
     'statement : typedef ASSIGN expression'
-    t[0] = Assign([StaticAssName(t[1][0], t[1][1])], t[3])
+    t[0] = Assign([StaticAssName(t[1].name, t[1].typ, t[1].subtype, t[1].keytype)], t[3])
 
 def p_assign_statement(t):
     'statement : VARNAME ASSIGN expression'
-    t[0] = Assign([StaticAssName(t[1], 'NOTYPE')], t[3])
+    t[0] = Assign([StaticAssName(t[1])], t[3])
 
 def p_varname_expression(t):
     'expression : VARNAME'
     #t[0] = Name(t[1])
     t[0] = StaticName(t[1])
-    t[0].typ = "NOTYPE"
     
 # ===============================
     
@@ -368,7 +327,7 @@ def get_ast(filename):
             if line.strip():
                 nodes.append(parser.parse(line))
     tree = Module(None, Stmt(nodes))
-    log("AST from parser:")
-    for line in tree.node.nodes:
-        log("\t" + str(line))
+#     log("AST from parser:")
+#     for line in tree.node.nodes:
+#         log("\t" + str(line))
     return tree

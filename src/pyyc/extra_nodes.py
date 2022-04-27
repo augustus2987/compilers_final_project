@@ -1,19 +1,44 @@
 import compiler
 from compiler.ast import * 
 
+
+# ==================================
+#         STATIC TYPE NODES
+# ==================================
+
 class StaticName(Node):
-    def __init__(self, name, typ = None):
+    def __init__(self, name, typ = None, subtype = None, keytype = None):
         self.name = name
         self.typ = typ
+        self.subtype = subtype
+        self.keytype = keytype
     def __repr__(self):
-        return "StaticName(" + self.name + ", " + self.typ + ")"
+        if not self.typ:
+            return "StaticName(" + self.name + ", NO_TYPE)"
+        elif not self.subtype:
+            return "StaticName(" + self.name + ", " + self.typ + ")"
+        elif not self.keytype:
+            return "StaticName(" + self.name + ", " + self.typ + ", " + self.subtype + ")"
+        else:
+            return "StaticName(" + self.name + ", " + self.typ + ", " + self.subtype + ", " + self.keytype + ")"
     
 class StaticAssName(Node):
-    def __init__(self, name, typ = None):
+    def __init__(self, name, typ = None, subtype = None, keytype = None):
         self.name = name
         self.typ = typ
+        self.subtype = subtype
+        self.keytype = keytype
     def __repr__(self):
-        return "StaticAssName(" + self.name + ", " + self.typ + ")"
+        if not self.typ:
+            return "StaticAssName(" + self.name + ", NO_TYPE)"
+        elif not self.subtype:
+            return "StaticAssName(" + self.name + ", " + self.typ + ")"
+        elif not self.keytype:
+            return "StaticAssName(" + self.name + ", " + self.typ + ", " + self.subtype + ")"
+        else:
+            return "StaticAssName(" + self.name + ", " + self.typ + ", " + self.subtype + ", " + self.keytype + ")"
+
+# ==================================
 
 class GetTag(Node):
     def __init__(self, arg):
