@@ -1,9 +1,14 @@
 from compiler.ast import *
+from extra_nodes import *
+
+# NAMES now have a type attribute
+# CONSTS now have a type
+# ASSNAMEs now have a type
 
 ## LEXER 
 tokens = (
     'PRINT',
-    'INT',
+    'CONST',
     'PLUS',
     'ASSIGN',
     'VARNAME',
@@ -26,7 +31,9 @@ tokens = (
     'COMMA',
     'NOTEQ',
     'TRUE',
-    'FALSE'
+    'FALSE',
+    'INTTYPE',
+    'BOOLTYPE'
 )
 
 reserved = {
@@ -39,12 +46,17 @@ reserved = {
     'and': 'AND',
     'not': 'NOT', 
     'True': 'TRUE',
-    'False': 'FALSE'
+    'False': 'FALSE',
+    't_INT': 'INTTYPE',
+    't_BOOL': 'BOOLTYPE'
 }
+
+t_INTTYPE = r't_INT'
+t_BOOLTYPE= r't_BOOL'
 
 # token regex:
 t_PRINT = r'print'
-def t_INT(t):
+def t_CONST(t):
     r'\d+'
     try:
         t.value = int(t.value)
@@ -153,7 +165,7 @@ simple_statement ::= target "=" expression
 precedence = (
     ('nonassoc', 'PRINT', 'VARNAME'),
     ('left', 'PLUS', 'AND', 'OR', 'COLON', 'NOTEQ', 'EQEQ'),
-    ('right', 'UNARYSUB', 'NOT', 'COMMA')
+    ('right', 'UNARYSUB', 'NOT', 'COMMA', 'INTTYPE', 'BOOLTYPE')
 )
 
 # # grammar rule
@@ -168,25 +180,56 @@ precedence = (
 #     t[0] = Stmt(t[1:])
 
 
-# P0
+
+    
+    
+# ===========================
+#            P0
+# ===========================
+
+
 def p_print_statement(t):
     'statement : PRINT expression'
     t[0] = Printnl([t[2]], None)
-
-def p_assign_statement(t):
-    'statement : VARNAME ASSIGN expression'
-    t[0] = Assign([AssName(t[1], 'OP_ASSIGN')], t[3])
     
 def p_discard_statement(t):
     'statement : expression'
     t[0] = Discard(t[1])
     
+# ===========================
+#   FINAL PROJECT PARSING
+# ===========================
+    
+def p_type_int(t):
+    'vartype : INTTYPE'
+    t[0] = "INTTYPE"
+    
+def p_type_bool(t):
+    'vartype : BOOLTYPE'
+    t[0] = "BOOLTYPE"
+    
+def p_typedef(t):
+    'typedef : vartype VARNAME'
+    t[0] = [t[1], t[2]]
+    
+def p_typedef_assign(t):
+    'statement : typedef ASSIGN expression'
+    t[0] = Assign([StaticAssName(t[1][0], t[1][1])], t[3])
+
+def p_assign_statement(t):
+    'statement : VARNAME ASSIGN expression'
+    t[0] = Assign([StaticAssName(t[1], 'NOTYPE')], t[3])
+
 def p_varname_expression(t):
     'expression : VARNAME'
-    t[0] = Name(t[1])
-
+    #t[0] = Name(t[1])
+    t[0] = StaticName(t[1])
+    t[0].typ = "NOTYPE"
+    
+# ===============================
+    
 def p_int_expression(t):
-    'expression : INT'
+    'expression : CONST'
     t[0] = Const(t[1])
     
 def p_unarysub_expression(t):

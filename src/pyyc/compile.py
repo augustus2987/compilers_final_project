@@ -10,6 +10,7 @@ from x86 import x86IR
 from graph import VariableGraph
 from explicate import *
 from utils import *
+from extra_nodes import *
 
 def print_compiler_module_ast():
     print "AST created by the Compiler Module:" # compare our ast to correct ast
@@ -28,7 +29,8 @@ if __name__ == "__main__":
 
     # get AST 
 #     tree = get_ast(str(sys.argv[1])) 
-    tree = compiler.parseFile(str(sys.argv[1]))   
+    #tree = compiler.parseFile(str(sys.argv[1])) 
+    tree = get_ast(str(sys.argv[1]))
     if printParse:
         print("compiler:: base tree:")
         for n in tree.node.nodes:

@@ -6,11 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-
-_lr_signature = 'nonassocPRINTVARNAMEleftPLUSANDORCOLONNOTEQEQEQrightUNARYSUBNOTCOMMAAND ASSIGN COLON COMMA ELSE EQEQ FALSE IF INPUT INT IS LCBRACK LPAREN LSBRACK NOT NOTEQ OR PLUS PRINT RCBRACK RPAREN RSBRACK TRUE UNARYSUB VARNAMEstatement : PRINT expressionstatement : VARNAME ASSIGN expressionstatement : expressionexpression : VARNAMEexpression : INTexpression : UNARYSUB expressionexpression : expression PLUS expressionexpression : LPAREN expression RPAREN expression : INPUT LPAREN RPARENkey_datum : expression COLON expressionsubscription : expression LSBRACK expression RSBRACKexpression : TRUEexpression : FALSEexpression : NOT expressionexpression : expression AND expressionexpression : expression OR expressionexpression : expression EQEQ expressionexpression : expression NOTEQ expressionexpression : expression IF expression ELSE expressionexpression : LSBRACK expr_list RSBRACKexpression : LCBRACK key_datum_list RCBRACKexpression : subscriptionexpression : expression IS expressionexpr_list : expressionexpr_list : expression COMMA expr_listkey_datum_list : key_datumkey_datum_list : key_datum COMMA key_datum_listtarget : subscriptionstatement : target ASSIGN expression'
+_lr_signature = 'nonassocPRINTVARNAMEleftPLUSANDORCOLONNOTEQEQEQrightUNARYSUBNOTCOMMAINTTYPEBOOLTYPEAND ASSIGN BOOLTYPE COLON COMMA CONST ELSE EQEQ FALSE IF INPUT INTTYPE IS LCBRACK LPAREN LSBRACK NOT NOTEQ OR PLUS PRINT RCBRACK RPAREN RSBRACK TRUE UNARYSUB VARNAMEstatement : PRINT expressionstatement : expressionvartype : INTTYPEvartype : BOOLTYPEtypedef : vartype VARNAMEstatement : typedef ASSIGN expressionstatement : VARNAME ASSIGN expressionexpression : VARNAMEexpression : CONSTexpression : UNARYSUB expressionexpression : expression PLUS expressionexpression : LPAREN expression RPAREN expression : INPUT LPAREN RPARENkey_datum : expression COLON expressionsubscription : expression LSBRACK expression RSBRACKexpression : TRUEexpression : FALSEexpression : NOT expressionexpression : expression AND expressionexpression : expression OR expressionexpression : expression EQEQ expressionexpression : expression NOTEQ expressionexpression : expression IF expression ELSE expressionexpression : LSBRACK expr_list RSBRACKexpression : LCBRACK key_datum_list RCBRACKexpression : subscriptionexpression : expression IS expressionexpr_list : expressionexpr_list : expression COMMA expr_listkey_datum_list : key_datumkey_datum_list : key_datum COMMA key_datum_listtarget : subscriptionstatement : target ASSIGN expression'
     
-_lr_action_items = {'EQEQ':([1,5,7,11,13,15,17,19,20,21,22,25,26,29,38,39,42,44,45,46,47,48,49,50,51,52,53,54,57,58,60,],[-4,-12,-22,-13,-5,32,-4,-22,32,-6,32,32,32,-14,32,-20,-21,-8,-9,32,-15,32,-17,32,-18,-7,-16,32,32,-11,32,]),'VARNAME':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[1,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,]),'LSBRACK':([0,1,2,3,4,5,7,8,9,11,13,14,15,16,17,19,20,21,22,25,26,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,57,58,59,60,],[2,-4,2,2,2,-12,-22,2,2,-13,-5,2,31,2,-4,-22,31,-6,31,31,31,2,-14,2,2,2,2,2,2,2,2,31,-20,2,2,-21,2,-8,-9,31,-15,31,-17,31,-18,-7,-16,31,31,-11,2,31,]),'UNARYSUB':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,]),'PRINT':([0,],[4,]),'TRUE':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,]),'RPAREN':([5,11,13,17,19,21,26,27,29,39,42,44,45,47,49,50,51,52,53,58,60,],[-12,-13,-5,-4,-22,-6,44,45,-14,-20,-21,-8,-9,-15,-17,-23,-18,-7,-16,-11,-19,]),'RSBRACK':([5,11,13,17,18,19,20,21,29,39,42,44,45,47,48,49,50,51,52,53,55,58,60,],[-12,-13,-5,-4,39,-22,-24,-6,-14,-20,-21,-8,-9,-15,58,-17,-23,-18,-7,-16,-25,-11,-19,]),'NOTEQ':([1,5,7,11,13,15,17,19,20,21,22,25,26,29,38,39,42,44,45,46,47,48,49,50,51,52,53,54,57,58,60,],[-4,-12,-22,-13,-5,34,-4,-22,34,-6,34,34,34,-14,34,-20,-21,-8,-9,34,-15,34,-17,34,-18,-7,-16,34,34,-11,34,]),'PLUS':([1,5,7,11,13,15,17,19,20,21,22,25,26,29,38,39,42,44,45,46,47,48,49,50,51,52,53,54,57,58,60,],[-4,-12,-22,-13,-5,35,-4,-22,35,-6,35,35,35,-14,35,-20,-21,-8,-9,35,-15,35,-17,35,-18,-7,-16,35,35,-11,35,]),'COLON':([5,11,13,17,19,21,25,29,39,42,44,45,47,49,50,51,52,53,58,60,],[-12,-13,-5,-4,-22,-6,43,-14,-20,-21,-8,-9,-15,-17,-23,-18,-7,-16,-11,-19,]),'ASSIGN':([1,7,12,58,],[16,-28,28,-11,]),'$end':([1,5,6,7,11,13,15,17,19,21,22,29,38,39,42,44,45,46,47,49,50,51,52,53,58,60,],[-4,-12,0,-22,-13,-5,-3,-4,-22,-6,-1,-14,-2,-20,-21,-8,-9,-29,-15,-17,-23,-18,-7,-16,-11,-19,]),'LCBRACK':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,]),'IS':([1,5,7,11,13,15,17,19,20,21,22,25,26,29,38,39,42,44,45,46,47,48,49,50,51,52,53,54,57,58,60,],[-4,-12,-22,-13,-5,33,-4,-22,33,-6,33,33,33,-14,33,-20,-21,-8,-9,33,-15,33,-17,33,-18,-7,-16,33,33,-11,33,]),'ELSE':([5,11,13,17,19,21,29,39,42,44,45,47,49,50,51,52,53,54,58,60,],[-12,-13,-5,-4,-22,-6,-14,-20,-21,-8,-9,-15,-17,-23,-18,-7,-16,59,-11,-19,]),'LPAREN':([0,2,3,4,8,9,10,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[9,9,9,9,9,9,27,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,]),'INPUT':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,]),'IF':([1,5,7,11,13,15,17,19,20,21,22,25,26,29,38,39,42,44,45,46,47,48,49,50,51,52,53,54,57,58,60,],[-4,-12,-22,-13,-5,37,-4,-22,37,-6,37,37,37,-14,37,-20,-21,-8,-9,37,-15,37,-17,37,-18,-7,-16,37,37,-11,37,]),'AND':([1,5,7,11,13,15,17,19,20,21,22,25,26,29,38,39,42,44,45,46,47,48,49,50,51,52,53,54,57,58,60,],[-4,-12,-22,-13,-5,30,-4,-22,30,-6,30,30,30,-14,30,-20,-21,-8,-9,30,-15,30,-17,30,-18,-7,-16,30,30,-11,30,]),'FALSE':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,11,]),'INT':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'RCBRACK':([5,11,13,17,19,21,23,24,29,39,42,44,45,47,49,50,51,52,53,56,57,58,60,],[-12,-13,-5,-4,-22,-6,-26,42,-14,-20,-21,-8,-9,-15,-17,-23,-18,-7,-16,-27,-10,-11,-19,]),'NOT':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),'COMMA':([5,11,13,17,19,20,21,23,29,39,42,44,45,47,49,50,51,52,53,57,58,60,],[-12,-13,-5,-4,-22,40,-6,41,-14,-20,-21,-8,-9,-15,-17,-23,-18,-7,-16,-10,-11,-19,]),'OR':([1,5,7,11,13,15,17,19,20,21,22,25,26,29,38,39,42,44,45,46,47,48,49,50,51,52,53,54,57,58,60,],[-4,-12,-22,-13,-5,36,-4,-22,36,-6,36,36,36,-14,36,-20,-21,-8,-9,36,-15,36,-17,36,-18,-7,-16,36,36,-11,36,]),}
-
+_lr_action_items = {'CONST':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,]),'EQEQ':([1,2,7,10,16,19,21,23,24,26,27,31,32,35,44,45,47,49,51,52,53,54,55,56,57,58,59,60,61,64,65,67,],[-9,-8,-16,-26,-17,38,-8,-26,38,-10,38,38,38,-18,38,-24,38,-25,-12,-13,38,-19,38,-21,38,-22,-11,-20,38,38,-15,38,]),'VARNAME':([0,3,4,5,6,11,12,13,15,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[2,21,25,21,21,-4,21,21,-3,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,]),'LSBRACK':([0,1,2,3,5,6,7,10,12,13,16,18,19,20,21,23,24,26,27,28,31,32,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,64,65,66,67,],[3,-9,-8,3,3,3,-16,-26,3,3,-17,3,37,3,-8,-26,37,-10,37,3,37,37,3,-18,3,3,3,3,3,3,3,3,37,-24,3,37,3,-25,3,-12,-13,37,-19,37,-21,37,-22,-11,-20,37,37,-15,3,37,]),'INPUT':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),'PRINT':([0,],[6,]),'TRUE':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,]),'RPAREN':([1,7,16,21,23,26,32,33,35,45,49,51,52,54,56,57,58,59,60,65,67,],[-9,-16,-17,-8,-26,-10,51,52,-18,-24,-25,-12,-13,-19,-21,-27,-22,-11,-20,-15,-23,]),'RSBRACK':([1,7,16,21,22,23,24,26,35,45,49,51,52,54,55,56,57,58,59,60,62,65,67,],[-9,-16,-17,-8,45,-26,-28,-10,-18,-24,-25,-12,-13,-19,65,-21,-27,-22,-11,-20,-29,-15,-23,]),'NOTEQ':([1,2,7,10,16,19,21,23,24,26,27,31,32,35,44,45,47,49,51,52,53,54,55,56,57,58,59,60,61,64,65,67,],[-9,-8,-16,-26,-17,40,-8,-26,40,-10,40,40,40,-18,40,-24,40,-25,-12,-13,40,-19,40,-21,40,-22,-11,-20,40,40,-15,40,]),'PLUS':([1,2,7,10,16,19,21,23,24,26,27,31,32,35,44,45,47,49,51,52,53,54,55,56,57,58,59,60,61,64,65,67,],[-9,-8,-16,-26,-17,41,-8,-26,41,-10,41,41,41,-18,41,-24,41,-25,-12,-13,41,-19,41,-21,41,-22,-11,-20,41,41,-15,41,]),'COLON':([1,7,16,21,23,26,31,35,45,49,51,52,54,56,57,58,59,60,65,67,],[-9,-16,-17,-8,-26,-10,50,-18,-24,-25,-12,-13,-19,-21,-27,-22,-11,-20,-15,-23,]),'ASSIGN':([2,8,10,17,25,65,],[20,28,-32,34,-5,-15,]),'$end':([1,2,7,9,10,16,19,21,23,26,27,35,44,45,47,49,51,52,53,54,56,57,58,59,60,65,67,],[-9,-8,-16,0,-26,-17,-2,-8,-26,-10,-1,-18,-7,-24,-6,-25,-12,-13,-33,-19,-21,-27,-22,-11,-20,-15,-23,]),'BOOLTYPE':([0,],[11,]),'LCBRACK':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,]),'IS':([1,2,7,10,16,19,21,23,24,26,27,31,32,35,44,45,47,49,51,52,53,54,55,56,57,58,59,60,61,64,65,67,],[-9,-8,-16,-26,-17,39,-8,-26,39,-10,39,39,39,-18,39,-24,39,-25,-12,-13,39,-19,39,-21,39,-22,-11,-20,39,39,-15,39,]),'ELSE':([1,7,16,21,23,26,35,45,49,51,52,54,56,57,58,59,60,61,65,67,],[-9,-16,-17,-8,-26,-10,-18,-24,-25,-12,-13,-19,-21,-27,-22,-11,-20,66,-15,-23,]),'LPAREN':([0,3,5,6,12,13,14,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[13,13,13,13,13,13,33,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'UNARYSUB':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,]),'IF':([1,2,7,10,16,19,21,23,24,26,27,31,32,35,44,45,47,49,51,52,53,54,55,56,57,58,59,60,61,64,65,67,],[-9,-8,-16,-26,-17,43,-8,-26,43,-10,43,43,43,-18,43,-24,43,-25,-12,-13,43,-19,43,-21,43,-22,-11,-20,43,43,-15,43,]),'AND':([1,2,7,10,16,19,21,23,24,26,27,31,32,35,44,45,47,49,51,52,53,54,55,56,57,58,59,60,61,64,65,67,],[-9,-8,-16,-26,-17,36,-8,-26,36,-10,36,36,36,-18,36,-24,36,-25,-12,-13,36,-19,36,-21,36,-22,-11,-20,36,36,-15,36,]),'FALSE':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,]),'OR':([1,2,7,10,16,19,21,23,24,26,27,31,32,35,44,45,47,49,51,52,53,54,55,56,57,58,59,60,61,64,65,67,],[-9,-8,-16,-26,-17,42,-8,-26,42,-10,42,42,42,-18,42,-24,42,-25,-12,-13,42,-19,42,-21,42,-22,-11,-20,42,42,-15,42,]),'RCBRACK':([1,7,16,21,23,26,29,30,35,45,49,51,52,54,56,57,58,59,60,63,64,65,67,],[-9,-16,-17,-8,-26,-10,-30,49,-18,-24,-25,-12,-13,-19,-21,-27,-22,-11,-20,-31,-14,-15,-23,]),'NOT':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,]),'COMMA':([1,7,16,21,23,24,26,29,35,45,49,51,52,54,56,57,58,59,60,64,65,67,],[-9,-16,-17,-8,-26,46,-10,48,-18,-24,-25,-12,-13,-19,-21,-27,-22,-11,-20,-14,-15,-23,]),'INTTYPE':([0,],[15,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -19,8 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'key_datum':([8,41,],[23,23,]),'key_datum_list':([8,41,],[24,56,]),'target':([0,],[12,]),'expr_list':([2,40,],[18,55,]),'statement':([0,],[6,]),'expression':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[15,20,21,22,25,26,29,38,46,47,48,49,50,51,52,53,54,20,25,57,60,]),'subscription':([0,2,3,4,8,9,14,16,28,30,31,32,33,34,35,36,37,40,41,43,59,],[7,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,]),}
-
+_lr_goto_items = {'key_datum':([12,48,],[29,29,]),'typedef':([0,],[8,]),'target':([0,],[17,]),'expr_list':([3,46,],[22,62,]),'key_datum_list':([12,48,],[30,63,]),'vartype':([0,],[4,]),'statement':([0,],[9,]),'expression':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[19,24,26,27,31,32,35,44,47,53,54,55,56,57,58,59,60,61,24,31,64,67,]),'subscription':([0,3,5,6,12,13,18,20,28,34,36,37,38,39,40,41,42,43,46,48,50,66,],[10,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -30,36 +27,37 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> statement","S'",1,None,None,None),
-
-  ('statement -> PRINT expression','statement',2,'p_print_statement','parse.py',167),
-  ('statement -> VARNAME ASSIGN expression','statement',3,'p_assign_statement','parse.py',171),
-  ('statement -> expression','statement',1,'p_discard_statement','parse.py',175),
-  ('expression -> VARNAME','expression',1,'p_varname_expression','parse.py',179),
-  ('expression -> INT','expression',1,'p_int_expression','parse.py',183),
-  ('expression -> UNARYSUB expression','expression',2,'p_unarysub_expression','parse.py',187),
-  ('expression -> expression PLUS expression','expression',3,'p_plus_expression','parse.py',191),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_group_expression','parse.py',195),
-  ('expression -> INPUT LPAREN RPAREN','expression',3,'p_callfunc_expression','parse.py',199),
-  ('key_datum -> expression COLON expression','key_datum',3,'p_key_datum','parse.py',208),
-  ('subscription -> expression LSBRACK expression RSBRACK','subscription',4,'p_subscription','parse.py',212),
-  ('expression -> TRUE','expression',1,'p_true_expression','parse.py',216),
-  ('expression -> FALSE','expression',1,'p_false_expression','parse.py',220),
-  ('expression -> NOT expression','expression',2,'p_not_expression','parse.py',224),
-  ('expression -> expression AND expression','expression',3,'p_and_expression','parse.py',228),
-  ('expression -> expression OR expression','expression',3,'p_or_expression','parse.py',232),
-  ('expression -> expression EQEQ expression','expression',3,'p_eqeq_expression','parse.py',236),
-  ('expression -> expression NOTEQ expression','expression',3,'p_noteq_expression','parse.py',240),
-  ('expression -> expression IF expression ELSE expression','expression',5,'p_conditional_expression','parse.py',244),
-  ('expression -> LSBRACK expr_list RSBRACK','expression',3,'p_list_expression','parse.py',248),
-  ('expression -> LCBRACK key_datum_list RCBRACK','expression',3,'p_dict_expression','parse.py',252),
-  ('expression -> subscription','expression',1,'p_subscription_expression','parse.py',256),
-  ('expression -> expression IS expression','expression',3,'p_is_expression','parse.py',260),
-  ('expr_list -> expression','expr_list',1,'p_expr_list','parse.py',264),
-  ('expr_list -> expression COMMA expr_list','expr_list',3,'p_append_to_list','parse.py',268),
-  ('key_datum_list -> key_datum','key_datum_list',1,'p_keydatum_list','parse.py',276),
-  ('key_datum_list -> key_datum COMMA key_datum_list','key_datum_list',3,'p_keydatum_list_appendto_list','parse.py',280),
-  ('target -> subscription','target',1,'p_target_subscription','parse.py',292),
-  ('statement -> target ASSIGN expression','statement',3,'p_target_statement','parse.py',297),
-
-
+  ('statement -> PRINT expression','statement',2,'p_print_statement','parse.py',192),
+  ('statement -> expression','statement',1,'p_discard_statement','parse.py',196),
+  ('vartype -> INTTYPE','vartype',1,'p_type_int','parse.py',204),
+  ('vartype -> BOOLTYPE','vartype',1,'p_type_bool','parse.py',208),
+  ('typedef -> vartype VARNAME','typedef',2,'p_typedef','parse.py',212),
+  ('statement -> typedef ASSIGN expression','statement',3,'p_typedef_assign','parse.py',216),
+  ('statement -> VARNAME ASSIGN expression','statement',3,'p_assign_statement','parse.py',220),
+  ('expression -> VARNAME','expression',1,'p_varname_expression','parse.py',224),
+  ('expression -> CONST','expression',1,'p_int_expression','parse.py',232),
+  ('expression -> UNARYSUB expression','expression',2,'p_unarysub_expression','parse.py',236),
+  ('expression -> expression PLUS expression','expression',3,'p_plus_expression','parse.py',240),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_group_expression','parse.py',244),
+  ('expression -> INPUT LPAREN RPAREN','expression',3,'p_callfunc_expression','parse.py',248),
+  ('key_datum -> expression COLON expression','key_datum',3,'p_key_datum','parse.py',257),
+  ('subscription -> expression LSBRACK expression RSBRACK','subscription',4,'p_subscription','parse.py',261),
+  ('expression -> TRUE','expression',1,'p_true_expression','parse.py',265),
+  ('expression -> FALSE','expression',1,'p_false_expression','parse.py',269),
+  ('expression -> NOT expression','expression',2,'p_not_expression','parse.py',273),
+  ('expression -> expression AND expression','expression',3,'p_and_expression','parse.py',277),
+  ('expression -> expression OR expression','expression',3,'p_or_expression','parse.py',281),
+  ('expression -> expression EQEQ expression','expression',3,'p_eqeq_expression','parse.py',285),
+  ('expression -> expression NOTEQ expression','expression',3,'p_noteq_expression','parse.py',289),
+  ('expression -> expression IF expression ELSE expression','expression',5,'p_conditional_expression','parse.py',293),
+  ('expression -> LSBRACK expr_list RSBRACK','expression',3,'p_list_expression','parse.py',297),
+  ('expression -> LCBRACK key_datum_list RCBRACK','expression',3,'p_dict_expression','parse.py',301),
+  ('expression -> subscription','expression',1,'p_subscription_expression','parse.py',305),
+  ('expression -> expression IS expression','expression',3,'p_is_expression','parse.py',309),
+  ('expr_list -> expression','expr_list',1,'p_expr_list','parse.py',313),
+  ('expr_list -> expression COMMA expr_list','expr_list',3,'p_append_to_list','parse.py',317),
+  ('key_datum_list -> key_datum','key_datum_list',1,'p_keydatum_list','parse.py',325),
+  ('key_datum_list -> key_datum COMMA key_datum_list','key_datum_list',3,'p_keydatum_list_appendto_list','parse.py',329),
+  ('target -> subscription','target',1,'p_target_subscription','parse.py',342),
+  ('statement -> target ASSIGN expression','statement',3,'p_target_statement','parse.py',347),
 ]

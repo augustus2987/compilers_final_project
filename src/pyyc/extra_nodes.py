@@ -1,6 +1,20 @@
 import compiler
 from compiler.ast import * 
 
+class StaticName(Node):
+    def __init__(self, name, typ = None):
+        self.name = name
+        self.typ = typ
+    def __repr__(self):
+        return "StaticName(" + self.name + ", " + self.typ + ")"
+    
+class StaticAssName(Node):
+    def __init__(self, name, typ = None):
+        self.name = name
+        self.typ = typ
+    def __repr__(self):
+        return "StaticAssName(" + self.name + ", " + self.typ + ")"
+
 class GetTag(Node):
     def __init__(self, arg):
         self.arg = arg
