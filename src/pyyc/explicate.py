@@ -228,7 +228,7 @@ def static_print_helper(node):
     if typ == "INT_TYPE":
         return Printnl([ProjectTo('int', node.nodes[0])], None) if need_to_project(node.nodes[0]) else Printnl(['int', node.nodes[0]], None)
     elif typ == "BOOL_TYPE":
-        return PrintBool([ProjectTo('bool', node.nodes[0])], None) if need_to_project(node.nodes[0]) else PrintBool(['bool', node.nodes[0]], None)
+        return PrintBool(ProjectTo('bool', node.nodes[0])) if need_to_project(node.nodes[0]) else PrintBool('bool', node.nodes[0])
     elif typ in ["DICT_TYPE", "LIST_TYPE"]:
         return PrintBig(node.nodes[0])
     elif typ == "NO_TYPE":
