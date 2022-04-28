@@ -7,23 +7,22 @@ def type_pass(n):
         return n
     
     elif isinstance(n, Stmt):
-        
-        for i, line in enumerate(n.nodes):
+        for i, line in enumerate(n.nodes[::-1]):
             if isinstance(line, StaticName):
-                for to_replace in n.nodes[i:]:
+                for to_replace in n.nodes[-i:]:
                     replace_type(to_replace, line)
                     
             if isinstance(line, Assign):
                 if isinstance(line.nodes[0], StaticAssName):
-                    for to_replace in n.nodes[i:]:
-                        replace_type(to_replace, line.nodes[0])
+                    for to_replace in n.nodes[-i:]:
+                        replace_type(to_replace, line.nodes[0])                
     return n
                 
 def replace_type(n, newType):
     
     # If we see a name, replace with the type it should be
     if isinstance(n, StaticName) or isinstance(n, StaticAssName):
-        if n.name == newType.name:
+        if (n.name == newType.name) and (n.typ == None):
             n.typ = newType.typ
             n.subtype = newType.subtype
             n.keytype = newType.keytype
@@ -68,7 +67,7 @@ def replace_type(n, newType):
     elif isinstance(n, Subscript):
         replace_type(n.expr, newType)
         for node in n.subs:
-            replace_type(node, newType)
+            replace_type(n.subs, newType)
         return
     elif isinstance(n, IfExp):
         replace_type(n.test, newType)
@@ -76,5 +75,5 @@ def replace_type(n, newType):
         replace_type(n.else_, newType)
         return
     else:
-        raise Exception("Error in replace_type: unrecognized AST node: " + str(n))
+        raise Exception("Error in replace_type: unrecognized AST node")
             
