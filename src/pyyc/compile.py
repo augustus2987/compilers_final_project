@@ -39,7 +39,7 @@ if __name__ == "__main__":
             print("compiler::\t" + str(n))
         print ""
             
-    
+    check_undefined_type(tree)
     tree = type_pass(tree)        
     if printTypeCheck:
         print("compiler:: type checked tree")

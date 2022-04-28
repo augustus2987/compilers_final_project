@@ -1,6 +1,34 @@
 from extra_nodes import *
 from utils import *
 
+seen_vars = set([])
+
+def check_undefined_type(n):
+    
+    if isinstance(n, Module):
+        type_pass(n.node)
+        return n
+    
+    elif isinstance(n, Stmt):
+        for i, line in enumerate(n.nodes):
+            if isinstance(line, StaticName):
+                if (line.name not in seen_vars) and (line.typ == None):
+                    print "Variable " + line.name + " declared without type"
+                    raise
+                else:
+                    seen_vars.add(line.name)
+                    
+            if isinstance(line, Assign):
+                if isinstance(line.nodes[0], StaticAssName):
+                    if (line.nodes[0].name not in seen_vars) and (line.nodes[0].typ == None):
+                        print "Variable " + line.name + " declared without type"
+                        raise
+                else:
+                    seen_vars.add(line.nodes[0].name)
+                                    
+    return n
+            
+
 def type_pass(n):
     
     if isinstance(n, Module):
@@ -10,12 +38,12 @@ def type_pass(n):
     elif isinstance(n, Stmt):
         for i, line in enumerate(n.nodes[::-1]):
             if isinstance(line, StaticName):
-                for to_replace in n.nodes[-i:]:
+                for to_replace in n.nodes[-(i+1):]:
                     replace_type(to_replace, line)
                     
             if isinstance(line, Assign):
                 if isinstance(line.nodes[0], StaticAssName):
-                    for to_replace in n.nodes[-i:]:
+                    for to_replace in n.nodes[-(i+1):]:
                         replace_type(to_replace, line.nodes[0])                
     return n
                 
