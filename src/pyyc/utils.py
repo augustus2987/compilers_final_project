@@ -2,6 +2,7 @@ from compiler.ast import *
 from extra_nodes import *
 
 printParse = True
+printTypeCheck = True
 printExplicate = False
 printFlatten = False
 printx86IR = False

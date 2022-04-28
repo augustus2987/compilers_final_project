@@ -11,6 +11,7 @@ from graph import VariableGraph
 from explicate import *
 from utils import *
 from extra_nodes import *
+from typecheck import *
 
 def print_compiler_module_ast():
     print "AST created by the Compiler Module:" # compare our ast to correct ast
@@ -32,10 +33,19 @@ if __name__ == "__main__":
     #tree = compiler.parseFile(str(sys.argv[1])) 
     tree = get_ast(str(sys.argv[1]))
     if printParse:
-        print("compiler:: base tree:")
+        
+        print("\ncompiler:: base tree:")
         for n in tree.node.nodes:
             print("compiler::\t" + str(n))
-        
+        print ""
+            
+    
+    tree = type_pass(tree)        
+    if printTypeCheck:
+        print("compiler:: type checked tree")
+        for n in tree.node.nodes:
+            print("compiler::\t" + str(n))
+        print ""
     
     #explicate pass   
     t = explicate_pass(tree) 
@@ -46,6 +56,7 @@ if __name__ == "__main__":
             pprint(t, "explicate:: ")
         else:
             print(t)
+        
         
     check_all_supported(t)
     # flatten AST

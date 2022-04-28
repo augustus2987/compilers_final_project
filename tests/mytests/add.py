@@ -1,7 +1,5 @@
-INT z[INT] = 4
-DICT b[BOOL, INT] = 2
-INT h = 4
+INT z
+BOOL h = 4
+h = 1
 z = 4
-x = 1
-y = 2
-print x + y
+print h + z

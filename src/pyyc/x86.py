@@ -1,7 +1,6 @@
 from compiler.ast import *
 from extra_nodes import *
 import re
-
 variable_prefix_ir = "ir"
 tag_prefix_ir = "ir_tag"
 
