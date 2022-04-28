@@ -36,19 +36,21 @@ Rule 30    expression -> LCBRACK key_datum_list RCBRACK
 Rule 31    expression -> subscription
 Rule 32    expression -> expression IS expression
 Rule 33    expr_list -> expression
-Rule 34    expr_list -> expression COMMA expr_list
-Rule 35    key_datum_list -> key_datum
-Rule 36    key_datum_list -> key_datum COMMA key_datum_list
-Rule 37    target -> subscription
-Rule 38    statement -> target ASSIGN expression
+Rule 34    expr_list -> <empty>
+Rule 35    expr_list -> expression COMMA expr_list
+Rule 36    key_datum_list -> key_datum
+Rule 37    key_datum_list -> key_datum COMMA key_datum_list
+Rule 38    key_datum_list -> <empty>
+Rule 39    target -> subscription
+Rule 40    statement -> target ASSIGN expression
 
 Terminals, with rules where they appear
 
 AND                  : 24
-ASSIGN               : 11 12 38
+ASSIGN               : 11 12 40
 BOOLTYPE             : 4
 COLON                : 19
-COMMA                : 9 34 36
+COMMA                : 9 35 37
 CONST                : 14
 DICTTYPE             : 6
 ELSE                 : 28
@@ -77,13 +79,13 @@ error                :
 
 Nonterminals, with rules where they appear
 
-expr_list            : 29 34
-expression           : 1 2 11 12 15 16 16 17 19 19 20 20 23 24 24 25 25 26 26 27 27 28 28 28 32 32 33 34 38
-key_datum            : 35 36
-key_datum_list       : 30 36
+expr_list            : 29 35
+expression           : 1 2 11 12 15 16 16 17 19 19 20 20 23 24 24 25 25 26 26 27 27 28 28 28 32 32 33 35 40
+key_datum            : 36 37
+key_datum_list       : 30 37
 statement            : 0
-subscription         : 31 37
-target               : 38
+subscription         : 31 39
+target               : 40
 typedef              : 10 11
 vartype              : 7 8 8 9 9 9
 
@@ -97,7 +99,7 @@ state 0
     (10) statement -> . typedef
     (11) statement -> . typedef ASSIGN expression
     (12) statement -> . VARNAME ASSIGN expression
-    (38) statement -> . target ASSIGN expression
+    (40) statement -> . target ASSIGN expression
     (13) expression -> . VARNAME
     (14) expression -> . CONST
     (15) expression -> . UNARYSUB expression
@@ -119,7 +121,7 @@ state 0
     (7) typedef -> . vartype VARNAME
     (8) typedef -> . vartype VARNAME LSBRACK vartype RSBRACK
     (9) typedef -> . vartype VARNAME LSBRACK vartype COMMA vartype RSBRACK
-    (37) target -> . subscription
+    (39) target -> . subscription
     (20) subscription -> . expression LSBRACK expression RSBRACK
     (3) vartype -> . INTTYPE
     (4) vartype -> . BOOLTYPE
@@ -200,7 +202,8 @@ state 4
 
     (29) expression -> LSBRACK . expr_list RSBRACK
     (33) expr_list -> . expression
-    (34) expr_list -> . expression COMMA expr_list
+    (34) expr_list -> .
+    (35) expr_list -> . expression COMMA expr_list
     (13) expression -> . VARNAME
     (14) expression -> . CONST
     (15) expression -> . UNARYSUB expression
@@ -221,6 +224,7 @@ state 4
     (32) expression -> . expression IS expression
     (20) subscription -> . expression LSBRACK expression RSBRACK
 
+    RSBRACK         reduce using rule 34 (expr_list -> .)
     VARNAME         shift and go to state 23
     CONST           shift and go to state 2
     UNARYSUB        shift and go to state 6
@@ -358,7 +362,7 @@ state 10
 state 11
 
     (31) expression -> subscription .
-    (37) target -> subscription .
+    (39) target -> subscription .
 
     PLUS            reduce using rule 31 (expression -> subscription .)
     AND             reduce using rule 31 (expression -> subscription .)
@@ -369,7 +373,7 @@ state 11
     IS              reduce using rule 31 (expression -> subscription .)
     LSBRACK         reduce using rule 31 (expression -> subscription .)
     $end            reduce using rule 31 (expression -> subscription .)
-    ASSIGN          reduce using rule 37 (target -> subscription .)
+    ASSIGN          reduce using rule 39 (target -> subscription .)
 
 
 state 12
@@ -384,8 +388,9 @@ state 12
 state 13
 
     (30) expression -> LCBRACK . key_datum_list RCBRACK
-    (35) key_datum_list -> . key_datum
-    (36) key_datum_list -> . key_datum COMMA key_datum_list
+    (36) key_datum_list -> . key_datum
+    (37) key_datum_list -> . key_datum COMMA key_datum_list
+    (38) key_datum_list -> .
     (19) key_datum -> . expression COLON expression
     (13) expression -> . VARNAME
     (14) expression -> . CONST
@@ -407,6 +412,7 @@ state 13
     (32) expression -> . expression IS expression
     (20) subscription -> . expression LSBRACK expression RSBRACK
 
+    RCBRACK         reduce using rule 38 (key_datum_list -> .)
     VARNAME         shift and go to state 23
     CONST           shift and go to state 2
     UNARYSUB        shift and go to state 6
@@ -508,7 +514,7 @@ state 18
 
 state 19
 
-    (38) statement -> target . ASSIGN expression
+    (40) statement -> target . ASSIGN expression
 
     ASSIGN          shift and go to state 36
 
@@ -662,7 +668,7 @@ state 25
 state 26
 
     (33) expr_list -> expression .
-    (34) expr_list -> expression . COMMA expr_list
+    (35) expr_list -> expression . COMMA expr_list
     (16) expression -> expression . PLUS expression
     (24) expression -> expression . AND expression
     (25) expression -> expression . OR expression
@@ -795,10 +801,10 @@ state 30
 
 state 31
 
-    (35) key_datum_list -> key_datum .
-    (36) key_datum_list -> key_datum . COMMA key_datum_list
+    (36) key_datum_list -> key_datum .
+    (37) key_datum_list -> key_datum . COMMA key_datum_list
 
-    RCBRACK         reduce using rule 35 (key_datum_list -> key_datum .)
+    RCBRACK         reduce using rule 36 (key_datum_list -> key_datum .)
     COMMA           shift and go to state 51
 
 
@@ -864,7 +870,7 @@ state 35
 
 state 36
 
-    (38) statement -> target ASSIGN . expression
+    (40) statement -> target ASSIGN . expression
     (13) expression -> . VARNAME
     (14) expression -> . CONST
     (15) expression -> . UNARYSUB expression
@@ -1279,9 +1285,10 @@ state 47
 
 state 48
 
-    (34) expr_list -> expression COMMA . expr_list
+    (35) expr_list -> expression COMMA . expr_list
     (33) expr_list -> . expression
-    (34) expr_list -> . expression COMMA expr_list
+    (34) expr_list -> .
+    (35) expr_list -> . expression COMMA expr_list
     (13) expression -> . VARNAME
     (14) expression -> . CONST
     (15) expression -> . UNARYSUB expression
@@ -1302,6 +1309,7 @@ state 48
     (32) expression -> . expression IS expression
     (20) subscription -> . expression LSBRACK expression RSBRACK
 
+    RSBRACK         reduce using rule 34 (expr_list -> .)
     VARNAME         shift and go to state 23
     CONST           shift and go to state 2
     UNARYSUB        shift and go to state 6
@@ -1358,9 +1366,10 @@ state 50
 
 state 51
 
-    (36) key_datum_list -> key_datum COMMA . key_datum_list
-    (35) key_datum_list -> . key_datum
-    (36) key_datum_list -> . key_datum COMMA key_datum_list
+    (37) key_datum_list -> key_datum COMMA . key_datum_list
+    (36) key_datum_list -> . key_datum
+    (37) key_datum_list -> . key_datum COMMA key_datum_list
+    (38) key_datum_list -> .
     (19) key_datum -> . expression COLON expression
     (13) expression -> . VARNAME
     (14) expression -> . CONST
@@ -1382,6 +1391,7 @@ state 51
     (32) expression -> . expression IS expression
     (20) subscription -> . expression LSBRACK expression RSBRACK
 
+    RCBRACK         reduce using rule 38 (key_datum_list -> .)
     VARNAME         shift and go to state 23
     CONST           shift and go to state 2
     UNARYSUB        shift and go to state 6
@@ -1500,7 +1510,7 @@ state 55
 
 state 56
 
-    (38) statement -> target ASSIGN expression .
+    (40) statement -> target ASSIGN expression .
     (16) expression -> expression . PLUS expression
     (24) expression -> expression . AND expression
     (25) expression -> expression . OR expression
@@ -1510,7 +1520,7 @@ state 56
     (32) expression -> expression . IS expression
     (20) subscription -> expression . LSBRACK expression RSBRACK
 
-    $end            reduce using rule 38 (statement -> target ASSIGN expression .)
+    $end            reduce using rule 40 (statement -> target ASSIGN expression .)
     PLUS            shift and go to state 43
     AND             shift and go to state 38
     OR              shift and go to state 44
@@ -1805,9 +1815,9 @@ state 64
 
 state 65
 
-    (34) expr_list -> expression COMMA expr_list .
+    (35) expr_list -> expression COMMA expr_list .
 
-    RSBRACK         reduce using rule 34 (expr_list -> expression COMMA expr_list .)
+    RSBRACK         reduce using rule 35 (expr_list -> expression COMMA expr_list .)
 
 
 state 66
@@ -1821,9 +1831,9 @@ state 66
 
 state 67
 
-    (36) key_datum_list -> key_datum COMMA key_datum_list .
+    (37) key_datum_list -> key_datum COMMA key_datum_list .
 
-    RCBRACK         reduce using rule 36 (key_datum_list -> key_datum COMMA key_datum_list .)
+    RCBRACK         reduce using rule 37 (key_datum_list -> key_datum COMMA key_datum_list .)
 
 
 state 68

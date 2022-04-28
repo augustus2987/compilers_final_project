@@ -272,6 +272,10 @@ def p_expr_list(t):
     'expr_list : expression'
     t[0] = List([t[1]])
 
+def p_expr_list_empty(t):
+    'expr_list : '
+    t[0] = List([])
+
 def p_append_to_list(t):
     'expr_list : expression COMMA expr_list'
     a = []
@@ -291,6 +295,10 @@ def p_keydatum_list_appendto_list(t):
     for n in t[3].items:
         a.append(n)
     t[0] = Dict(a)
+
+def p_keydatum_list_empty(t):
+    'key_datum_list : '
+    t[0] = Dict([])
 
 # def p_target_identifier(t):
 #     'target : identifier'
