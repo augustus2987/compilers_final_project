@@ -1,5 +1,6 @@
-INT z
-BOOL h = True
+bool h = True
+int h = 4
 h = 1
-z = 4
-print h + z
+h = 2
+bool h = False
+h = 2
