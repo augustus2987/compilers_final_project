@@ -33,7 +33,7 @@ class x86IR:
     def add_node_to_ir(self, node):
         if isinstance(node, Assign):
             assignTo = None
-            if isinstance(node.nodes[0], AssName) or isinstance(node.nodes[0], Name):
+            if isinstance_list(node.nodes[0], [Name, AssName, StaticName, StaticAssName]):
                 assignTo = node.nodes[0].name
             elif isinstance(node.nodes[0], Subscript):
                 assignTo = "edx" 
@@ -122,7 +122,7 @@ class x86IR:
                 self.intermediate.append(end_name + ":")
             elif isinstance(node.expr, ProjectTo):
                 project_func = {"int": "project_int", "bool": "project_bool", "big": "project_big"}
-                push_val = ("$"+str(node.expr.arg.value)) if isinstance(node.expr.arg, Const) else node.expr.arg.name
+                push_val = ("$"+str(node.expr.arg.value)) if isinstance_list(node.expr.arg, [Const, Bool]) else node.expr.arg.name
                 self.intermediate.append("pushl %s" % push_val)
                 self.intermediate.append("call " + project_func[node.expr.typ])
                 self.intermediate.append("movl eax %s" % (assignTo))

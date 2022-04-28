@@ -89,7 +89,8 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Dict):
         for item in n.items:
-            replace_type(item, newType)
+            replace_type(item[0], newType)
+            replace_type(item[1], newType)
         return
     elif isinstance(n, Subscript):
         replace_type(n.expr, newType)
@@ -102,5 +103,5 @@ def replace_type(n, newType):
         replace_type(n.else_, newType)
         return
     else:
-        raise Exception("Error in replace_type: unrecognized AST node")
+        raise Exception("Error in replace_type: unrecognized AST node: " + str(n))
             

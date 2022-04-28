@@ -4,7 +4,7 @@ from extra_nodes import *
 printParse = True
 printTypeCheck = True
 printExplicate = True
-printFlatten = False
+printFlatten = True
 printx86IR = True
 printVariableAssignment = False
 
@@ -127,11 +127,18 @@ types = {
     Const: "INT_TYPE",
     Bool: "BOOL_TYPE",
 }
-
 def get_type(n):
     if isinstance_list(n, [StaticAssName, StaticName]):
         return n.typ
-    elif type(n) in types:
-        return types[type(n)]
+    elif isinstance_list(n, types.keys()):
+        for typ in types.keys():
+            if isinstance(n, typ):
+                return types[typ]
     else:
-        raise Exception["Error in get_type, unrecognized node: " + str(n)]
+        raise Exception("Error in get_type, unrecognized node: " + str(n))
+
+def need_to_project(n):
+    if isinstance_list(n, [Const, Bool]):
+        return False
+    else:
+        return True

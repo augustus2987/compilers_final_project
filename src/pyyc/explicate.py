@@ -37,7 +37,7 @@ def explicate_pass(n):
         n.expr = explicate_pass(n.expr)
         return n
 
-    elif isinstance_list(n, [AssName, Const, CallFunc, Bool]):
+    elif isinstance_list(n, [AssName, Const, CallFunc, Bool, StaticAssName, StaticName]):
         """
         (no operation)
         """
@@ -47,7 +47,7 @@ def explicate_pass(n):
         return static_print_helper(n)
 
     elif isinstance(n, Add):
-        return add_helper(n, new_explicate_name())
+        return static_add_helper(n)
     
     elif isinstance(n, Compare):
         return compare_helper(n, new_explicate_name())
@@ -223,55 +223,18 @@ def not_helper(node, result):
         result.name
     )
 
-
-def print_helper(node):
-    expr, exprName = explicate_pass(node.nodes[0]), new_explicate_name()
-    if_int = if_int_single(exprName)
-    int_then = Printnl(
-        [ProjectTo('int', exprName)], None
-    )
-    if_bool = if_bool_single(exprName)
-    bool_then = PrintBool(
-        exprName
-    )
-    if_big = if_big_single(exprName)
-    big_then = PrintBig(
-        exprName
-    )
-    else_bool = IfExp(
-        InjectFrom('bool', if_big),
-        big_then,
-        CallFunc(Name('call_error'), [], None, None)
-    )
-    else_int = IfExp(
-        InjectFrom('bool', if_bool),
-        bool_then,
-        else_bool
-    )
-    toplevel_if = IfExp(
-        InjectFrom('bool', if_int),
-        int_then,
-        else_int
-    )
-    return Let(
-        exprName,
-        expr,
-        toplevel_if,
-        None
-    )
-
 def static_print_helper(node):
     typ = get_type(node.nodes[0])
     if typ == "INT_TYPE":
-        return Printnl([node.nodes[0]], None)
+        return Printnl([ProjectTo('int', node.nodes[0])], None) if need_to_project(node.nodes[0]) else Printnl(['int', node.nodes[0]], None)
     elif typ == "BOOL_TYPE":
-        return PrintBool(node.nodes[0])
+        return PrintBool([ProjectTo('bool', node.nodes[0])], None) if need_to_project(node.nodes[0]) else PrintBool(['bool', node.nodes[0]], None)
     elif typ in ["DICT_TYPE", "LIST_TYPE"]:
         return PrintBig(node.nodes[0])
     elif typ == "NO_TYPE":
         raise Exception("Error in static_print_helper: no type for node: " + str(node))
     else:
-        raise Exception("Error in static_print_helper: unknown type: " + typ)
+        raise Exception("Error in static_print_helper: unknown type: " + str(typ))
 
 
 def or_and_helper(left, right, result, op):
@@ -303,6 +266,35 @@ def or_and_helper(left, right, result, op):
         result.name
     )
 
+type_project = {
+    "INT_TYPE": "int",
+    "BOOL_TYPE": "bool",
+    "LIST_TYPE": "big",
+    "DICT_TYPE": "big",
+}
+# [lhs, rhs]: [InjectFrom type, addition node]
+type_additions = {
+    ("INT_TYPE", "INT_TYPE"): ('int', Add),
+    ("BOOL_TYPE", "INT_TYPE"): ('int', Add),
+    ("INT_TYPE", "BOOL_TYPE"): ('int', Add),
+    ("LIST_TYPE", "LIST_TYPE"): ('big', CallBigAdd)
+}
+def static_add_helper(node):
+    left = explicate_pass(node.left)
+    right = explicate_pass(node.right)
+    l_type = get_type(left)
+    r_type = get_type(right)
+    if (l_type, r_type) not in type_additions.keys():
+        raise Exception("Error in static_add_helper: invalid types in addition: " + str(l_type) + " + " + str(r_type))
+    inject_from, use_node = type_additions[(l_type, r_type)]
+    use_left = ProjectTo(type_project[l_type], left) if need_to_project(left) else left
+    use_right = ProjectTo(type_project[r_type], right) if need_to_project(right) else right
+    print("Use node is " + str(use_node))
+    return InjectFrom(
+        inject_from,
+        use_node((use_left, use_right))
+    )
+    
 def add_helper(node, result):
     left, leftName = explicate_pass(node.left), new_explicate_name()
     right, rightName = explicate_pass(node.right), new_explicate_name()

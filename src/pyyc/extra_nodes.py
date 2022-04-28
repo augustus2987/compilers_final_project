@@ -12,6 +12,10 @@ class StaticName(Node):
         self.typ = typ
         self.subtype = subtype
         self.keytype = keytype
+
+    def getChildren(self):
+        return self.name,
+
     def __repr__(self):
         if not self.typ:
             return "StaticName(" + self.name + ", NO_TYPE)"
@@ -103,12 +107,13 @@ class IntAdd(Node):
         return "IntAdd(" + str(self.left) + ", " + str(self.right) + ")"
 
 class CallBigAdd(Node):
-    def __init__(self, left, right):
-        self.left = left
-        self.right = right
+    def __init__(self, leftright):
+        self.left = leftright[0]
+        self.right = leftright[1]
     
     def getChildren(self):
         children = []
+        print("connor:: getchildren: " + str(self.left))
         children.extend(self.left.getChildren())
         children.extend(self.right.getChildren())
         return tuple(children)

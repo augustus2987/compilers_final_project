@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 CONTAINER_PATH=/compilers/lab5-peskin-augustus/
 
 if [ ! -f runtime/libpyyruntime.a ]; then
