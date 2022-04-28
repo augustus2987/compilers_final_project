@@ -68,7 +68,7 @@ def replace_type(n, newType):
     elif isinstance(n, Subscript):
         replace_type(n.expr, newType)
         for node in n.subs:
-            replace_type(n.subs, newType)
+            replace_type(node, newType)
         return
     elif isinstance(n, IfExp):
         replace_type(n.test, newType)
