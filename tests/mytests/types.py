@@ -1,7 +1,7 @@
-LIST a = []
-DICT b = {}
-INT c = 0
-BOOL d = True
+list a = []
+dict b = {}
+int c = 0
+bool d = True
 
 a = a + [3]
 b["a"] = 3

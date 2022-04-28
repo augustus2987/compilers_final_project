@@ -49,16 +49,16 @@ reserved = {
     'not': 'NOT', 
     'True': 'TRUE',
     'False': 'FALSE',
-    'INT': 'INTTYPE',
-    'BOOL': 'BOOLTYPE',
-    'LIST': 'LISTTYPE',
-    'DICT': 'DICTTYPE'
+    'int': 'INTTYPE',
+    'bool': 'BOOLTYPE',
+    'list': 'LISTTYPE',
+    'dict': 'DICTTYPE'
 }
 
-t_INTTYPE = r'INT'
-t_BOOLTYPE= r'BOOL'
-t_LISTTYPE = r'LIST'
-t_DICTTYPE = r'DICT'
+t_INTTYPE = r'int'
+t_BOOLTYPE= r'bool'
+t_LISTTYPE = r'list'
+t_DICTTYPE = r'dict'
 
 # token regex:
 t_PRINT = r'print'
