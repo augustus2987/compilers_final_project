@@ -6,7 +6,7 @@ seen_vars = set([])
 def check_undefined_type(n):
     
     if isinstance(n, Module):
-        type_pass(n.node)
+        check_undefined_type(n.node)
         return n
     
     elif isinstance(n, Stmt):
@@ -16,16 +16,14 @@ def check_undefined_type(n):
                     print "Variable " + line.name + " declared without type"
                     raise
                 else:
-                    seen_vars.add(line.name)
-                    
+                    seen_vars.add(line.name)   
             if isinstance(line, Assign):
                 if isinstance(line.nodes[0], StaticAssName):
                     if (line.nodes[0].name not in seen_vars) and (line.nodes[0].typ == None):
-                        print "Variable " + line.name + " declared without type"
+                        print "Variable " + line.nodes[0].name + " declared without type"
                         raise
                 else:
-                    seen_vars.add(line.nodes[0].name)
-                                    
+                    seen_vars.add(line.nodes[0].name)                      
     return n
             
 

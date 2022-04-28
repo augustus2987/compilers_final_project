@@ -38,7 +38,7 @@ if __name__ == "__main__":
         for n in tree.node.nodes:
             print("compiler::\t" + str(n))
         print ""
-            
+
     check_undefined_type(tree)
     tree = type_pass(tree)        
     if printTypeCheck:
