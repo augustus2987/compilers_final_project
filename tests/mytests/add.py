@@ -1,5 +1,5 @@
 INT z
-BOOL h = 4
+BOOL h = True
 h = 1
 z = 4
 print h + z

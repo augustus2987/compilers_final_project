@@ -76,5 +76,5 @@ def replace_type(n, newType):
         replace_type(n.else_, newType)
         return
     else:
-        raise Exception("Error in replace_type: unrecognized AST node")
+        raise Exception("Error in replace_type: unrecognized AST node: " + str(n))
             
