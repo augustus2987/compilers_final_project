@@ -58,7 +58,8 @@ if __name__ == "__main__":
             print(t)
         
         
-    check_all_supported(t)
+    # taking this out for now
+    #check_all_supported(t)
     # flatten AST
     flattened_tree = flatten_ast(tree)
     flattened_tree = unqiueify_names(flattened_tree)

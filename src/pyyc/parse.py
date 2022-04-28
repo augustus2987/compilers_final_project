@@ -222,11 +222,11 @@ def p_subscription(t):
 
 def p_true_expression(t):
     'expression : TRUE'
-    t[0] = Const(1)
+    t[0] = Bool(1)
     
 def p_false_expression(t):
     'expression : FALSE'
-    t[0] = Const(0)
+    t[0] = Bool(0)
     
 def p_not_expression(t):
     'expression : NOT expression'

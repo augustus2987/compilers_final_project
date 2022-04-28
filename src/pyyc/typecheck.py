@@ -1,4 +1,5 @@
 from extra_nodes import *
+from utils import *
 
 def type_pass(n):
     
@@ -37,7 +38,7 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Discard):
         replace_type(n.expr, newType)
-    elif isinstance(n, Const):
+    elif isinstance_list(n, [Const, Bool]):
         return
     elif isinstance(n, Add):
         replace_type(n.left, newType)

@@ -2,6 +2,7 @@ import sys
 import compiler
 from compiler.ast import * 
 from extra_nodes import *
+from utils import *
 import uuid
 
 
@@ -29,42 +30,30 @@ def explicate_pass(n):
             n.nodes[i] = explicate_pass(n.nodes[i])
         return n
     
-    elif isinstance(n, Printnl):
-        return print_helper(n)
-    
-    elif isinstance(n, Assign):
+    elif isinstance_list(n, [Assign, Discard, UnarySub]):
+        """
+        expr
+        """
         n.expr = explicate_pass(n.expr)
         return n
 
-    elif isinstance(n, Discard):
-        n.expr = explicate_pass(n.expr)
+    elif isinstance_list(n, [AssName, Const, CallFunc, Bool]):
+        """
+        (no operation)
+        """
         return n
     
-    elif isinstance(n, AssName):
-        return n
-    
-    elif isinstance(n, Const):
-        return n
-    
-    elif isinstance(n, Name):
-        if n.name == 'True':
-            return Bool(1)
-        elif n.name == 'False':
-            return Bool(0)
-        return n
-    
+    elif isinstance(n, Printnl):
+        return static_print_helper(n)
+
     elif isinstance(n, Add):
         return add_helper(n, new_explicate_name())
     
-    elif isinstance(n, UnarySub):
-        n.expr = explicate_pass(n.expr)
-        return n
-    
-    elif isinstance(n, CallFunc):
-        return n
-    
     elif isinstance(n, Compare):
         return compare_helper(n, new_explicate_name())
+
+    elif isinstance(n, Not):
+        return not_helper(n, new_explicate_name())
     
     elif isinstance(n, Or) or isinstance(n, And):
         op = Or if isinstance(n, Or) else And
@@ -77,10 +66,6 @@ def explicate_pass(n):
                 to_ret = or_and_helper(last_name, n.nodes[i], last_name, op)
                 last_name = new_name
         return to_ret
-    
-    
-    elif isinstance(n, Not):
-        return not_helper(n, new_explicate_name())
     
     elif isinstance(n, List):
         for i in range(len(n.nodes)):
@@ -114,7 +99,6 @@ def new_explicate_name():
     global explTmpCnt, explicate_prefix
     explTmpCnt += 1
     return Name(explicate_prefix + "_" + str(explTmpCnt-1))
-
 
 def is_helper(node, result):
     left, leftName = explicate_pass(node.expr), new_explicate_name()
@@ -275,6 +259,20 @@ def print_helper(node):
         toplevel_if,
         None
     )
+
+def static_print_helper(node):
+    typ = get_type(node.nodes[0])
+    if typ == "INT_TYPE":
+        return Printnl([node.nodes[0]], None)
+    elif typ == "BOOL_TYPE":
+        return PrintBool(node.nodes[0])
+    elif typ in ["DICT_TYPE", "LIST_TYPE"]:
+        return PrintBig(node.nodes[0])
+    elif typ == "NO_TYPE":
+        raise Exception("Error in static_print_helper: no type for node: " + str(node))
+    else:
+        raise Exception("Error in static_print_helper: unknown type: " + typ)
+
 
 def or_and_helper(left, right, result, op):
     left, leftName = explicate_pass(left), new_explicate_name()

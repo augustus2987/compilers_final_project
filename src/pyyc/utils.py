@@ -3,9 +3,9 @@ from extra_nodes import *
 
 printParse = True
 printTypeCheck = True
-printExplicate = False
+printExplicate = True
 printFlatten = False
-printx86IR = False
+printx86IR = True
 printVariableAssignment = False
 
 supported_nodes = [Module,
@@ -114,3 +114,24 @@ def project_consts(tree):
         return tree
     else:
         raise Exception("Unsupported node: " + str(tree))
+
+def isinstance_list(n, li):
+    for l in li:
+        if isinstance(n, l):
+            return True
+    return False
+
+types = {
+    List: "LIST_TYPE",
+    Dict: "DICT_TYPE",
+    Const: "INT_TYPE",
+    Bool: "BOOL_TYPE",
+}
+
+def get_type(n):
+    if isinstance_list(n, [StaticAssName, StaticName]):
+        return n.typ
+    elif type(n) in types:
+        return types[type(n)]
+    else:
+        raise Exception["Error in get_type, unrecognized node: " + str(n)]

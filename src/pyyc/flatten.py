@@ -1,7 +1,7 @@
 import sys
 from compiler.ast import *
 from extra_nodes import *
-from utils import supported_nodes
+from utils import *
 from explicate import explicate_prefix, INT_TAG
 import uuid
 
@@ -130,7 +130,7 @@ def flatten_ast(ast):
             ast.expr = Name(variable_prefix + "_" + str(cnt))
         nodes.append(Assign([Name(variable_prefix + "_" + str(cnt))], ast.expr))
         return nodes
-    elif isinstance(ast, AssName):
+    elif isinstance_list(ast, [AssName, StaticAssName]):
         return ast
     elif isinstance(ast, Const):
         cnt = tmpCnt
@@ -141,6 +141,9 @@ def flatten_ast(ast):
     elif isinstance(ast, Name):
         cnt = tmpCnt
         return [Assign([AssName(variable_prefix + "_" + str(cnt), 'OP-ASSIGN')], ast)]
+    elif isinstance(ast, StaticName):
+        cnt = tmpCnt
+        return [Assign([StaticAssName(variable_prefix + "_" + str(cnt), ast.typ)], ast)]
     elif isinstance(ast, Add):
         cnt = tmpCnt
         tmpCnt += 1
@@ -393,13 +396,13 @@ def unqiueify_names(tree):
         tree.expr = unqiueify_names(tree.expr)
         return tree
 
-    elif isinstance(tree, AssName):
+    elif isinstance_list(tree, [AssName, StaticAssName]):
         if not tree.name.startswith(variable_prefix) and not tree.name.startswith(explicate_prefix) and not tree.name.startswith(variable_prefix_user_defined):
             tree.name = variable_prefix_user_defined + "_" + tree.name
         return tree
     elif isinstance(tree, Const) or isinstance(tree, Bool):
         return tree
-    elif isinstance(tree, Name):
+    elif isinstance_list(tree, [Name, StaticName]):
         if isinstance(tree.name, str):
             if not tree.name.startswith(variable_prefix) and not tree.name.startswith(explicate_prefix) and not tree.name.startswith(variable_prefix_user_defined):
                 tree.name = variable_prefix_user_defined + "_" + tree.name

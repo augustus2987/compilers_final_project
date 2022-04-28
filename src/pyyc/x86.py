@@ -1,6 +1,7 @@
 from compiler.ast import *
 from extra_nodes import *
 import re
+from utils import *
 variable_prefix_ir = "ir"
 tag_prefix_ir = "ir_tag"
 
@@ -50,7 +51,7 @@ class x86IR:
                 self.intermediate.append("pushl $%d" % int(node.expr.value))
                 self.intermediate.append("call inject_bool")
                 self.intermediate.append("movl eax %s" % (assignTo))
-            elif isinstance(node.expr, Name):
+            elif isinstance_list(node.expr, [Name, StaticName]):
                 self.intermediate.append("movl %s %s" % (node.expr.name, assignTo))
             elif isinstance(node.expr, Add) or isinstance(node.expr, IntAdd):
                 if isinstance(node.expr.left, Const) or isinstance(node.expr.left, Bool):
