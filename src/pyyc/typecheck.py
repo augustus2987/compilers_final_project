@@ -20,8 +20,7 @@ def check_undefined_type(n):
             if isinstance(line, Assign):
                 if isinstance(line.nodes[0], StaticAssName):
                     if (line.nodes[0].name not in seen_vars) and (line.nodes[0].typ == None):
-                        print "Variable " + line.nodes[0].name + " declared without type"
-                        raise
+                        raise Exception("Variable " + line.nodes[0].name + " declared without type")
                 else:
                     seen_vars.add(line.nodes[0].name)                      
     return n

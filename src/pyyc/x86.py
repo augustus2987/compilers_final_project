@@ -227,6 +227,10 @@ class x86IR:
                 self.intermediate.append(else_name + ":")
                 self.intermediate.append("movl $1 %s" % assignTo)
                 self.intermediate.append(end_name + ":")
+            elif isinstance(node.expr, IsTrue):
+                self.intermediate.append("pushl %s" % node.expr.expr.name)
+                self.intermediate.append("call is_true")
+                self.intermediate.append("movl eax %s" % (assignTo))
             else:
                 raise Exception("x86:: ERROR: Not valid assignment, node: " + str(node.expr.__class__))
             

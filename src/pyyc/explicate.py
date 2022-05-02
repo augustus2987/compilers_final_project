@@ -10,6 +10,13 @@ INT_TAG = 0
 BOOL_TAG = 1   
 BIG_TAG = 3
 
+type_project = {
+    "INT_TYPE": "int",
+    "BOOL_TYPE": "bool",
+    "LIST_TYPE": "big",
+    "DICT_TYPE": "big",
+}
+
 variable_prefix  = "var" #= str(uuid.uuid4())
 variable_prefix_user_defined = "user"# str(uuid.uuid4())
 
@@ -37,7 +44,7 @@ def explicate_pass(n):
         n.expr = explicate_pass(n.expr)
         return n
 
-    elif isinstance_list(n, [AssName, Const, CallFunc, Bool, StaticAssName, StaticName]):
+    elif isinstance_list(n, [AssName, Const, CallFunc, Bool, StaticAssName, StaticName, Name]):
         """
         (no operation)
         """
@@ -53,7 +60,7 @@ def explicate_pass(n):
         return compare_helper(n, new_explicate_name())
 
     elif isinstance(n, Not):
-        return not_helper(n, new_explicate_name())
+        return static_not_helper(n)
     
     elif isinstance(n, Or) or isinstance(n, And):
         op = Or if isinstance(n, Or) else And
@@ -192,6 +199,26 @@ def compare_helper(node, result):
         result.name
     )
 
+def static_not_helper(node):
+    expr = explicate_pass(node.expr)
+    typ = get_type(expr)
+    if typ == "INT_TYPE":
+        return InjectFrom('bool',
+            Not(ProjectTo('int', expr))
+        )
+    elif typ == "BOOL_TYPE":
+        return InjectFrom('bool',
+            Not(ProjectTo('bool', expr))
+        )
+    elif typ in ["DICT_TYPE", "LIST_TYPE"]:
+        return InjectFrom('bool',
+            Not(IsTrue(expr))
+        )
+    elif typ == "NO_TYPE":
+        raise Exception("Error in static_not_helper: no type for node: " + str(node))
+    else:
+        raise Exception("Error in static_not_helper: unknown type: " + str(typ))
+
 def not_helper(node, result):
     expr, exprName = explicate_pass(node.expr), new_explicate_name()
     if_int = if_int_single(exprName)
@@ -224,17 +251,39 @@ def not_helper(node, result):
     )
 
 def static_print_helper(node):
-    typ = get_type(node.nodes[0])
+    expr = explicate_pass(node.nodes[0])
+    typ = get_type(expr)
     if typ == "INT_TYPE":
-        return Printnl([ProjectTo('int', node.nodes[0])], None) if need_to_project(node.nodes[0]) else Printnl(['int', node.nodes[0]], None)
+        return Printnl([ProjectTo('int', expr)], None) if need_to_project(expr) else Printnl(['int', expr], None)
     elif typ == "BOOL_TYPE":
-        return PrintBool(ProjectTo('bool', node.nodes[0])) if need_to_project(node.nodes[0]) else PrintBool('bool', node.nodes[0])
+        # return PrintBool(ProjectTo('bool', expr)) if need_to_project(expr) else PrintBool('bool', expr)
+        return PrintBool(expr)
     elif typ in ["DICT_TYPE", "LIST_TYPE"]:
-        return PrintBig(node.nodes[0])
+        return PrintBig(expr)
     elif typ == "NO_TYPE":
         raise Exception("Error in static_print_helper: no type for node: " + str(node))
     else:
         raise Exception("Error in static_print_helper: unknown type: " + str(typ))
+
+def static_or_and_helper(left, right, result, op):
+    left = explicate_pass(left)
+    right = explicate_pass(right)
+    l_type = get_type(left)
+    r_type = get_type(right)
+    if l_type in ["INT_TYPE", "BOOL_TYPE"]:
+        use_left = ProjectTo(type_project[l_type], left) if need_to_project(left) else left
+    else:
+        use_left = IsTrue(left)
+    if r_type in ["INT_TYPE", "BOOL_TYPE"]:
+        use_right = ProjectTo(type_project[l_type], left) if need_to_project(left) else left
+    else:
+        use_right = IsTrue(left)
+    return Assign([result],
+        InjectFrom(
+            'bool',
+            op([use_left, use_right])
+        )
+    )
 
 
 def or_and_helper(left, right, result, op):
@@ -266,12 +315,6 @@ def or_and_helper(left, right, result, op):
         result.name
     )
 
-type_project = {
-    "INT_TYPE": "int",
-    "BOOL_TYPE": "bool",
-    "LIST_TYPE": "big",
-    "DICT_TYPE": "big",
-}
 # [lhs, rhs]: [InjectFrom type, addition node]
 type_additions = {
     ("INT_TYPE", "INT_TYPE"): ('int', Add),
@@ -289,53 +332,9 @@ def static_add_helper(node):
     inject_from, use_node = type_additions[(l_type, r_type)]
     use_left = ProjectTo(type_project[l_type], left) if need_to_project(left) else left
     use_right = ProjectTo(type_project[r_type], right) if need_to_project(right) else right
-    print("Use node is " + str(use_node))
     return InjectFrom(
         inject_from,
         use_node((use_left, use_right))
-    )
-    
-def add_helper(node, result):
-    left, leftName = explicate_pass(node.left), new_explicate_name()
-    right, rightName = explicate_pass(node.right), new_explicate_name()
-    if_little = if_little_tree(leftName, rightName)
-    little_then = Assign([result],
-        InjectFrom('int',
-            Add((
-                little_conditional_project(leftName),
-                little_conditional_project(rightName)
-            ))
-        )
-    )
-    if_big = if_big_tree(leftName, rightName)
-    big_then = Assign([result],
-        InjectFrom('big',
-            CallBigAdd(
-                ProjectTo('big', leftName),
-                ProjectTo('big', rightName)
-            )
-        )
-    )
-    else_int = IfExp(
-        InjectFrom('bool', if_big),
-        big_then,
-        CallFunc(Name('call_error'), [], None, None)
-    )
-    toplevel_if = IfExp(
-        InjectFrom('bool', if_little),
-        little_then,
-        else_int
-    )
-    return Let(
-        leftName,
-        left,
-        Let(
-            rightName,
-            right,
-            toplevel_if,
-            result.name
-        ),
-        result.name
     )
 
 def if_int_tree(left, right):

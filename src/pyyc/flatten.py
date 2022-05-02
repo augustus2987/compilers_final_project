@@ -160,7 +160,7 @@ def flatten_ast(ast):
             tmpCnt += 1
         nodes.append(Assign([AssName(variable_prefix + "_" + str(cnt), 'OP-ASSIGN')], ast))
         return nodes
-    elif isinstance(ast, UnarySub):
+    elif isinstance_list(ast, [UnarySub, IsTrue]):
         cnt = tmpCnt
         tmpCnt += 1
         nodes = []
@@ -413,7 +413,7 @@ def unqiueify_names(tree):
         tree.left = unqiueify_names(tree.left)
         tree.right = unqiueify_names(tree.right)
         return tree
-    elif isinstance(tree, UnarySub) or isinstance(tree, PrintBool) or isinstance(tree, PrintBig) or isinstance(tree, Not):
+    elif isinstance_list(tree, [UnarySub, PrintBool, PrintBig, Not, IsTrue]):
         tree.expr = unqiueify_names(tree.expr)
         return tree
     elif isinstance(tree, CallFunc):

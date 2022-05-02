@@ -166,3 +166,13 @@ class Bool(Node):
     def __repr__(self):
         val = "True" if self.value else "False"
         return "Bool(" + val + ")"
+
+class IsTrue(Node):
+    def __init__(self, expr):
+        self.expr = expr
+
+    def getChildren(self):
+        return tuple([self.expr])
+    
+    def __repr__(self):
+        return "IsTrue(" + str(self.expr) + ")"
