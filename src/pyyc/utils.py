@@ -127,6 +127,11 @@ types = {
     Const: "INT_TYPE",
     Bool: "BOOL_TYPE",
 }
+inject_from_types = {
+    "int": "INT_TYPE",
+    "bool": "BOOL_TYPE",
+    "big": "LIST_TYPE",
+}
 def get_type(n):
     if isinstance_list(n, [StaticAssName, StaticName]):
         return n.typ
@@ -134,6 +139,8 @@ def get_type(n):
         for typ in types.keys():
             if isinstance(n, typ):
                 return types[typ]
+    elif isinstance(n, InjectFrom):
+        return inject_from_types[n.typ]
     else:
         raise Exception("Error in get_type, unrecognized node: " + str(n))
 

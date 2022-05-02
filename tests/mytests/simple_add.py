@@ -10,3 +10,4 @@ print b
 print d
 print e
 
+print d + c + d
