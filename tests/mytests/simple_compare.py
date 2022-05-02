@@ -16,3 +16,9 @@ list a = [3, 4]
 list b = [5, 6]
 bool c = (a == b)
 print c
+
+list c = a
+bool d = b is a
+print d
+bool d = c is a
+print d

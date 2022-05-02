@@ -128,7 +128,7 @@ class x86IR:
                 self.intermediate.append("movl eax %s" % (assignTo))
             elif isinstance(node.expr, InjectFrom):
                 inj_func = {"int": "inject_int", "bool": "inject_bool", "big": "inject_big"} 
-                push_val = ("$"+str(node.expr.arg.value)) if isinstance(node.expr.arg, Const) else node.expr.arg.name
+                push_val = ("$"+str(node.expr.arg.value)) if isinstance_list(node.expr.arg, [Const, Bool]) else node.expr.arg.name
                 self.intermediate.append("pushl %s" % push_val)
                 self.intermediate.append("call " + inj_func[node.expr.typ])
                 self.intermediate.append("movl eax %s" % (assignTo))

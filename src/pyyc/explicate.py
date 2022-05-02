@@ -107,6 +107,31 @@ def new_explicate_name():
     explTmpCnt += 1
     return Name(explicate_prefix + "_" + str(explTmpCnt-1))
 
+def static_is_helper(node):
+    left = explicate_pass(node.expr)
+    right = explicate_pass(node.ops[0][1])
+    l_type = get_type(left)
+    r_type = get_type(right)
+    if l_type != r_type:
+        return InjectFrom('bool', Bool(0))
+    if type_project[l_type] == "big":
+        return InjectFrom('bool',
+            Compare(
+                left,
+                [("==", right)]
+            )
+        )
+    else:
+        use_left = ProjectTo(type_project[l_type], left) if need_to_project(left) else left
+        use_right = ProjectTo(type_project[r_type], right) if need_to_project(right) else right
+        return InjectFrom('bool',
+            Compare(
+                use_left,
+                [("==", use_right)]
+            )
+        )
+    
+
 def is_helper(node, result):
     left, leftName = explicate_pass(node.expr), new_explicate_name()
     right, rightName = explicate_pass(node.ops[0][1]), new_explicate_name()
@@ -156,13 +181,13 @@ def is_helper(node, result):
 
 def static_compare_helper(node):
     if node.ops[0][0] == "is":
-        return is_helper(node, node.nodes[0])
+        return static_is_helper(node)
     left = explicate_pass(node.expr)
     right = explicate_pass(node.ops[0][1])
     l_type = get_type(left)
     r_type = get_type(right)
     if type_project[l_type] != type_project[r_type]:
-        return Bool(0)
+        return InjectFrom('bool', Bool(0))
     use_left = ProjectTo(type_project[l_type], left) if need_to_project(left) else left
     use_right = ProjectTo(type_project[r_type], right) if need_to_project(right) else right
     cmp_node = BigCompare if type_project[l_type] == "big" else Compare
