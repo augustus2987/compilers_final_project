@@ -57,7 +57,7 @@ def explicate_pass(n):
         return static_add_helper(n)
     
     elif isinstance(n, Compare):
-        return compare_helper(n, new_explicate_name())
+        return static_compare_helper(n)
 
     elif isinstance(n, Not):
         return static_not_helper(n)
@@ -152,6 +152,26 @@ def is_helper(node, result):
             result.name
         ),
         result.name
+    )
+
+def static_compare_helper(node):
+    if node.ops[0][0] == "is":
+        return is_helper(node, node.nodes[0])
+    left = explicate_pass(node.expr)
+    right = explicate_pass(node.ops[0][1])
+    l_type = get_type(left)
+    r_type = get_type(right)
+    if type_project[l_type] != type_project[r_type]:
+        return Bool(0)
+    use_left = ProjectTo(type_project[l_type], left) if need_to_project(left) else left
+    use_right = ProjectTo(type_project[r_type], right) if need_to_project(right) else right
+    cmp_node = BigCompare if type_project[l_type] == "big" else Compare
+    return InjectFrom(
+        'bool',
+        cmp_node(
+            use_left,
+            [(node.ops[0][0], use_right)]
+        )
     )
 
 def compare_helper(node, result):

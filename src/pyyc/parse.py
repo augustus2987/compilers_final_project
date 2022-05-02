@@ -242,11 +242,11 @@ def p_or_expression(t):
     
 def p_eqeq_expression(t):
     'expression : expression EQEQ expression'
-    t[0] = Compare(t[1], ['==', t[3]])
+    t[0] = Compare(t[1], [('==', t[3])])
         
 def p_noteq_expression(t):
     'expression : expression NOTEQ expression'
-    t[0] = Compare(t[1], ['!=', t[3]])
+    t[0] = Compare(t[1], [('!=', t[3])])
 
 def p_conditional_expression(t):
     'expression : expression IF expression ELSE expression'
@@ -266,7 +266,7 @@ def p_subscription_expression(t):
     
 def p_is_expression(t):
     'expression : expression IS expression'
-    t[0] = Compare(t[1], ['is', t[3]])
+    t[0] = Compare(t[1], [('is', t[3])])
         
 def p_expr_list(t):
     'expr_list : expression'

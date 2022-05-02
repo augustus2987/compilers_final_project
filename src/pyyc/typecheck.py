@@ -77,7 +77,7 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Compare):
         replace_type(n.expr, newType)
-        replace_type(n.ops[1], newType)
+        replace_type(n.ops[0][1], newType)
         return
     elif isinstance(n, Or) or isinstance(n, And) or isinstance(n, List):
         for node in n.nodes:
