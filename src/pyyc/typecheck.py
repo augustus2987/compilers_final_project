@@ -20,7 +20,8 @@ def check_undefined_type(n):
             if isinstance(line, Assign):
                 if isinstance(line.nodes[0], StaticAssName):
                     if (line.nodes[0].name not in seen_vars) and (line.nodes[0].typ == None):
-                        raise Exception("Variable " + line.nodes[0].name + " declared without type")
+                        print "Variable " + line.nodes[0].name + " declared without type"
+                        raise
                 else:
                     seen_vars.add(line.nodes[0].name)                      
     return n
@@ -63,7 +64,11 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Discard):
         replace_type(n.expr, newType)
-    elif isinstance_list(n, [Const, Bool]):
+#     elif isinstance_list(n, [Const, Bool]):
+#         return
+    elif isinstance(n, Const):
+        return
+    elif isinstance(n, Bool):
         return
     elif isinstance(n, Add):
         replace_type(n.left, newType)
@@ -77,7 +82,7 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Compare):
         replace_type(n.expr, newType)
-        replace_type(n.ops[0][1], newType)
+        replace_type(n.ops[1], newType)
         return
     elif isinstance(n, Or) or isinstance(n, And) or isinstance(n, List):
         for node in n.nodes:
@@ -88,13 +93,12 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Dict):
         for item in n.items:
-            replace_type(item[0], newType)
-            replace_type(item[1], newType)
+            replace_type(item, newType)
         return
     elif isinstance(n, Subscript):
         replace_type(n.expr, newType)
         for node in n.subs:
-            replace_type(n.subs, newType)
+            replace_type(node, newType)
         return
     elif isinstance(n, IfExp):
         replace_type(n.test, newType)
@@ -102,5 +106,5 @@ def replace_type(n, newType):
         replace_type(n.else_, newType)
         return
     else:
-        raise Exception("Error in replace_type: unrecognized AST node: " + str(n))
+        raise Exception("Error in replace_type: unrecognized AST node")
             
