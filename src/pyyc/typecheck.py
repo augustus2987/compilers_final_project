@@ -13,15 +13,13 @@ def check_undefined_type(n):
         for i, line in enumerate(n.nodes):
             if isinstance(line, StaticName):
                 if (line.name not in seen_vars) and (line.typ == None):
-                    print "Variable " + line.name + " declared without type"
-                    raise
+                    raise Exception("Variable " + line.name + " declared without type")
                 else:
                     seen_vars.add(line.name)   
             if isinstance(line, Assign):
                 if isinstance(line.nodes[0], StaticAssName):
                     if (line.nodes[0].name not in seen_vars) and (line.nodes[0].typ == None):
-                        print "Variable " + line.nodes[0].name + " declared without type"
-                        raise
+                        raise Exception("Variable " + line.nodes[0].name + " declared without type")
                 else:
                     seen_vars.add(line.nodes[0].name)                      
     return n
@@ -64,11 +62,7 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Discard):
         replace_type(n.expr, newType)
-#     elif isinstance_list(n, [Const, Bool]):
-#         return
-    elif isinstance(n, Const):
-        return
-    elif isinstance(n, Bool):
+    elif isinstance_list(n, [Const, Bool]):
         return
     elif isinstance(n, Add):
         replace_type(n.left, newType)
@@ -82,7 +76,7 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Compare):
         replace_type(n.expr, newType)
-        replace_type(n.ops[1], newType)
+        replace_type(n.ops[0][1], newType)
         return
     elif isinstance(n, Or) or isinstance(n, And) or isinstance(n, List):
         for node in n.nodes:
@@ -93,7 +87,8 @@ def replace_type(n, newType):
         return
     elif isinstance(n, Dict):
         for item in n.items:
-            replace_type(item, newType)
+            replace_type(item[0], newType)
+            replace_type(item[1], newType)
         return
     elif isinstance(n, Subscript):
         replace_type(n.expr, newType)
